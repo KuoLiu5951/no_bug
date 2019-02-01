@@ -79,38 +79,36 @@ def removeCard(cards,cardsFormASet)
 end
 
 # Algorithm to determine 3 cards is a set or not
-def isSet(card a, card b, card c)
+def isSet(cardChosen)
+  cardA = cardChosen[0];
+  cardB = cardChosen[1];
+  cardC = cardChosen[2];
+
   set = false
-  if (((a.number == b.number) && (b.number == c.number) ||
-      (a.number != b.number) && (a.number != c.number) && (b.number != c.number)))
-    set = true
+  if (((cardA.number == cardB.number) && (cardB.number == cardC.number) ||
+      (cardA.number != cardB.number) && (cardA.number != cardC.number) && (cardB.number != cardC.number)))
+    if (((cardA.shape== cardB.shape) && (cardB.shape== cardC.shape) ||
+        (cardA.shape != cardB.shape) && (cardA.shape != cardC.shape) && (cardB.shape != cardC.shape)))
+      if (((cardA.shade == cardB.shade) && (cardB.shade == cardC.shade) ||
+          (cardA.shade != cardB.shade) && (cardA.shade != cardC.shade) && (cardB.shade != cardC.shade)))
+        if (((cardA.color == cardB.color) && (cardB.color == cardC.color) ||
+            (cardA.color != cardB.color) && (cardA.color != cardC.color) && (cardB.color != cardC.color)))
+          set = true
+        end
+      end
+    end
   end
-
-  if (((a.shape== b.shape) && (b.shape== c.shape) ||
-      (a.shape != b.shape) && (a.shape != c.shape) && (b.shape != c.shape)))
-    set = true
-  end
-
-  if (((a.shade == b.shade) && (b.shade == c.shade) ||
-      (a.shade != b.shade) && (a.shade != c.shade) && (b.shade != c.shade)))
-    set = true
-  end
-
-  if (((a.color == b.color) && (b.color == c.color) ||
-      (a.color != b.color) && (a.color != c.color) && (b.color != c.color)))
-    set = true
-  end
-
   return set
 end
 
 # If Set on the board: highlights the next card in the Set. If no Set on board: adds three new cards
-def hint (card a, card b, cardShow,cards)
+def hint (cardA, cardB, cardShow,cards)
   i = 0
   while i<cardShow.length
-    c = cardShow[i]
-    if isSet(card a,card b, card c)
-      return c
+    cardC = cardShow[i]
+    cardChosen = [cardA,cardB,cardC]
+    if isSet(cardChosen)
+      return cardC
     end
     i += 1
   end
