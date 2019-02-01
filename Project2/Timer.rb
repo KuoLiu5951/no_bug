@@ -9,8 +9,15 @@ class Timer
   end
 
   # Set the game lasts for 1 minutes
- def gameStart
-    minutes = 1
+  def gameStart(mode)
+    if mode = "easy"
+      minutes = 2
+    elsif mode = "normal"
+      minutes = 1.5
+    elsif mode = "hard"
+      minutes = 1
+    end
+
     seconds = minutes * 60
     end_time = Time.now + seconds
     while Time.now < end_time
