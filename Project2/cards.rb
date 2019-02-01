@@ -29,7 +29,7 @@ def getCards
   numbers = [1,2,3];
   colors = [red, green, purple];
   shapes = [diamond,squiggle, oval];
-  shades = [solid, striped, open];
+  shades = [solid, striped, empty];
   cards = Array.new(81);
   for number in numbers
     for color in colors
