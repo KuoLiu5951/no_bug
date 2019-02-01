@@ -27,8 +27,8 @@ end
 # Get 81 cards and put them in the array. Each of them has different number, color, shape and shade.
 def getCards
   numbers = [1,2,3];
-  colors = [red, green, purple]
-  shapes = [diamond,squiggle, oval]
+  colors = [red, green, purple];
+  shapes = [diamond,squiggle, oval];
   shades = [solid, striped, open];
   cards = Array.new(81);
   for number in numbers
