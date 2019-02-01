@@ -19,6 +19,7 @@ class Timer
     seconds = minutes * 60
     end_time = Time.now + seconds
     while initialize < end_time
+      sleep 1
     end
     puts "Game Over!"
   end
