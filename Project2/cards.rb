@@ -1,4 +1,4 @@
-class Cards1
+class Cards
   def initialize(number,color,shape,shade)
     @number = number;
     @color = color;
