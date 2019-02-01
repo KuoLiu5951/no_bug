@@ -12,8 +12,6 @@ class Timer
   def gameStart(mode)
     if mode = "easy"
       minutes = 2
-    elsif mode = "normal"
-      minutes = 1.5
     elsif mode = "hard"
       minutes = 1
     end
