@@ -13,13 +13,13 @@ class Timer
     return Time.now - getStartTime;
   end
 
-  #Determine if the time takes exceed the time restriction
-  def exceedTimeRestriction(timeRestriction)
-    totalTime = totalTimeCost;
-    if totalTime<timeRestriction
-      return false;
+  # Set the game lasts for 1 minutes
+ def gameStart
+    minutes = 1
+    seconds = minutes * 60
+    end_time = Time.now + seconds
+    while initialize < end_time
     end
-  else
-    return true;
+    puts "Game Over!"
   end
 end
