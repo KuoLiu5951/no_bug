@@ -46,7 +46,8 @@ class Cards
   def getRandomCards(cards)
     i = 0;
     cardShow = Array.new()
-    while i < 12
+    0.upto 12 do
+
       card = cards[rand(cards.length)];
       cards.delete(card);
       cardShow.add(card);
@@ -69,10 +70,8 @@ class Cards
 
   #Remove card from the original array of cards
   def removeCard(cards,cardsFormASet)
-    i = 0
-    while i < cardsFormASet.length
+    0.upto cardsFormASet.length do
       cards.delete(cardsFormASet[i]);
-      i = i + 1;
     end
   end
 
@@ -81,7 +80,6 @@ class Cards
     cardA = cardChosen[0];
     cardB = cardChosen[1];
     cardC = cardChosen[2];
-
     set = false
     if (((cardA.number == cardB.number) && (cardB.number == cardC.number) ||
         (cardA.number != cardB.number) && (cardA.number != cardC.number) && (cardB.number != cardC.number)))
@@ -101,8 +99,7 @@ class Cards
 
   # If Set on the board: highlights the next card in the Set. If no Set on board: adds three new cards
   def hint (cardA, cardB, cardShow,cards)
-    i = 0
-    while i<cardShow.length
+    0.upto cardShow.length
       cardC = cardShow[i]
       cardChosen = [cardA,cardB,cardC]
       if isSet(cardChosen)
@@ -115,11 +112,9 @@ class Cards
 
   #Determine if the card array shown to the user contains a set.
   def containSet(cardShow)
-    cardShowTemp = cardShow
-  end
-    for cardA in cardShowTemp
-      for cardB in cardShowTemp
-        for cardC in cardShowTemp
+    for cardA in cardShow
+      for cardB in cardShow
+        for cardC in cardShow
           if cardA != cardB && cardB !=cardC && cardA!=cardC
             if isSet([cardA,cardB,cardC])
               return true
