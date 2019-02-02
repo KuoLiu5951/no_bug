@@ -1,9 +1,30 @@
 class Cards
-  def initialize(number,color,shape,shade)
-    @number = number;
-    @color = color;
-    @shape = shape;
-    @shade = shade;
+  def initialize(number, color, shape, shade, address, c_address)
+    #0 is single, 1 is double, 2 is triple
+    @number = number
+
+    # 0 is red, 1 is green, 2 is purple
+    @color = color
+
+    #0 is diamond, 1 is squiggle, 2 is oval
+    @shape = shape
+
+    # 0 is solid, 1 is striped, 2 is  empty
+    @shade = shade
+
+    # the address of images
+    @address = address
+
+    #the address of images that are clicked by users
+    @c_address = c_address
+  end
+  
+  def getAddress
+    @address
+  end
+  
+  def switch
+    @address, @c_address = @c_address, @address
   end
 
   def getNum
