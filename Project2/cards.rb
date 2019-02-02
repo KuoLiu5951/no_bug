@@ -113,4 +113,20 @@ class Cards
     addCards(cards,cardShow)
   end
 
+  #Determine if the card array shown to the user contains a set.
+  def containSet(cardShow)
+    cardShowTemp = cardShow
+  end
+    for cardA in cardShowTemp
+      for cardB in cardShowTemp
+        for cardC in cardShowTemp
+          if cardA != cardB && cardB !=cardC && cardA!=cardC
+            if isSet([cardA,cardB,cardC])
+              return true
+            end
+          end
+        end
+    end
+  end
+
 end
