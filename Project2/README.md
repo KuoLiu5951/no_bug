@@ -13,7 +13,7 @@ The rules of the SET game can be found on [Wikipedia](https://en.wikipedia.org/w
      automatically. When finding a set in the limited time, the player will get one point.
      
      -- There are two buttons which the player could choose a difficulty. Easy mode (time limit to 
-     find a set is 1 minutes), and Hard mode(time limit to find a set is 30 seconds) player will 
+     find a set is 2 minutes), and Hard mode(time limit to find a set is 1 minutes) player will 
      choose. If the timer run out, the game will be stopped.
      
      -- There is a "Restart" button, which can restart a new game.
