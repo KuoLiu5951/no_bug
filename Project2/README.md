@@ -22,12 +22,12 @@ The rules of the SET game can be found on [Wikipedia](https://en.wikipedia.org/w
      
      -- "Num_cards" label: display the number of cards left in the card_set.
 ## Implementations Details
-     -- 
+
 ## Meeting
      -- 01/27/2019:
      Our team learned how to program with Ruby.
      -- 01/30/2019:
-     Our team developed the structure of the game, implemented the class "Set", and designed what the GUI looks like.
+     Our team developed the structure of the game, implemented the class "Cards", and designed what the GUI looks like.
      -- 01/31/2019:
      Our team implemented the class "Timer" and "Score".
      --02/01/2019:
