@@ -117,21 +117,8 @@ class Cards
     end
     return set
   end
-
-  # If Set on the board: highlights the next card in the Set. If no Set on board: adds three new cards
-  def hint (cardA, cardB, cardShow,cards)
-    0.upto cardShow.length
-      cardC = cardShow[i]
-      cardChosen = [cardA,cardB,cardC]
-      if isSet(cardChosen)
-        return cardC
-      end
-      i += 1
-    end
-    addCards(cards,cardShow)
-  end
-
-  #Determine if the card array shown to the user contains a set.
+  
+    #Determine if the card array shown to the user contains a set.
   def containSet(cardShow)
     for cardA in cardShow
       for cardB in cardShow
@@ -144,5 +131,40 @@ class Cards
         end
     end
   end
+
+  # If Set on the board: highlights the next card in the Set. If no Set on board: adds three new cards
+def get_hint (cardA, cardB, cardShow,cards)
+  i = 0
+  while i<cardShow.length
+    cardC = cardShow[i]
+    cardChosen = [cardA,cardB,cardC]
+    if isSet(cardChosen)
+      @builder['hint'].visible = false
+      return cardC
+    end
+    i += 1
+  end
+  addCards(cards,cardShow)
+  @builder['hint'].visible = false
+end
+
+def gameOver
+  if gameStart == "Game Over"
+    @builder['score'].label = "Score: " + @score.to_s
+  end
+end
+
+def instruction_button(*args)
+  @builder['instruction'].label = "A SET is three cards where each feature, when looked at individually, is either all
+                                  the same OR all different. Each card contains four features: color (red, purple or
+                                  green), shape (oval, squiggle or diamond), number (one, two or three) and
+                                  shading (solid, striped or outlined). SET isa speed game."
+end
+
+def pause_button(*args)
+  pauseTime = $Timer.Time.now
+  @builder['pause'].label = "Game is stopped, time is : "+ pauseTime.to_s
+  @builder['cards'].visible = false
+end
 
 end
