@@ -1,14 +1,12 @@
 require_relative 'deck'
 Shoes.app(title: "Set Game", width: 600, height: 400) do
-  flow width:600, height:400 do
-    flow width:1.0, height: 0.15 do
+  flow width:1032, height:1050 do
+    flow width:1.0, height: 0.1 do
       background rgb(0,157, 228)
-      para "Rest card: "
-      para "State"
-      para "Time"
+
     end
 
-    flow width:1.0, height: 0.6 do
+    flow width:1.0, height: 0.8 do
       deck = Deck.new
       deck.newDeck
       cardShow = deck.getRandomCards
@@ -24,11 +22,14 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
       end
     end
 
-    flow width:1.0, height:0.25 do
+    flow width:1.0, height:0.1 do
       background rgb(139,206,236)
-
+      para "Rest card: "
+      para "State"
+      para "Time"
     end
   end
 
 end
+
 
