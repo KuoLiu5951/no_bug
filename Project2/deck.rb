@@ -1,23 +1,35 @@
+require_relative 'cards'
 class Deck
-  @@deck = Array.new
-  @@cardShow = Array.new
+  @@deck = Hash.new
+  @@cardShow = Hash.new
   def newDeck
     # Get the image wof 81 cards and put them in the array. Each of them has different number, color, shape and shade.
     i = 0
     while i<81 do
-      @@deck[i] = "D:/img/" + i.to_s + ".png"
+      for number in 1..3
+        for color in 1..3
+          for shape in 1..3
+            for shade in 1..3
+              state = false
+              card = Cards.new(number,color,shape,shade,state)
+              @@deck[card] = "D:/img/" + number.to_s + "_" + color.to_s + "_" + shape.to_s + "_" + shade.to_s + ".png"
+            end
+          end
+        end
+      end
+
       i = i + 1
     end
-
   end
 
   #Get random 12 cards and put them in the array. Then remove them from the original array.
   def getRandomCards
-    @@cardShow = Array.new
     0.upto 11 do
-      card = @@deck[rand(@@deck.length)];
+      keys = @@deck.keys
+      card = keys[rand(keys.length)];
+      value = @@deck[card]
       @@deck.delete(card);
-      @@cardShow.push(card);
+      @@cardShow[card]=value;
     end
     return @@cardShow
   end
