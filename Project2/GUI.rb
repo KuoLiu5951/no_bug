@@ -13,11 +13,12 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
       deck.newDeck
       cardShow = deck.getRandomCards
       i = 0
-      while i<11
-        image cardShow[i]
+      while i<12
+        keys = cardShow.keys
+        image cardShow[keys[i]]
         i = i + 1
       end
-      while i< 78
+      while i< 18
         image "D:/img/empty.png"
         i = i + 1
       end
