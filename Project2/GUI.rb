@@ -59,33 +59,37 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
       while deck.length >0
         cardChosen=Array.new
         count = 0
-        for x in 0..18
-          if images[x].click
-            if count<3
-              count +=1
-              if keys[x].state
-                keys[x].state.switch
-                cardChosen.delete(keys[x])
-                border("#FFF")
-              else
-                cardChosen.push(keys[x])
-                keys[x].state.switch
-                border("#F3F",strokwidth:20)
-              end
+        images.each do |image|
+          image.click do
+            if image = image "C:/img/empty.png"
+              alert "Cannot choose an empty card!"
             else
-              alert "You have already chose 3 cards!"
+              if count<3
+                count +=1
+                if keys[images.index(image)].state
+                  keys[images.index(image)].state.switch
+                  cardChosen.delete(keys[images.index(image)])
+                  border("#FFF")
+                else
+                  cardChosen.push(keys[images.index(image)])
+                  keys[images.index(image)].state.switch
+                  border("#F3F",strokwidth:20)
+                end
+              else
+                alert "You have already chose 3 cards!"
+              end
             end
           end
         end
 
         if Cards.isSet(cardChosen)
           window :title=>"Congratulations!" do
-            puts "Congratulations, you chose a set!"
+            para "Congratulations, you chose a set!"
           end
 
         else
           window :title=>"Sorry" do
-            puts "Sorry, the cards you chose cannot form a set!"
+            para "Sorry, the cards you chose cannot form a set!"
           end
         end
       end
