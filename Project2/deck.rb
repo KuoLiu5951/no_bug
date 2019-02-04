@@ -49,16 +49,45 @@ class Deck
     end
   end
 
-  #Determine if the card array shown to the user contains a set.
-  def containSet
-    for cardA in @@cardShow
-      for cardB in @@cardShow
-        for cardC in @@cardShow
-          if cardA != cardB && cardB !=cardC && cardA!=cardC
-            if isSet(cardChosen[cardA,cardB,cardC])
-              return true
-            end
+  # Algorithm to determine 3 cards is a set or not
+  def isSet?(cardChosen)
+    cardA = cardChosen[0];
+    cardB = cardChosen[1];
+    cardC = cardChosen[2];
+    set = false
+    if (((cardA.getNum == cardB.getNum ) && (cardB.getNum  == cardC.getNum ) ||
+        (cardA.getNum  != cardB.getNum ) && (cardA.getNum != cardC.getNum ) && (cardB.getNum  != cardC.getNum)))
+      if (((cardA.getShape== cardB.getShape) && (cardB.getShape== cardC.getShape) ||
+          (cardA.getShape != cardB.getShape) && (cardA.getShape != cardC.getShape) && (cardB.getShape != cardC.getShape)))
+        if (((cardA.getShade == cardB.getShade) && (cardB.getShade == cardC.getShade) ||
+            (cardA.getShade != cardB.getShade) && (cardA.getShade != cardC.getShade) && (cardB.getShade != cardC.getShade)))
+          if (((cardA.getColor == cardB.getColor) && (cardB.getColor == cardC.getColor) ||
+              (cardA.getColor != cardB.getColor) && (cardA.getColor != cardC.getColor) && (cardB.getColor != cardC.getColor)))
+            set = true
           end
+        end
+      end
+    end
+    return set
+  end
+
+
+  #Determine if the card array shown to the user contains a set.
+  def containSet?
+    for cardA in @@cardShow.keys
+      for cardB in @@cardShow.keys
+        for cardC in @@cardShow.keys
+          if cardA != cardB && cardB !=cardC && cardA!=cardC
+            cards = Array.new(3)
+            cards[0] = cardA
+            cards[1] = cardB
+            cards[2] = cardC
+            if isSet?(cards)
+              return true
+            else
+
+            end
+         end
         end
       end
     end
