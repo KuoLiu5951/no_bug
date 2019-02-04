@@ -39,46 +39,39 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
       deckClass = Deck.new
       deck = deckClass.getDeck
       cardShow = deckClass.getRandomCards
-      i = 0
+
       cardChosen = Array.new
-      while i<12
-        flow width:0.25, height:0.2 do
+      flow width:0.25, height:0.2 do
 
-          cards = cardShow.keys
-          card= cards[i]
+        cards = cardShow.keys
+        card= cards[0]
+        address = cardShow[card]
+        next_image = image  address + ".png", width: 270, height:180, margin: 12
+        next_image.click do
+          if !card.getState
 
-          @next_image = image cardShow[card] + ".png", width: 270, height:180, margin: 12
-          @next_image.click do
-
-            if !card.getState
-              if cardChosen.length <3
-                cardChosen.push(card )
-              else
-                alert "You have already chosen 3 cards!"
-              end
+            next_image.path = address + "_c.png"
+            if cardChosen.length <3
+              cardChosen.push(card )
               card.switch
             else
-              cardChosen.delete(card)
-              card.switch
+              alert "You have already chosen 3 cards!"
             end
+          else
+            card.switch
+            next_image.path =address + "_d.png"
+            cardChosen.delete(card)
 
           end
-        end
-        i +=1
-      end
-      while i< 18
-        flow width:0.25, height:0.2 do
-          empty =image "D:/img/empty.png",width: 270, height:180, margin: 12
-          empty.click do
-            alert "You cannot choose an empty card!"
-          end
-          i = i + 1
+
         end
 
+
       end
-
-
     end
+
+
+
     flow width:1.0, height:0.1 do
       background rgb(139,206,236)
       para "Rest card: "
