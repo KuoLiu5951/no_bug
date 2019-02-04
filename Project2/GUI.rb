@@ -60,7 +60,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         cardChosen=Array.new
         count = 0
         for x in 0..18
-          if images[x].click 
+          if images[x].click
             if count<3
               count +=1
               if keys[x].state
@@ -77,18 +77,19 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
             end
           end
         end
-        
+
         if Cards.isSet(cardChosen)
           window :title=>"Congratulations!" do
             puts "Congratulations, you chose a set!"
           end
-          
+
         else
           window :title=>"Sorry" do
             puts "Sorry, the cards you chose cannot form a set!"
           end
         end
-
+      end
+     end
     flow width:1.0, height:0.1 do
       background rgb(139,206,236)
       para "Rest card: "
