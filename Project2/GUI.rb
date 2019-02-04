@@ -1,5 +1,7 @@
 require_relative 'deck'
 require_relative 'cards'
+$cardChosen = Array.new
+
 Shoes.app(title: "Set Game", width: 600, height: 400) do
   flow width:1080, height:1125 do
     flow width:1.0, height: 0.1 do
@@ -40,60 +42,44 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
       deck.newDeck
       cardShow = deck.getRandomCards
       i = 0
-      images = Array.new(18)
+
       while i<12
         flow width:0.25, height:0.2 do
           keys = cardShow.keys
           next_image = image cardShow[keys[i]], width: 270, height:180
-          images[i] = next_image
+          next_image.click do
+            alert($cardChosen.length.to_s)
+
+            card = Cards.new(keys[i].number,keys[i].color,keys[i].shape,keys[i].shade,keys[i].state)
+            if !card.getState
+              card.switch
+              if $cardChosen.length <3
+                $cardChosen.push (card )
+
+              else
+                alert "You have already chosen 3 cards!"
+              end
+            else
+
+              card.switch
+              $cardChosen.delete(card)
+            end
+
+          end
         end
         i +=1
       end
-
       while i< 18
-        next_image =image "C:/img/empty.png",width: 262, height:171
-        images[i] = next_image
+
+        empty =image "C:/img/empty.png"
+        empty.click do
+          alert "You cannot choose an empty card!"
+        end
         i = i + 1
       end
 
-      while deck.length >0
-        cardChosen=Array.new
-        count = 0
-        images.each do |image|
-          image.click do
-            if image = image "C:/img/empty.png"
-              alert "Cannot choose an empty card!"
-            else
-              if count<3
-                count +=1
-                if keys[images.index(image)].state
-                  keys[images.index(image)].state.switch
-                  cardChosen.delete(keys[images.index(image)])
-                  border("#FFF")
-                else
-                  cardChosen.push(keys[images.index(image)])
-                  keys[images.index(image)].state.switch
-                  border("#F3F",strokwidth:20)
-                end
-              else
-                alert "You have already chose 3 cards!"
-              end
-            end
-          end
-        end
 
-        if Cards.isSet(cardChosen)
-          window :title=>"Congratulations!" do
-            para "Congratulations, you chose a set!"
-          end
-
-        else
-          window :title=>"Sorry" do
-            para "Sorry, the cards you chose cannot form a set!"
-          end
-        end
-      end
-     end
+    end
     flow width:1.0, height:0.1 do
       background rgb(139,206,236)
       para "Rest card: "
