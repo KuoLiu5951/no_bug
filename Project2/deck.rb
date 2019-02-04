@@ -65,4 +65,20 @@ class Deck
     end
   end
 
+
+  # If Set on the board: highlights the next card in the Set. If no Set on board: adds three new cards
+  def get_hint (cardA, cardB)
+    i = 0
+    0.upto @@cardShow.length do
+      keys = @@cardShow.keys
+      cardC = keys[i]
+      cardChosen = [cardA,cardB,cardC]
+      if isSet(cardChosen)
+        return cardC
+      end
+      i+= 1
+    end
+    addCards
+  end
+
 end
