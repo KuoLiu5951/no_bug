@@ -1,8 +1,8 @@
 require_relative 'deck'
 require_relative 'cards'
-$cardChosen = Array.new
 
 Shoes.app(title: "Set Game", width: 600, height: 400) do
+
   flow width:1080, height:1125 do
     flow width:1.0, height: 0.1 do
       background rgb(0,157, 228)
@@ -35,34 +35,31 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
       end
     end
-
-
-    flow width:1.0, height: 0.8 do
-      deck = Deck.new
-      deck.newDeck
-      cardShow = deck.getRandomCards
+    flow  width:1.0, height: 0.8 do
+      deckClass = Deck.new
+      deck = deckClass.getDeck
+      cardShow = deckClass.getRandomCards
       i = 0
-
+      cardChosen = Array.new
       while i<12
         flow width:0.25, height:0.2 do
-          keys = cardShow.keys
-          next_image = image cardShow[keys[i]], width: 270, height:180
-          next_image.click do
-            alert($cardChosen.length.to_s)
 
-            card = Cards.new(keys[i].number,keys[i].color,keys[i].shape,keys[i].shade,keys[i].state)
+          cards = cardShow.keys
+          card= cards[i]
+
+          @next_image = image cardShow[card] + ".png", width: 270, height:180, margin: 12
+          @next_image.click do
+
             if !card.getState
-              card.switch
-              if $cardChosen.length <3
-                $cardChosen.push (card )
-
+              if cardChosen.length <3
+                cardChosen.push(card )
               else
                 alert "You have already chosen 3 cards!"
               end
-            else
-
               card.switch
-              $cardChosen.delete(card)
+            else
+              cardChosen.delete(card)
+              card.switch
             end
 
           end
@@ -70,12 +67,14 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         i +=1
       end
       while i< 18
-
-        empty =image "C:/img/empty.png"
-        empty.click do
-          alert "You cannot choose an empty card!"
+        flow width:0.25, height:0.2 do
+          empty =image "D:/img/empty.png",width: 270, height:180, margin: 12
+          empty.click do
+            alert "You cannot choose an empty card!"
+          end
+          i = i + 1
         end
-        i = i + 1
+
       end
 
 
