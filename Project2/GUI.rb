@@ -28,6 +28,18 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
       para "State"
       para "Time"
     end
+    
+        button "rule" do
+      link = "https://www.setgame.com/set"
+      if RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/
+        system "start #{link}"
+      elsif RbConfig::CONFIG['host_os'] =~ /darwin/
+        system "open #{link}"
+      elsif RbConfig::CONFIG['host_os'] =~ /linux|bsd/
+        system "xdg-open #{link}"
+      end
+    end
+    
   end
 
 end
