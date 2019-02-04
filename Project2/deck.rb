@@ -4,8 +4,7 @@ class Deck
   @@cardShow = Hash.new
   def initialize
     # Get the image wof 81 cards and put them in the array. Each of them has different number, color, shape and shade.
-    i = 0
-    while i<81 do
+
       for number in 1..3
         for color in 1..3
           for shape in 1..3
@@ -17,9 +16,6 @@ class Deck
           end
         end
       end
-
-      i = i + 1
-    end
   end
 
   #return the deck hash
@@ -31,8 +27,7 @@ class Deck
     0.upto 11 do
       keys = @@deck.keys
       card = keys[rand(keys.length)];
-      value = @@deck[card]
-      @@deck.delete(card);
+      value = @@deck.delete(card);
       @@cardShow[card]=value;
     end
     return @@cardShow
