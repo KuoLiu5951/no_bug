@@ -8,7 +8,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
   @@deck = deckClass.getDeck
   @@cardShow = deckClass.getRandomCards
   $cardChosen = Array.new
-
+  $nadd = true
 
 
   flow width:1080, height:1125 do
@@ -33,6 +33,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
           alert "There is a set among these cards!"
         else
           deckClass.addCards
+          $nadd = false
         end
       end
 
@@ -380,6 +381,93 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
         end
       end
+
+      flow width:0.25, height:0.2 do
+        if !$nadd
+          cards = @@cardShow.keys
+          card= cards[12]
+          address = @@cardShow[card]
+          image13 = image  address + ".png", width: 270, height:180, margin: 12
+          image13.click do
+            if !card.getState
+
+              image13.path = address + "_c.png"
+              if $cardChosen.length <3
+                $cardChosen.push(card )
+                card.switch
+              else
+                image13.path =address + "_d.png"
+                alert "You have already chosen 3 cards!"
+              end
+            else
+              card.switch
+              image13.path =address + "_d.png"
+              $cardChosen.delete(card)
+            end
+          end
+        else
+
+        end
+      end
+
+      flow width:0.25, height:0.2 do
+        if !$nadd
+          cards = @@cardShow.keys
+          card= cards[13]
+          address = @@cardShow[card]
+          image14 = image  address + ".png", width: 270, height:180, margin: 12
+          image14.click do
+            if !card.getState
+
+              image14.path = address + "_c.png"
+              if $cardChosen.length <3
+                $cardChosen.push(card )
+                card.switch
+              else
+                image14.path =address + "_d.png"
+                alert "You have already chosen 3 cards!"
+              end
+            else
+              card.switch
+              image14.path =address + "_d.png"
+              $cardChosen.delete(card)
+            end
+          end
+        else
+
+        end
+      end
+
+
+      flow width:0.25, height:0.2 do
+        if !$nadd
+          cards = @@cardShow.keys
+          card= cards[14]
+          address = @@cardShow[card]
+          image15 = image  address + ".png", width: 270, height:180, margin: 12
+          image15.click do
+            if !card.getState
+
+              image15.path = address + "_c.png"
+              if $cardChosen.length <3
+                $cardChosen.push(card )
+                card.switch
+              else
+                image15.path =address + "_d.png"
+                alert "You have already chosen 3 cards!"
+              end
+            else
+              card.switch
+              image15.path =address + "_d.png"
+              $cardChosen.delete(card)
+            end
+          end
+        else
+
+        end
+      end
+
+
 
 
     end
