@@ -3,7 +3,7 @@ Start date: 01/26/2019
 ## Game Tutorial
 The rules of the SET game can be found on [Wikipedia](https://en.wikipedia.org/wiki/Set_(card_game)).
 ## Requirement
-     -- Ruby
+     -- Ruby,Ruby Shoes
 ## How to Run
      -- 
 ## Quick Start
@@ -21,6 +21,8 @@ The rules of the SET game can be found on [Wikipedia](https://en.wikipedia.org/w
      -- The "Hint" button can be used when the player have no idea. 
      
      -- "Num_cards" label: display the number of cards left in the card_set.
+     
+     --"Score" field : display the score in game.
 ## Implementations Details
 
 ## Meeting
@@ -32,4 +34,7 @@ The rules of the SET game can be found on [Wikipedia](https://en.wikipedia.org/w
      Our team implemented the class "Timer" and "Score".
      --02/01/2019:
      Our team discussed how to link buttons to functions.
+     --02/02/2019:
+     Our team failed to connect Ruby with GUI using glade and decided to use Ruby Shoes.
+     
      
