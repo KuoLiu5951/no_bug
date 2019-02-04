@@ -76,19 +76,6 @@ class Cards
 
 
   # If Set on the board: highlights the next card in the Set. If no Set on board: adds three new cards
-  def get_hint (cardA, cardB, cardShow,cards)
-    0.upto cardShow.length do
-      cardC = cardShow[i]
-      cardChosen = [cardA,cardB,cardC]
-      if isSet(cardChosen)
-        @builder['hint'].visible = false
-        return cardC
-      end
-      i += 1
-    end
-    addCards(cards,cardShow)
-    @builder['hint'].visible = false
-  end
 
   def gameOver
     if gameStart == "Game Over"
