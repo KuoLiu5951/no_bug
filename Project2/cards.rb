@@ -23,7 +23,7 @@ class Cards
 
   #Change the state of the card.
   def switch
-    if @state = true
+    if @state
       @state  = false
     else
       @state  = true
@@ -51,31 +51,24 @@ class Cards
 
 
 
-  # Algorithm to determine 3 cards is a set or not
-  def isSet(cardChosen)
-    cardA = cardChosen[0];
-    cardB = cardChosen[1];
-    cardC = cardChosen[2];
-    set = false
-    if (((cardA.number == cardB.number) && (cardB.number == cardC.number) ||
-        (cardA.number != cardB.number) && (cardA.number != cardC.number) && (cardB.number != cardC.number)))
-      if (((cardA.shape== cardB.shape) && (cardB.shape== cardC.shape) ||
-          (cardA.shape != cardB.shape) && (cardA.shape != cardC.shape) && (cardB.shape != cardC.shape)))
-        if (((cardA.shade == cardB.shade) && (cardB.shade == cardC.shade) ||
-            (cardA.shade != cardB.shade) && (cardA.shade != cardC.shade) && (cardB.shade != cardC.shade)))
-          if (((cardA.color == cardB.color) && (cardB.color == cardC.color) ||
-              (cardA.color != cardB.color) && (cardA.color != cardC.color) && (cardB.color != cardC.color)))
-            set = true
-          end
-        end
-      end
-    end
-    return set
-  end
+
 
 
 
   # If Set on the board: highlights the next card in the Set. If no Set on board: adds three new cards
+  def get_hint (cardA, cardB, cardShow,cards)
+    0.upto cardShow.length do
+      cardC = cardShow[i]
+      cardChosen = [cardA,cardB,cardC]
+      if isSet(cardChosen)
+        @builder['hint'].visible = false
+        return cardC
+      end
+      i += 1
+    end
+    addCards(cards,cardShow)
+    @builder['hint'].visible = false
+  end
 
   def gameOver
     if gameStart == "Game Over"
