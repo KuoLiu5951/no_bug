@@ -27,7 +27,26 @@ The rules of the SET game can be found on [Wikipedia](https://en.wikipedia.org/w
      
      -- "Score" field : display the score in game.
 ## Implementations Details
-     -- 
+     -- Cards.rb
+     * Each card of total 81 cards has one of each attrubute: number(single, double, triple), color(red, green, purple), 
+     shape(diamond, squiggle, oval), and shade(solid, striped, empty), which was coded as address. 
+     * get_hint function would be called if player click Hint button, which will highlight the possible card that could form 
+     a set, or add three new cards if there is no set on the board.
+     * game
+     -- Deck.rb
+     * total number of cards is 3^4=81
+     * getRandomCards will generate first 12 cards on board in an array, and remove them from the whole cards array, which 
+     will call function removeCard.
+     * addCards would be called if player click Add 3 cards button, which will add 3 more cards to array of the first 
+     generated cards, and remove them from the rest of the whole cards array, which will call function removeCard.
+     * isSet? would be called if player choose three cards. This function returns whether 3-cards is a set or not. 
+     * containSet? verify there exists one or more sets on the board. When player click Add 3 cards button, only if containSet?
+     does not return true, there will be 3 cards added.
+     -- Score.rb
+     *If player find a set, there will be one point added shown on screen.
+     --GUI.rb
+     *
+     
      
 ## Meeting
      -- 01/27/2019:
