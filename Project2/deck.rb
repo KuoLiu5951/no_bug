@@ -1,7 +1,7 @@
 require_relative 'cards'
 class Deck
   @@deck = Hash.new
-  @@cardShow = Hash.new(18)
+  @@cardShow = Hash.new
   def initialize
     # Get the image wof 81 cards and put them in the array. Each of them has different number, color, shape and shade.
 
@@ -30,19 +30,16 @@ class Deck
       value = @@deck.delete(card);
       @@cardShow[card]=value;
     end
-    for i in 0..6 do
-      @@cardShow[i] = "C:/img/empty"
-    end
     return @@cardShow
   end
 
   #Add 3 cards to the array of cards that will be shown to the player. And remove them from the original card array.
   def addCards
-    newCards = Array.new
-    0.upto 3 do
-      card = @@deck[rand(@@deck.length)];
-      @@deck.delete(card);
-      @@cardShow.add(card);
+    newCards = Array.new(3)
+    3.times do
+      card = @@deck.keys[rand(@@deck.length)];
+      address = @@deck.delete(card);
+      @@cardShow[card] = address;
       newCards.push(card)
     end
     return newCards
@@ -52,7 +49,7 @@ class Deck
 
   #Remove card from the original array of cards
   def removeCard(cardsFormASet)
-    0.upto cardsFormASet.length do
+   for i in 0..cardsFormASet.length do
       @@cardShow.delete(cardsFormASet[i]);
     end
   end
@@ -72,7 +69,6 @@ class Deck
           if (((cardA.getColor == cardB.getColor) && (cardB.getColor == cardC.getColor) ||
               (cardA.getColor != cardB.getColor) && (cardA.getColor != cardC.getColor) && (cardB.getColor != cardC.getColor)))
             set = true
-
           end
         end
       end
