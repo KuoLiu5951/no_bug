@@ -21,7 +21,7 @@ The rules of the SET game can be found on [Wikipedia](https://en.wikipedia.org/w
      
      -- There is a "Restart" button, which can restart a new game.
      
-     -- The "Hint" button can be used when the player have no idea. 
+     -- The "Hint" button can be used when the player have no idea, but player must choose two cards first. 
      
      -- "Num_cards" label: display the number of cards left in the card_set.
      
@@ -45,7 +45,7 @@ The rules of the SET game can be found on [Wikipedia](https://en.wikipedia.org/w
      -- Score.rb
      *If player find a set, there will be one point added shown on screen.
      --GUI.rb
-     *
+     *GUI.rb is the outlook of the game, it implement the start button, restart button, hint button, add 3 cards button, esay button,        and hard button. It has show of time, score.
      
      
 ## Meeting
