@@ -8,7 +8,7 @@ The rules of the SET game can be found on [Wikipedia](https://en.wikipedia.org/w
 ## How to Run
      -- Clone the repo using
      git clone https://github.com/cse-3901-sp2019-1800/no_bug/tree/master/Project2
-     and make sure downloading Img files into Disk C. If you meet some errors like images does not show in our
+     and make sure downloading the Project2 into Disk C with img file inside it. (The path of img file is C:/Project2/img) If you meet some errors like images does not show in our
      set game, please check the deck.rb there are specific address of images.
 ## Quick Start
      -- There are 3 * 6 buttons to display the cards on the table. Initially there are 12 cards, empty 
@@ -22,9 +22,7 @@ The rules of the SET game can be found on [Wikipedia](https://en.wikipedia.org/w
      
      -- There is a "Restart" button, which can restart a new game.
      
-     -- The "Hint" button can be used when the player have no idea, but player must choose two cards first. 
-     
-     -- "Num_cards" label: display the number of cards left in the card_set.
+     -- The "Hint" button can be used when the player have no idea, but player must choose two cards first.
      
      -- "Score" field : display the score in game.
 ## Implementations Details
