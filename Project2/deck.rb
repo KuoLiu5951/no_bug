@@ -1,119 +1,92 @@
-require_relative 'cards'
-class Deck
-  @@deck = Hash.new
-  @@cardShow = Hash.new
-  def initialize
-    # Get the image wof 81 cards and put them in the array. Each of them has different number, color, shape and shade.
+class Cards
+  def initialize(number, color, shape, shade, state)
+    #1 is single, 2 is double, 3 is triple
+    @number = number
 
-    for number in 1..3
-      for color in 1..3
-        for shape in 1..3
-          for shade in 1..3
-            state = false
-            card = Cards.new(number,color,shape,shade,state)
-            @@deck[card] = "C:/img/" + number.to_s + "_" + color.to_s + "_" + shape.to_s + "_" + shade.to_s
-          end
-        end
-      end
+    #1 is red, 2 is green, 3 is purple
+    @color = color
+
+    #1 is diamond, 2 is squiggle, 3 is oval
+    @shape = shape
+
+    #1 is solid, 2 is striped, 3 is  empty
+    @shade = shade
+
+    #Chosen means this card is chosen by the user. UnChosen means this card is not chosen by the user.
+    @state = state
+  end
+
+  #Get the state of the card.
+  def getState
+    return @state
+  end
+
+  #Change the state of the card.
+  def switch
+    if @state
+      @state  = false
+    else
+      @state  = true
     end
   end
 
-  #return the deck hash
-  def getDeck
-    return @@deck
-  end
-  #Get random 12 cards and put them in the array. Then remove them from the original array.
-  def getRandomCards
-    0.upto 11 do
-      keys = @@deck.keys
-      card = keys[rand(keys.length)];
-      value = @@deck.delete(card);
-      @@cardShow[card]=value;
-    end
-    return @@cardShow
+  def getNum
+    return @number;
   end
 
-  #Add 3 cards to the array of cards that will be shown to the player. And remove them from the original card array.
-  def addCards
-    newCards = Hash.new
-    3.times do
-      card = @@deck.keys[rand(@@deck.length)];
-      address = @@deck.delete(card);
-      newCards[card] = address;
-    end
-    return newCards
-
-
+  def getColor
+    return @color;
   end
 
-  #Remove card from the original array of cards
-  def removeCard(cardsFormASet)
-   for i in 0..cardsFormASet.length do
-      @@cardShow.delete(cardsFormASet[i]);
-    end
+  def getShape
+    return @shape;
   end
 
-  # Algorithm to determine 3 cards is a set or not
-  def isSet?(cardChosen)
-    cardA = cardChosen[0];
-    cardB = cardChosen[1];
-    cardC = cardChosen[2];
-    set = false
-    if (((cardA.getNum == cardB.getNum ) && (cardB.getNum  == cardC.getNum ) ||
-        (cardA.getNum  != cardB.getNum ) && (cardA.getNum != cardC.getNum ) && (cardB.getNum  != cardC.getNum)))
-      if (((cardA.getShape== cardB.getShape) && (cardB.getShape== cardC.getShape) ||
-          (cardA.getShape != cardB.getShape) && (cardA.getShape != cardC.getShape) && (cardB.getShape != cardC.getShape)))
-        if (((cardA.getShade == cardB.getShade) && (cardB.getShade == cardC.getShade) ||
-            (cardA.getShade != cardB.getShade) && (cardA.getShade != cardC.getShade) && (cardB.getShade != cardC.getShade)))
-          if (((cardA.getColor == cardB.getColor) && (cardB.getColor == cardC.getColor) ||
-              (cardA.getColor != cardB.getColor) && (cardA.getColor != cardC.getColor) && (cardB.getColor != cardC.getColor)))
-            set = true
-          end
-        end
-      end
-    end
-    return set
+  def getShade
+    return @shade;
   end
 
 
-  #Determine if the card array shown to the user contains a set.
-  def containSet?
-    for cardA in @@cardShow.keys
-      for cardB in @@cardShow.keys
-        for cardC in @@cardShow.keys
-          if cardA != cardB && cardB !=cardC && cardA!=cardC
-            cards = Array.new(3)
-            cards[0] = cardA
-            cards[1] = cardB
-            cards[2] = cardC
-            if isSet?(cards)
-              return true
-            else
 
-            end
-          end
-        end
-      end
-    end
-  end
+
+
+
+
+
+
 
   # If Set on the board: highlights the next card in the Set. If no Set on board: adds three new cards
-  def get_hint (cardA, cardB)
-    i = 0
-    cards = Array.new(3)
-    cards[0] = cardA
-    cards[1] = cardB
-    keys = @@cardShow.keys
-    while i <@@cardShow.length do
-      cardC = keys[i]
-      cards[2] = cardC
-      if isSet?(cards)
+  def get_hint (cardA, cardB, cardShow,cards)
+    0.upto cardShow.length do
+      cardC = cardShow[i]
+      cardChosen = [cardA,cardB,cardC]
+      if isSet(cardChosen)
+        @builder['hint'].visible = false
         return cardC
       end
       i += 1
     end
-    return false
+    addCards(cards,cardShow)
+    @builder['hint'].visible = false
   end
 
+  def gameOver
+    if gameStart == "Game Over"
+      @builder['score'].label = "Score: " + @score.to_s
+    end
+  end
+
+  def instruction_button(*args)
+    @builder['instruction'].label = "A SET is three cards where each feature, when looked at individually, is either all
+                                  the same OR all different. Each card contains four features: color (red, purple or
+                                  green), shape (oval, squiggle or diamond), number (one, two or three) and
+                                  shading (solid, striped or outlined). SET isa speed game."
+  end
+
+  def pause_button(*args)
+    pauseTime = $Timer.Time.now
+    @builder['pause'].label = "Game is stopped, time is : "+ pauseTime.to_s
+    @builder['cards'].visible = false
+  end
 
 end
