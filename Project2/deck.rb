@@ -48,7 +48,7 @@ class Deck
 
   #Remove card from the original array of cards
   def removeCard(cardsFormASet)
-   for i in 0..cardsFormASet.length do
+   for i in 0..cardsFormASet.length-1 do
       @@cardShow.delete(cardsFormASet[i]);
     end
   end
@@ -78,24 +78,22 @@ class Deck
 
   #Determine if the card array shown to the user contains a set.
   def containSet?
-    contain = false
     for cardA in @@cardShow.keys
       for cardB in @@cardShow.keys
         for cardC in @@cardShow.keys
-          if !(cardA == cardB) && !(cardB ==cardC) && !(cardA==cardC)
+          if cardA != cardB && cardB !=cardC && cardA!=cardC
             cards = Array.new(3)
-            cards.push(cardA)
-            cards.push(cardB)
-            cards.push(cardC)
+            cards[0] = cardA
+            cards[1] = cardB
+            cards[2] = cardC
             if isSet?(cards)
-              contain = true
-              return contain
-            end
+              return true
           end
         end
       end
     end
-    return contain
+    end
+    return false
   end
 
   # If Set on the board: highlights the next card in the Set. If no Set on board: adds three new cards
