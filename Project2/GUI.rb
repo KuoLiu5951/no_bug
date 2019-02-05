@@ -12,6 +12,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
     @@deck = deckClass.getDeck
     @@cardShow = deckClass.getRandomCards
     $cardChosen = Array.new
+    $change = false
 
 
     $score = 0
@@ -21,10 +22,6 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
     flow width:1080, height:1125 do
       flow width:1.0, height: 0.1 do
         background rgb(0,157, 228)
-        button 'Start',width:150,height:60 do
-
-
-        end
         # listener of restart button
         button 'restart',width:150,height:60 do
           self.clear
@@ -76,7 +73,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
         end
         # listener of easy button
-        button 'Easy',width:150,height:60 do
+        button 'Easy Start',width:150,height:60 do
           flow width: 200, height: 130 do
 
             seconds = 120
@@ -116,7 +113,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
           end
         end
         # listener of hard button
-        button 'Hard',width:150,height:60 do
+        button 'Hard Start',width:150,height:60 do
           flow width: 200, height: 130 do
 
             seconds = 60
@@ -180,89 +177,112 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
         flow width:0.25, height:0.2 do
 
-          cards = @@cardShow.keys
-          card= cards[0]
-          address = @@cardShow[card]
-          @image1 = image  address + ".png", width: 270, height:180, margin: 12
+          if !$change
+            cards = @@cardShow.keys
+            @card1= cards[0]
+            @address1 = @@cardShow[@card1]
+            @image1 = image  @address1 + ".png", width: 270, height:180, margin: 12
+          else
+            @image1.path.slice!("_d.png")
+            @card1 = @@cardShow.key(@image1.path)
+            @address1 = @@cardShow[@card1]
+          end
           @image1.click do
+
             if  $cardChosen.length < 2
-              if !card.getState
-                @image1.path = address + "_c.png"
-                $cardChosen.push(card )
-                card.switch
+              if ! @card1.getState
+                @image1.path = @address1 + "_c.png"
+                $cardChosen.push(@card1 )
+                @card1.switch
               else
-                card.switch
-                @image1.path =address + "_d.png"
-                $cardChosen.delete(card)
+                @card1.switch
+                @image1.path =@address1 + "_d.png"
+                $cardChosen.delete(@card1)
               end
             else
-              if !card.getState
-                @image1.path = address + "_c.png"
-                card.switch
-                $cardChosen.push(card )
+              if !@card1.getState
+                @image1.path = @address1 + "_c.png"
+                @card1.switch
+                $cardChosen.push(@card1 )
                 if deckClass.isSet?($cardChosen)
                   alert "Congratulations! This is a set!"
-
                   $score +=1
                   $score_field.replace ($score)
-
                   newCards = deckClass.addCards
                   for i in 0..3 do
                     cardChoose = $cardChosen[i]
                     index = @@cardShow.keys.index(cardChoose)
-                    newAddress = newCards[newCards.keys[i]] + "_d.png"
+                    newAddress = newCards[newCards.keys[i]]
 
                     case index
                     when 0
-                      @image1.path = newAddress
+                      @image1.path = newAddress + "_d.png"
+
                     when 1
-                      @image2.path = newAddress
+                      @image2.path = newAddress + "_d.png"
+
                     when 2
-                      @image3.path = newAddress
+                      @image3.path = newAddress + "_d.png"
+
                     when 3
-                      @image4.path = newAddress
+                      @image4.path = newAddress + "_d.png"
+
                     when 4
-                      @image5.path =newAddress
+                      @image5.path =newAddress + "_d.png"
+
                     when 5
-                      @image6.path = newAddress
+                      @image6.path = newAddress + "_d.png"
+
                     when 6
-                      @image7.path =  newAddress
+                      @image7.path =  newAddress + "_d.png"
+
                     when 7
-                      @image8.path =  newAddress
+                      @image8.path =  newAddress + "_d.png"
+
                     when 8
-                      @image9.path =  newAddress
+                      @image9.path =  newAddress + "_d.png"
+
                     when 9
-                      @image10.path = newAddress
+                      @image10.path = newAddress + "_d.png"
+
                     when 10
-                      @image11.path =  newAddress
+                      @image11.path =  newAddress + "_d.png"
+
                     when 11
-                      @image12.path =  newAddress
+                      @image12.path =  newAddress + "_d.png"
+
                     when 12
-                      @image13.path = newAddress
+                      @image13.path = newAddress + "_d.png"
+
                     when 13
-                      @image14.path = newAddress
+                      @image14.path = newAddress + "_d.png"
+
                     when 14
-                      @image15.path = newAddress
+                      @image15.path = newAddress + "_d.png"
+
                     when 15
-                      @image16.path = newAddress
+                      @image16.path = newAddress + "_d.png"
+
                     when 16
-                      @image17.path = newAddress
+                      @image17.path = newAddress + "_d.png"
+
                     when 17
-                      @image18.path = newAddress
+                      @image18.path = newAddress + "_d.png"
                     end
                   end
                   deckClass.removeCard($cardChosen)
                   @@cardShow = newCards.merge(@@cardShow)
                   $cardChosen = Array.new()
+                  $change=true
                 else
                   alert "Not a set! Try again!"
 
                 end
               else
-                @image1.path = address + "_d.png"
-                card.switch
+                @image1.path = @address1 + "_d.png"
+                @card1.switch
 
-                $cardChosen.delete(card )
+                $cardChosen.delete(@card1 )
               end
 
             end
@@ -272,90 +292,114 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
         flow width:0.25, height:0.2 do
 
-          cards = @@cardShow.keys
-          card= cards[1]
-          address = @@cardShow[card]
-          @image2 = image  address + ".png", width: 270, height:180, margin: 12
+          if !$change
+            cards = @@cardShow.keys
+            @card2= cards[1]
+            @address2 = @@cardShow[@card2]
+            @image2 = image  @address2 + ".png", width: 270, height:180, margin: 12
+          else
+            @image2.path.slice!("_d.png")
+            @card2 = @@cardShow.key(@image2.path)
+            @address2 = @@cardShow[@card2]
+          end
           @image2.click do
+
             if  $cardChosen.length < 2
-              if !card.getState
-                @image2.path = address + "_c.png"
-                $cardChosen.push(card )
-                card.switch
+              if ! @card2.getState
+                @image2.path = @address2 + "_c.png"
+                $cardChosen.push(@card2 )
+                @card2.switch
               else
-                card.switch
-                @image2.path =address + "_d.png"
-                $cardChosen.delete(card)
+                @card2.switch
+                @image2.path =@address2 + "_d.png"
+                $cardChosen.delete(@card2)
               end
             else
-              if !card.getState
-                card.switch
-                @image2.path = address + "_c.png"
-                $cardChosen.push(card )
+              if !@card2.getState
+                @image2.path = @address2 + "_c.png"
+                @card2.switch
+                $cardChosen.push(@card2 )
                 if deckClass.isSet?($cardChosen)
                   alert "Congratulations! This is a set!"
-
                   $score +=1
                   $score_field.replace ($score)
-
                   newCards = deckClass.addCards
                   for i in 0..3 do
                     cardChoose = $cardChosen[i]
                     index = @@cardShow.keys.index(cardChoose)
-                    newAddress = newCards[newCards.keys[i]] + "_d.png"
+                    newAddress = newCards[newCards.keys[i]]
 
                     case index
                     when 0
-                      @image1.path = newAddress
-                    when 1
-                      @image2.path = newAddress
-                    when 2
-                      @image3.path = newAddress
-                    when 3
-                      @image4.path = newAddress
-                    when 4
-                      @image5.path =newAddress
-                    when 5
-                      @image6.path = newAddress
-                    when 6
-                      @image7.path =  newAddress
-                    when 7
-                      @image8.path =  newAddress
-                    when 8
-                      @image9.path =  newAddress
-                    when 9
-                      @image10.path = newAddress
-                    when 10
-                      @image11.path =  newAddress
-                    when 11
-                      @image12.path =  newAddress
-                    when 12
-                      @image13.path = newAddress
-                    when 13
-                      @image14.path = newAddress
-                    when 14
-                      @image15.path = newAddress
-                    when 15
-                      @image16.path = newAddress
-                    when 16
-                      @image17.path = newAddress
-                    when 17
-                      @image18.path = newAddress
-                    end
+                      @image1.path = newAddress + "_d.png"
 
+                    when 1
+                      @image2.path = newAddress + "_d.png"
+
+                    when 2
+                      @image3.path = newAddress + "_d.png"
+
+                    when 3
+                      @image4.path = newAddress + "_d.png"
+
+                    when 4
+                      @image5.path =newAddress + "_d.png"
+
+                    when 5
+                      @image6.path = newAddress + "_d.png"
+
+                    when 6
+                      @image7.path =  newAddress + "_d.png"
+
+                    when 7
+                      @image8.path =  newAddress + "_d.png"
+
+                    when 8
+                      @image9.path =  newAddress + "_d.png"
+
+                    when 9
+                      @image10.path = newAddress + "_d.png"
+
+                    when 10
+                      @image11.path =  newAddress + "_d.png"
+
+                    when 11
+                      @image12.path =  newAddress + "_d.png"
+
+                    when 12
+                      @image13.path = newAddress + "_d.png"
+
+                    when 13
+                      @image14.path = newAddress + "_d.png"
+
+                    when 14
+                      @image15.path = newAddress + "_d.png"
+
+                    when 15
+                      @image16.path = newAddress + "_d.png"
+
+                    when 16
+                      @image17.path = newAddress + "_d.png"
+
+                    when 17
+                      @image18.path = newAddress + "_d.png"
+                    end
                   end
                   deckClass.removeCard($cardChosen)
                   @@cardShow = newCards.merge(@@cardShow)
                   $cardChosen = Array.new()
+                  $change=true
                 else
                   alert "Not a set! Try again!"
 
                 end
               else
-                @image2.path = address + "_d.png"
-                card.switch
-                $cardChosen.delete(card )
+                @image2.path = @address2 + "_d.png"
+                @card2.switch
+
+                $cardChosen.delete(@card2 )
               end
+
             end
 
           end
@@ -363,90 +407,114 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
         flow width:0.25, height:0.2 do
 
-          cards = @@cardShow.keys
-          card= cards[2]
-          address = @@cardShow[card]
-          @image3 = image  address + ".png", width: 270, height:180, margin: 12
+          if !$change
+            cards = @@cardShow.keys
+            @card3= cards[2]
+            @address3 = @@cardShow[@card3]
+            @image3 = image  @address3 + ".png", width: 270, height:180, margin: 12
+          else
+            @image3.path.slice!("_d.png")
+            @card3 = @@cardShow.key(@image3.path)
+            @address3 = @@cardShow[@card3]
+          end
           @image3.click do
+
             if  $cardChosen.length < 2
-              if !card.getState
-                @image3.path = address + "_c.png"
-                $cardChosen.push(card )
-                card.switch
+              if ! @card3.getState
+                @image3.path = @address3 + "_c.png"
+                $cardChosen.push(@card3 )
+                @card3.switch
               else
-                card.switch
-                @image3.path =address + "_d.png"
-                $cardChosen.delete(card)
+                @card3.switch
+                @image3.path =@address3 + "_d.png"
+                $cardChosen.delete(@card3)
               end
             else
-              if !card.getState
-                card.switch
-                @image3.path = address + "_c.png"
-                $cardChosen.push(card )
+              if !@card3.getState
+                @image3.path = @address3 + "_c.png"
+                @card3.switch
+                $cardChosen.push(@card3 )
                 if deckClass.isSet?($cardChosen)
                   alert "Congratulations! This is a set!"
-
                   $score +=1
                   $score_field.replace ($score)
-
                   newCards = deckClass.addCards
                   for i in 0..3 do
                     cardChoose = $cardChosen[i]
                     index = @@cardShow.keys.index(cardChoose)
-                    newAddress = newCards[newCards.keys[i]] + "_d.png"
+                    newAddress = newCards[newCards.keys[i]]
 
                     case index
                     when 0
-                      @image1.path = newAddress
-                    when 1
-                      @image2.path = newAddress
-                    when 2
-                      @image3.path = newAddress
-                    when 3
-                      @image4.path = newAddress
-                    when 4
-                      @image5.path =newAddress
-                    when 5
-                      @image6.path = newAddress
-                    when 6
-                      @image7.path =  newAddress
-                    when 7
-                      @image8.path =  newAddress
-                    when 8
-                      @image9.path =  newAddress
-                    when 9
-                      @image10.path = newAddress
-                    when 10
-                      @image11.path =  newAddress
-                    when 11
-                      @image12.path =  newAddress
-                    when 12
-                      @image13.path = newAddress
-                    when 13
-                      @image14.path = newAddress
-                    when 14
-                      @image15.path = newAddress
-                    when 15
-                      @image16.path = newAddress
-                    when 16
-                      @image17.path = newAddress
-                    when 17
-                      @image18.path = newAddress
-                    end
+                      @image1.path = newAddress + "_d.png"
 
+                    when 1
+                      @image2.path = newAddress + "_d.png"
+
+                    when 2
+                      @image3.path = newAddress + "_d.png"
+
+                    when 3
+                      @image4.path = newAddress + "_d.png"
+
+                    when 4
+                      @image5.path =newAddress + "_d.png"
+
+                    when 5
+                      @image6.path = newAddress + "_d.png"
+
+                    when 6
+                      @image7.path =  newAddress + "_d.png"
+
+                    when 7
+                      @image8.path =  newAddress + "_d.png"
+
+                    when 8
+                      @image9.path =  newAddress + "_d.png"
+
+                    when 9
+                      @image10.path = newAddress + "_d.png"
+
+                    when 10
+                      @image11.path =  newAddress + "_d.png"
+
+                    when 11
+                      @image12.path =  newAddress + "_d.png"
+
+                    when 12
+                      @image13.path = newAddress + "_d.png"
+
+                    when 13
+                      @image14.path = newAddress + "_d.png"
+
+                    when 14
+                      @image15.path = newAddress + "_d.png"
+
+                    when 15
+                      @image16.path = newAddress + "_d.png"
+
+                    when 16
+                      @image17.path = newAddress + "_d.png"
+
+                    when 17
+                      @image18.path = newAddress + "_d.png"
+                    end
                   end
                   deckClass.removeCard($cardChosen)
                   @@cardShow = newCards.merge(@@cardShow)
                   $cardChosen = Array.new()
+                  $change=true
                 else
                   alert "Not a set! Try again!"
 
                 end
               else
-                card.switch
-                @image3.path = address + "_d.png"
-                $cardChosen.delete(card )
+                @image3.path = @address3 + "_d.png"
+                @card3.switch
+
+                $cardChosen.delete(@card3 )
               end
+
             end
 
           end
@@ -454,90 +522,114 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
         flow width:0.25, height:0.2 do
 
-          cards = @@cardShow.keys
-          card= cards[3]
-          address = @@cardShow[card]
-          @image4 = image  address + ".png", width: 270, height:180, margin: 12
+          if !$change
+            cards = @@cardShow.keys
+            @card4= cards[3]
+            @address4 = @@cardShow[@card4]
+            @image4 = image  @address4 + ".png", width: 270, height:180, margin: 12
+          else
+            @image4.path.slice!("_d.png")
+            @card4 = @@cardShow.key(@image4.path)
+            @address4 = @@cardShow[@card4]
+          end
           @image4.click do
+
             if  $cardChosen.length < 2
-              if !card.getState
-                @image4.path = address + "_c.png"
-                $cardChosen.push(card )
-                card.switch
+              if ! @card4.getState
+                @image4.path = @address4 + "_c.png"
+                $cardChosen.push(@card4 )
+                @card4.switch
               else
-                card.switch
-                @image4.path =address + "_d.png"
-                $cardChosen.delete(card)
+                @card4.switch
+                @image4.path =@address4 + "_d.png"
+                $cardChosen.delete(@card4)
               end
             else
-              if !card.getState
-                card.switch
-                @image4.path = address + "_c.png"
-                $cardChosen.push(card )
+              if !@card4.getState
+                @image4.path = @address4 + "_c.png"
+                @card4.switch
+                $cardChosen.push(@card4 )
                 if deckClass.isSet?($cardChosen)
                   alert "Congratulations! This is a set!"
-
                   $score +=1
                   $score_field.replace ($score)
-
                   newCards = deckClass.addCards
                   for i in 0..3 do
                     cardChoose = $cardChosen[i]
                     index = @@cardShow.keys.index(cardChoose)
-                    newAddress = newCards[newCards.keys[i]] + "_d.png"
+                    newAddress = newCards[newCards.keys[i]]
 
                     case index
                     when 0
-                      @image1.path = newAddress
-                    when 1
-                      @image2.path = newAddress
-                    when 2
-                      @image3.path = newAddress
-                    when 3
-                      @image4.path = newAddress
-                    when 4
-                      @image5.path =newAddress
-                    when 5
-                      @image6.path = newAddress
-                    when 6
-                      @image7.path =  newAddress
-                    when 7
-                      @image8.path =  newAddress
-                    when 8
-                      @image9.path =  newAddress
-                    when 9
-                      @image10.path = newAddress
-                    when 10
-                      @image11.path =  newAddress
-                    when 11
-                      @image12.path =  newAddress
-                    when 12
-                      @image13.path = newAddress
-                    when 13
-                      @image14.path = newAddress
-                    when 14
-                      @image15.path = newAddress
-                    when 15
-                      @image16.path = newAddress
-                    when 16
-                      @image17.path = newAddress
-                    when 17
-                      @image18.path = newAddress
-                    end
+                      @image1.path = newAddress + "_d.png"
 
+                    when 1
+                      @image2.path = newAddress + "_d.png"
+
+                    when 2
+                      @image3.path = newAddress + "_d.png"
+
+                    when 3
+                      @image4.path = newAddress + "_d.png"
+
+                    when 4
+                      @image5.path =newAddress + "_d.png"
+
+                    when 5
+                      @image6.path = newAddress + "_d.png"
+
+                    when 6
+                      @image7.path =  newAddress + "_d.png"
+
+                    when 7
+                      @image8.path =  newAddress + "_d.png"
+
+                    when 8
+                      @image9.path =  newAddress + "_d.png"
+
+                    when 9
+                      @image10.path = newAddress + "_d.png"
+
+                    when 10
+                      @image11.path =  newAddress + "_d.png"
+
+                    when 11
+                      @image12.path =  newAddress + "_d.png"
+
+                    when 12
+                      @image13.path = newAddress + "_d.png"
+
+                    when 13
+                      @image14.path = newAddress + "_d.png"
+
+                    when 14
+                      @image15.path = newAddress + "_d.png"
+
+                    when 15
+                      @image16.path = newAddress + "_d.png"
+
+                    when 16
+                      @image17.path = newAddress + "_d.png"
+
+                    when 17
+                      @image18.path = newAddress + "_d.png"
+                    end
                   end
                   deckClass.removeCard($cardChosen)
                   @@cardShow = newCards.merge(@@cardShow)
                   $cardChosen = Array.new()
+                  $change=true
                 else
                   alert "Not a set! Try again!"
 
                 end
               else
-                card.switch
-                @image4.path = address + "_d.png"
-                $cardChosen.delete(card )
+                @image4.path = @address4 + "_d.png"
+                @card4.switch
+
+                $cardChosen.delete(@card4 )
               end
+
             end
 
           end
@@ -545,90 +637,114 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
         flow width:0.25, height:0.2 do
 
-          cards = @@cardShow.keys
-          card= cards[4]
-          address = @@cardShow[card]
-          @image5 = image  address + ".png", width: 270, height:180, margin: 12
+          if !$change
+            cards = @@cardShow.keys
+            @card5= cards[4]
+            @address5 = @@cardShow[@card5]
+            @image5 = image  @address5 + ".png", width: 270, height:180, margin: 12
+          else
+            @image5.path.slice!("_d.png")
+            @card5 = @@cardShow.key(@image5.path)
+            @address5 = @@cardShow[@card5]
+          end
           @image5.click do
+
             if  $cardChosen.length < 2
-              if !card.getState
-                @image5.path = address + "_c.png"
-                $cardChosen.push(card )
-                card.switch
+              if ! @card5.getState
+                @image5.path = @address5 + "_c.png"
+                $cardChosen.push(@card5 )
+                @card5.switch
               else
-                card.switch
-                @image5.path =address + "_d.png"
-                $cardChosen.delete(card)
+                @card5.switch
+                @image5.path =@address5 + "_d.png"
+                $cardChosen.delete(@card5)
               end
             else
-              if !card.getState
-                card.switch
-                @image5.path = address + "_c.png"
-                $cardChosen.push(card )
+              if !@card5.getState
+                @image5.path = @address5 + "_c.png"
+                @card5.switch
+                $cardChosen.push(@card5 )
                 if deckClass.isSet?($cardChosen)
                   alert "Congratulations! This is a set!"
-
                   $score +=1
                   $score_field.replace ($score)
-
                   newCards = deckClass.addCards
                   for i in 0..3 do
                     cardChoose = $cardChosen[i]
                     index = @@cardShow.keys.index(cardChoose)
-                    newAddress = newCards[newCards.keys[i]] + "_d.png"
+                    newAddress = newCards[newCards.keys[i]]
 
                     case index
                     when 0
-                      @image1.path = newAddress
-                    when 1
-                      @image2.path = newAddress
-                    when 2
-                      @image3.path = newAddress
-                    when 3
-                      @image4.path = newAddress
-                    when 4
-                      @image5.path =newAddress
-                    when 5
-                      @image6.path = newAddress
-                    when 6
-                      @image7.path =  newAddress
-                    when 7
-                      @image8.path =  newAddress
-                    when 8
-                      @image9.path =  newAddress
-                    when 9
-                      @image10.path = newAddress
-                    when 10
-                      @image11.path =  newAddress
-                    when 11
-                      @image12.path =  newAddress
-                    when 12
-                      @image13.path = newAddress
-                    when 13
-                      @image14.path = newAddress
-                    when 14
-                      @image15.path = newAddress
-                    when 15
-                      @image16.path = newAddress
-                    when 16
-                      @image17.path = newAddress
-                    when 17
-                      @image18.path = newAddress
-                    end
+                      @image1.path = newAddress + "_d.png"
 
+                    when 1
+                      @image2.path = newAddress + "_d.png"
+
+                    when 2
+                      @image3.path = newAddress + "_d.png"
+
+                    when 3
+                      @image4.path = newAddress + "_d.png"
+
+                    when 4
+                      @image5.path =newAddress + "_d.png"
+
+                    when 5
+                      @image6.path = newAddress + "_d.png"
+
+                    when 6
+                      @image7.path =  newAddress + "_d.png"
+
+                    when 7
+                      @image8.path =  newAddress + "_d.png"
+
+                    when 8
+                      @image9.path =  newAddress + "_d.png"
+
+                    when 9
+                      @image10.path = newAddress + "_d.png"
+
+                    when 10
+                      @image11.path =  newAddress + "_d.png"
+
+                    when 11
+                      @image12.path =  newAddress + "_d.png"
+
+                    when 12
+                      @image13.path = newAddress + "_d.png"
+
+                    when 13
+                      @image14.path = newAddress + "_d.png"
+
+                    when 14
+                      @image15.path = newAddress + "_d.png"
+
+                    when 15
+                      @image16.path = newAddress + "_d.png"
+
+                    when 16
+                      @image17.path = newAddress + "_d.png"
+
+                    when 17
+                      @image18.path = newAddress + "_d.png"
+                    end
                   end
                   deckClass.removeCard($cardChosen)
                   @@cardShow = newCards.merge(@@cardShow)
                   $cardChosen = Array.new()
+                  $change=true
                 else
                   alert "Not a set! Try again!"
 
                 end
               else
-                card.switch
-                @image5.path = address + "_d.png"
-                $cardChosen.delete(card )
+                @image5.path = @address5 + "_d.png"
+                @card5.switch
+
+                $cardChosen.delete(@card5 )
               end
+
             end
 
           end
@@ -636,91 +752,114 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
         flow width:0.25, height:0.2 do
 
-          cards = @@cardShow.keys
-          card= cards[5]
-          address = @@cardShow[card]
-          @image6 = image  address + ".png", width: 270, height:180, margin: 12
+          if !$change
+            cards = @@cardShow.keys
+            @card6= cards[5]
+            @address6 = @@cardShow[@card6]
+            @image6 = image  @address6 + ".png", width: 270, height:180, margin: 12
+          else
+            @image6.path.slice!("_d.png")
+            @card6 = @@cardShow.key(@image6.path)
+            @address6 = @@cardShow[@card6]
+          end
           @image6.click do
+
             if  $cardChosen.length < 2
-              if !card.getState
-                @image6.path = address + "_c.png"
-                $cardChosen.push(card )
-                card.switch
+              if ! @card6.getState
+                @image6.path = @address6 + "_c.png"
+                $cardChosen.push(@card6 )
+                @card6.switch
               else
-                card.switch
-                @image6.path =address + "_d.png"
-                $cardChosen.delete(card)
+                @card6.switch
+                @image6.path =@address6 + "_d.png"
+                $cardChosen.delete(@card6)
               end
             else
-              if !card.getState
-                card.switch
-
-                @image6.path = address + "_c.png"
-                $cardChosen.push(card )
+              if !@card6.getState
+                @image6.path = @address6 + "_c.png"
+                @card6.switch
+                $cardChosen.push(@card6 )
                 if deckClass.isSet?($cardChosen)
                   alert "Congratulations! This is a set!"
-
                   $score +=1
                   $score_field.replace ($score)
-
                   newCards = deckClass.addCards
                   for i in 0..3 do
                     cardChoose = $cardChosen[i]
                     index = @@cardShow.keys.index(cardChoose)
-                    newAddress = newCards[newCards.keys[i]] + "_d.png"
+                    newAddress = newCards[newCards.keys[i]]
 
                     case index
                     when 0
-                      @image1.path = newAddress
-                    when 1
-                      @image2.path = newAddress
-                    when 2
-                      @image3.path = newAddress
-                    when 3
-                      @image4.path = newAddress
-                    when 4
-                      @image5.path =newAddress
-                    when 5
-                      @image6.path = newAddress
-                    when 6
-                      @image7.path =  newAddress
-                    when 7
-                      @image8.path =  newAddress
-                    when 8
-                      @image9.path =  newAddress
-                    when 9
-                      @image10.path = newAddress
-                    when 10
-                      @image11.path =  newAddress
-                    when 11
-                      @image12.path =  newAddress
-                    when 12
-                      @image13.path = newAddress
-                    when 13
-                      @image14.path = newAddress
-                    when 14
-                      @image15.path = newAddress
-                    when 15
-                      @image16.path = newAddress
-                    when 16
-                      @image17.path = newAddress
-                    when 17
-                      @image18.path = newAddress
-                    end
+                      @image1.path = newAddress + "_d.png"
 
+                    when 1
+                      @image2.path = newAddress + "_d.png"
+
+                    when 2
+                      @image3.path = newAddress + "_d.png"
+
+                    when 3
+                      @image4.path = newAddress + "_d.png"
+
+                    when 4
+                      @image5.path =newAddress + "_d.png"
+
+                    when 5
+                      @image6.path = newAddress + "_d.png"
+
+                    when 6
+                      @image7.path =  newAddress + "_d.png"
+
+                    when 7
+                      @image8.path =  newAddress + "_d.png"
+
+                    when 8
+                      @image9.path =  newAddress + "_d.png"
+
+                    when 9
+                      @image10.path = newAddress + "_d.png"
+
+                    when 10
+                      @image11.path =  newAddress + "_d.png"
+
+                    when 11
+                      @image12.path =  newAddress + "_d.png"
+
+                    when 12
+                      @image13.path = newAddress + "_d.png"
+
+                    when 13
+                      @image14.path = newAddress + "_d.png"
+
+                    when 14
+                      @image15.path = newAddress + "_d.png"
+
+                    when 15
+                      @image16.path = newAddress + "_d.png"
+
+                    when 16
+                      @image17.path = newAddress + "_d.png"
+
+                    when 17
+                      @image18.path = newAddress + "_d.png"
+                    end
                   end
                   deckClass.removeCard($cardChosen)
                   @@cardShow = newCards.merge(@@cardShow)
                   $cardChosen = Array.new()
+                  $change=true
                 else
                   alert "Not a set! Try again!"
 
                 end
               else
-                card.switch
-                @image6.path = address + "_d.png"
-                $cardChosen.delete(card )
+                @image6.path = @address6 + "_d.png"
+                @card6.switch
+
+                $cardChosen.delete(@card6 )
               end
+
             end
 
           end
@@ -728,90 +867,114 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
         flow width:0.25, height:0.2 do
 
-          cards = @@cardShow.keys
-          card= cards[6]
-          address = @@cardShow[card]
-          @image7 = image  address + ".png", width: 270, height:180, margin: 12
+          if !$change
+            cards = @@cardShow.keys
+            @card7= cards[6]
+            @address7 = @@cardShow[@card7]
+            @image7 = image  @address7 + ".png", width: 270, height:180, margin: 12
+          else
+            @image7.path.slice!("_d.png")
+            @card7 = @@cardShow.key(@image7.path)
+            @address7 = @@cardShow[@card7]
+          end
           @image7.click do
+
             if  $cardChosen.length < 2
-              if !card.getState
-                @image7.path = address + "_c.png"
-                $cardChosen.push(card )
-                card.switch
+              if ! @card7.getState
+                @image7.path = @address7 + "_c.png"
+                $cardChosen.push(@card7 )
+                @card7.switch
               else
-                card.switch
-                @image7.path =address + "_d.png"
-                $cardChosen.delete(card)
+                @card7.switch
+                @image7.path =@address7 + "_d.png"
+                $cardChosen.delete(@card7)
               end
             else
-              if !card.getState
-                card.switch
-                @image7.path = address + "_c.png"
-                $cardChosen.push(card )
+              if !@card7.getState
+                @image7.path = @address7 + "_c.png"
+                @card7.switch
+                $cardChosen.push(@card7 )
                 if deckClass.isSet?($cardChosen)
                   alert "Congratulations! This is a set!"
-
                   $score +=1
                   $score_field.replace ($score)
-
                   newCards = deckClass.addCards
                   for i in 0..3 do
                     cardChoose = $cardChosen[i]
                     index = @@cardShow.keys.index(cardChoose)
-                    newAddress = newCards[newCards.keys[i]] + "_d.png"
+                    newAddress = newCards[newCards.keys[i]]
 
                     case index
                     when 0
-                      @image1.path = newAddress
-                    when 1
-                      @image2.path = newAddress
-                    when 2
-                      @image3.path = newAddress
-                    when 3
-                      @image4.path = newAddress
-                    when 4
-                      @image5.path =newAddress
-                    when 5
-                      @image6.path = newAddress
-                    when 6
-                      @image7.path =  newAddress
-                    when 7
-                      @image8.path =  newAddress
-                    when 8
-                      @image9.path =  newAddress
-                    when 9
-                      @image10.path = newAddress
-                    when 10
-                      @image11.path =  newAddress
-                    when 11
-                      @image12.path =  newAddress
-                    when 12
-                      @image13.path = newAddress
-                    when 13
-                      @image14.path = newAddress
-                    when 14
-                      @image15.path = newAddress
-                    when 15
-                      @image16.path = newAddress
-                    when 16
-                      @image17.path = newAddress
-                    when 17
-                      @image18.path = newAddress
-                    end
+                      @image1.path = newAddress + "_d.png"
 
+                    when 1
+                      @image2.path = newAddress + "_d.png"
+
+                    when 2
+                      @image3.path = newAddress + "_d.png"
+
+                    when 3
+                      @image4.path = newAddress + "_d.png"
+
+                    when 4
+                      @image5.path =newAddress + "_d.png"
+
+                    when 5
+                      @image6.path = newAddress + "_d.png"
+
+                    when 6
+                      @image7.path =  newAddress + "_d.png"
+
+                    when 7
+                      @image8.path =  newAddress + "_d.png"
+
+                    when 8
+                      @image9.path =  newAddress + "_d.png"
+
+                    when 9
+                      @image10.path = newAddress + "_d.png"
+
+                    when 10
+                      @image11.path =  newAddress + "_d.png"
+
+                    when 11
+                      @image12.path =  newAddress + "_d.png"
+
+                    when 12
+                      @image13.path = newAddress + "_d.png"
+
+                    when 13
+                      @image14.path = newAddress + "_d.png"
+
+                    when 14
+                      @image15.path = newAddress + "_d.png"
+
+                    when 15
+                      @image16.path = newAddress + "_d.png"
+
+                    when 16
+                      @image17.path = newAddress + "_d.png"
+
+                    when 17
+                      @image18.path = newAddress + "_d.png"
+                    end
                   end
                   deckClass.removeCard($cardChosen)
                   @@cardShow = newCards.merge(@@cardShow)
                   $cardChosen = Array.new()
+                  $change=true
                 else
                   alert "Not a set! Try again!"
 
                 end
               else
-                card.switch
-                @image7.path = address + "_d.png"
-                $cardChosen.delete(card )
+                @image7.path = @address7 + "_d.png"
+                @card7.switch
+
+                $cardChosen.delete(@card7 )
               end
+
             end
 
           end
@@ -819,90 +982,114 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
         flow width:0.25, height:0.2 do
 
-          cards = @@cardShow.keys
-          card= cards[7]
-          address = @@cardShow[card]
-          @image8 = image  address + ".png", width: 270, height:180, margin: 12
+          if !$change
+            cards = @@cardShow.keys
+            @card8= cards[7]
+            @address8 = @@cardShow[@card8]
+            @image8 = image  @address8 + ".png", width: 270, height:180, margin: 12
+          else
+            @image8.path.slice!("_d.png")
+            @card8 = @@cardShow.key(@image1.path)
+            @address8 = @@cardShow[@card8]
+          end
           @image8.click do
+
             if  $cardChosen.length < 2
-              if !card.getState
-                @image8.path = address + "_c.png"
-                $cardChosen.push(card )
-                card.switch
+              if ! @card8.getState
+                @image8.path = @address8 + "_c.png"
+                $cardChosen.push(@card8 )
+                @card8.switch
               else
-                card.switch
-                @image8.path =address + "_d.png"
-                $cardChosen.delete(card)
+                @card8.switch
+                @image8.path =@address8 + "_d.png"
+                $cardChosen.delete(@card8)
               end
             else
-              if !card.getState
-                card.switch
-                @image8.path = address + "_c.png"
-                $cardChosen.push(card )
+              if !@card8.getState
+                @image8.path = @address8 + "_c.png"
+                @card8.switch
+                $cardChosen.push(@card8 )
                 if deckClass.isSet?($cardChosen)
                   alert "Congratulations! This is a set!"
-
                   $score +=1
                   $score_field.replace ($score)
-
                   newCards = deckClass.addCards
                   for i in 0..3 do
                     cardChoose = $cardChosen[i]
                     index = @@cardShow.keys.index(cardChoose)
-                    newAddress = newCards[newCards.keys[i]] + "_d.png"
+                    newAddress = newCards[newCards.keys[i]]
 
                     case index
                     when 0
-                      @image1.path = newAddress
-                    when 1
-                      @image2.path = newAddress
-                    when 2
-                      @image3.path = newAddress
-                    when 3
-                      @image4.path = newAddress
-                    when 4
-                      @image5.path =newAddress
-                    when 5
-                      @image6.path = newAddress
-                    when 6
-                      @image7.path =  newAddress
-                    when 7
-                      @image8.path =  newAddress
-                    when 8
-                      @image9.path =  newAddress
-                    when 9
-                      @image10.path = newAddress
-                    when 10
-                      @image11.path =  newAddress
-                    when 11
-                      @image12.path =  newAddress
-                    when 12
-                      @image13.path = newAddress
-                    when 13
-                      @image14.path = newAddress
-                    when 14
-                      @image15.path = newAddress
-                    when 15
-                      @image16.path = newAddress
-                    when 16
-                      @image17.path = newAddress
-                    when 17
-                      @image18.path = newAddress
-                    end
+                      @image1.path = newAddress + "_d.png"
 
+                    when 1
+                      @image2.path = newAddress + "_d.png"
+
+                    when 2
+                      @image3.path = newAddress + "_d.png"
+
+                    when 3
+                      @image4.path = newAddress + "_d.png"
+
+                    when 4
+                      @image5.path =newAddress + "_d.png"
+
+                    when 5
+                      @image6.path = newAddress + "_d.png"
+
+                    when 6
+                      @image7.path =  newAddress + "_d.png"
+
+                    when 7
+                      @image8.path =  newAddress + "_d.png"
+
+                    when 8
+                      @image9.path =  newAddress + "_d.png"
+
+                    when 9
+                      @image10.path = newAddress + "_d.png"
+
+                    when 10
+                      @image11.path =  newAddress + "_d.png"
+
+                    when 11
+                      @image12.path =  newAddress + "_d.png"
+
+                    when 12
+                      @image13.path = newAddress + "_d.png"
+
+                    when 13
+                      @image14.path = newAddress + "_d.png"
+
+                    when 14
+                      @image15.path = newAddress + "_d.png"
+
+                    when 15
+                      @image16.path = newAddress + "_d.png"
+
+                    when 16
+                      @image17.path = newAddress + "_d.png"
+
+                    when 17
+                      @image18.path = newAddress + "_d.png"
+                    end
                   end
                   deckClass.removeCard($cardChosen)
                   @@cardShow = newCards.merge(@@cardShow)
                   $cardChosen = Array.new()
+                  $change=true
                 else
                   alert "Not a set! Try again!"
 
                 end
               else
-                card.switch
-                @image8.path = address + "_d.png"
-                $cardChosen.delete(card )
+                @image8.path = @address8 + "_d.png"
+                @card8.switch
+
+                $cardChosen.delete(@card8)
               end
+
             end
 
           end
@@ -910,90 +1097,114 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
         flow width:0.25, height:0.2 do
 
-          cards = @@cardShow.keys
-          card= cards[8]
-          address = @@cardShow[card]
-          @image9 = image  address + ".png", width: 270, height:180, margin: 12
+          if !$change
+            cards = @@cardShow.keys
+            @card9= cards[8]
+            @address9 = @@cardShow[@card9]
+            @image9 = image  @address9 + ".png", width: 270, height:180, margin: 12
+          else
+            @image9.path.slice!("_d.png")
+            @card9 = @@cardShow.key(@image9.path)
+            @address9 = @@cardShow[@card9]
+          end
           @image9.click do
+
             if  $cardChosen.length < 2
-              if !card.getState
-                @image9.path = address + "_c.png"
-                $cardChosen.push(card )
-                card.switch
+              if ! @card9.getState
+                @image9.path = @address9 + "_c.png"
+                $cardChosen.push(@card9 )
+                @card9.switch
               else
-                card.switch
-                @image9.path =address + "_d.png"
-                $cardChosen.delete(card)
+                @card9.switch
+                @image9.path =@address9 + "_d.png"
+                $cardChosen.delete(@card9)
               end
             else
-              if !card.getState
-                card.switch
-                @image9.path = address + "_c.png"
-                $cardChosen.push(card )
+              if !@card9.getState
+                @image9.path = @address9 + "_c.png"
+                @card9.switch
+                $cardChosen.push(@card9 )
                 if deckClass.isSet?($cardChosen)
                   alert "Congratulations! This is a set!"
-
                   $score +=1
                   $score_field.replace ($score)
-
                   newCards = deckClass.addCards
                   for i in 0..3 do
                     cardChoose = $cardChosen[i]
                     index = @@cardShow.keys.index(cardChoose)
-                    newAddress = newCards[newCards.keys[i]] + "_d.png"
+                    newAddress = newCards[newCards.keys[i]]
 
                     case index
                     when 0
-                      @image1.path = newAddress
-                    when 1
-                      @image2.path = newAddress
-                    when 2
-                      @image3.path = newAddress
-                    when 3
-                      @image4.path = newAddress
-                    when 4
-                      @image5.path =newAddress
-                    when 5
-                      @image6.path = newAddress
-                    when 6
-                      @image7.path =  newAddress
-                    when 7
-                      @image8.path =  newAddress
-                    when 8
-                      @image9.path =  newAddress
-                    when 9
-                      @image10.path = newAddress
-                    when 10
-                      @image11.path =  newAddress
-                    when 11
-                      @image12.path =  newAddress
-                    when 12
-                      @image13.path = newAddress
-                    when 13
-                      @image14.path = newAddress
-                    when 14
-                      @image15.path = newAddress
-                    when 15
-                      @image16.path = newAddress
-                    when 16
-                      @image17.path = newAddress
-                    when 17
-                      @image18.path = newAddress
-                    end
+                      @image1.path = newAddress + "_d.png"
 
+                    when 1
+                      @image2.path = newAddress + "_d.png"
+
+                    when 2
+                      @image3.path = newAddress + "_d.png"
+
+                    when 3
+                      @image4.path = newAddress + "_d.png"
+
+                    when 4
+                      @image5.path =newAddress + "_d.png"
+
+                    when 5
+                      @image6.path = newAddress + "_d.png"
+
+                    when 6
+                      @image7.path =  newAddress + "_d.png"
+
+                    when 7
+                      @image8.path =  newAddress + "_d.png"
+
+                    when 8
+                      @image9.path =  newAddress + "_d.png"
+
+                    when 9
+                      @image10.path = newAddress + "_d.png"
+
+                    when 10
+                      @image11.path =  newAddress + "_d.png"
+
+                    when 11
+                      @image12.path =  newAddress + "_d.png"
+
+                    when 12
+                      @image13.path = newAddress + "_d.png"
+
+                    when 13
+                      @image14.path = newAddress + "_d.png"
+
+                    when 14
+                      @image15.path = newAddress + "_d.png"
+
+                    when 15
+                      @image16.path = newAddress + "_d.png"
+
+                    when 16
+                      @image17.path = newAddress + "_d.png"
+
+                    when 17
+                      @image18.path = newAddress + "_d.png"
+                    end
                   end
                   deckClass.removeCard($cardChosen)
                   @@cardShow = newCards.merge(@@cardShow)
                   $cardChosen = Array.new()
+                  $change=true
                 else
                   alert "Not a set! Try again!"
 
                 end
               else
-                card.switch
-                @image9.path = address + "_d.png"
-                $cardChosen.delete(card )
+                @image9.path = @address9 + "_d.png"
+                @card9.switch
+
+                $cardChosen.delete(@card9 )
               end
+
             end
 
           end
@@ -1001,90 +1212,114 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
         flow width:0.25, height:0.2 do
 
-          cards = @@cardShow.keys
-          card= cards[9]
-          address = @@cardShow[card]
-          @image10 = image  address + ".png", width: 270, height:180, margin: 12
+          if !$change
+            cards = @@cardShow.keys
+            @card10= cards[9]
+            @address10 = @@cardShow[@card10]
+            @image10 = image  @address10 + ".png", width: 270, height:180, margin: 12
+          else
+            @image10.path.slice!("_d.png")
+            @card10 = @@cardShow.key(@image10.path)
+            @address10 = @@cardShow[@card10]
+          end
           @image10.click do
+
             if  $cardChosen.length < 2
-              if !card.getState
-                @image10.path = address + "_c.png"
-                $cardChosen.push(card )
-                card.switch
+              if ! @card10.getState
+                @image10.path = @address10 + "_c.png"
+                $cardChosen.push(@card10 )
+                @card10.switch
               else
-                card.switch
-                @image10.path =address + "_d.png"
-                $cardChosen.delete(card)
+                @card10.switch
+                @image10.path =@address10 + "_d.png"
+                $cardChosen.delete(@card10)
               end
             else
-              if !card.getState
-                card.switch
-                @image10.path = address + "_c.png"
-                $cardChosen.push(card )
+              if !@card10.getState
+                @image10.path = @address10 + "_c.png"
+                @card10.switch
+                $cardChosen.push(@card10 )
                 if deckClass.isSet?($cardChosen)
                   alert "Congratulations! This is a set!"
-
                   $score +=1
                   $score_field.replace ($score)
-
                   newCards = deckClass.addCards
                   for i in 0..3 do
                     cardChoose = $cardChosen[i]
                     index = @@cardShow.keys.index(cardChoose)
-                    newAddress = newCards[newCards.keys[i]] + "_d.png"
+                    newAddress = newCards[newCards.keys[i]]
 
                     case index
                     when 0
-                      @image1.path = newAddress
-                    when 1
-                      @image2.path = newAddress
-                    when 2
-                      @image3.path = newAddress
-                    when 3
-                      @image4.path = newAddress
-                    when 4
-                      @image5.path =newAddress
-                    when 5
-                      @image6.path = newAddress
-                    when 6
-                      @image7.path =  newAddress
-                    when 7
-                      @image8.path =  newAddress
-                    when 8
-                      @image9.path =  newAddress
-                    when 9
-                      @image10.path = newAddress
-                    when 10
-                      @image11.path =  newAddress
-                    when 11
-                      @image12.path =  newAddress
-                    when 12
-                      @image13.path = newAddress
-                    when 13
-                      @image14.path = newAddress
-                    when 14
-                      @image15.path = newAddress
-                    when 15
-                      @image16.path = newAddress
-                    when 16
-                      @image17.path = newAddress
-                    when 17
-                      @image18.path = newAddress
-                    end
+                      @image1.path = newAddress + "_d.png"
 
+                    when 1
+                      @image2.path = newAddress + "_d.png"
+
+                    when 2
+                      @image3.path = newAddress + "_d.png"
+
+                    when 3
+                      @image4.path = newAddress + "_d.png"
+
+                    when 4
+                      @image5.path =newAddress + "_d.png"
+
+                    when 5
+                      @image6.path = newAddress + "_d.png"
+
+                    when 6
+                      @image7.path =  newAddress + "_d.png"
+
+                    when 7
+                      @image8.path =  newAddress + "_d.png"
+
+                    when 8
+                      @image9.path =  newAddress + "_d.png"
+
+                    when 9
+                      @image10.path = newAddress + "_d.png"
+
+                    when 10
+                      @image11.path =  newAddress + "_d.png"
+
+                    when 11
+                      @image12.path =  newAddress + "_d.png"
+
+                    when 12
+                      @image13.path = newAddress + "_d.png"
+
+                    when 13
+                      @image14.path = newAddress + "_d.png"
+
+                    when 14
+                      @image15.path = newAddress + "_d.png"
+
+                    when 15
+                      @image16.path = newAddress + "_d.png"
+
+                    when 16
+                      @image17.path = newAddress + "_d.png"
+
+                    when 17
+                      @image18.path = newAddress + "_d.png"
+                    end
                   end
                   deckClass.removeCard($cardChosen)
                   @@cardShow = newCards.merge(@@cardShow)
                   $cardChosen = Array.new()
+                  $change=true
                 else
                   alert "Not a set! Try again!"
 
                 end
               else
-                card.switch
-                @image10.path = address + "_d.png"
-                $cardChosen.delete(card )
+                @image10.path = @address10 + "_d.png"
+                @card10.switch
+
+                $cardChosen.delete(@card10)
               end
+
             end
 
           end
@@ -1092,90 +1327,114 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
         flow width:0.25, height:0.2 do
 
-          cards = @@cardShow.keys
-          card= cards[10]
-          address = @@cardShow[card]
-          @image11 = image  address + ".png", width: 270, height:180, margin: 12
+          if !$change
+            cards = @@cardShow.keys
+            @card11= cards[10]
+            @address11 = @@cardShow[@card11]
+            @image11 = image  @address11 + ".png", width: 270, height:180, margin: 12
+          else
+            @image11.path.slice!("_d.png")
+            @card11 = @@cardShow.key(@image11.path)
+            @address11 = @@cardShow[@card11]
+          end
           @image11.click do
+
             if  $cardChosen.length < 2
-              if !card.getState
-                @image11.path = address + "_c.png"
-                $cardChosen.push(card )
-                card.switch
+              if ! @card11.getState
+                @image11.path = @address11 + "_c.png"
+                $cardChosen.push(@card11 )
+                @card11.switch
               else
-                card.switch
-                @image11.path =address + "_d.png"
-                $cardChosen.delete(card)
+                @card11.switch
+                @image11.path =@address11 + "_d.png"
+                $cardChosen.delete(@card11)
               end
             else
-              if !card.getState
-                card.switch
-                @image11.path = address + "_c.png"
-                $cardChosen.push(card )
+              if !@card11.getState
+                @image11.path = @address11 + "_c.png"
+                @card11.switch
+                $cardChosen.push(@card11 )
                 if deckClass.isSet?($cardChosen)
                   alert "Congratulations! This is a set!"
-
                   $score +=1
                   $score_field.replace ($score)
-
                   newCards = deckClass.addCards
                   for i in 0..3 do
                     cardChoose = $cardChosen[i]
                     index = @@cardShow.keys.index(cardChoose)
-                    newAddress = newCards[newCards.keys[i]] + "_d.png"
+                    newAddress = newCards[newCards.keys[i]]
 
                     case index
                     when 0
-                      @image1.path = newAddress
-                    when 1
-                      @image2.path = newAddress
-                    when 2
-                      @image3.path = newAddress
-                    when 3
-                      @image4.path = newAddress
-                    when 4
-                      @image5.path =newAddress
-                    when 5
-                      @image6.path = newAddress
-                    when 6
-                      @image7.path =  newAddress
-                    when 7
-                      @image8.path =  newAddress
-                    when 8
-                      @image9.path =  newAddress
-                    when 9
-                      @image10.path = newAddress
-                    when 10
-                      @image11.path =  newAddress
-                    when 11
-                      @image12.path =  newAddress
-                    when 12
-                      @image13.path = newAddress
-                    when 13
-                      @image14.path = newAddress
-                    when 14
-                      @image15.path = newAddress
-                    when 15
-                      @image16.path = newAddress
-                    when 16
-                      @image17.path = newAddress
-                    when 17
-                      @image18.path = newAddress
-                    end
+                      @image1.path = newAddress + "_d.png"
 
+                    when 1
+                      @image2.path = newAddress + "_d.png"
+
+                    when 2
+                      @image3.path = newAddress + "_d.png"
+
+                    when 3
+                      @image4.path = newAddress + "_d.png"
+
+                    when 4
+                      @image5.path =newAddress + "_d.png"
+
+                    when 5
+                      @image6.path = newAddress + "_d.png"
+
+                    when 6
+                      @image7.path =  newAddress + "_d.png"
+
+                    when 7
+                      @image8.path =  newAddress + "_d.png"
+
+                    when 8
+                      @image9.path =  newAddress + "_d.png"
+
+                    when 9
+                      @image10.path = newAddress + "_d.png"
+
+                    when 10
+                      @image11.path =  newAddress + "_d.png"
+
+                    when 11
+                      @image12.path =  newAddress + "_d.png"
+
+                    when 12
+                      @image13.path = newAddress + "_d.png"
+
+                    when 13
+                      @image14.path = newAddress + "_d.png"
+
+                    when 14
+                      @image15.path = newAddress + "_d.png"
+
+                    when 15
+                      @image16.path = newAddress + "_d.png"
+
+                    when 16
+                      @image17.path = newAddress + "_d.png"
+
+                    when 17
+                      @image18.path = newAddress + "_d.png"
+                    end
                   end
                   deckClass.removeCard($cardChosen)
                   @@cardShow = newCards.merge(@@cardShow)
                   $cardChosen = Array.new()
+                  $change=true
                 else
                   alert "Not a set! Try again!"
 
                 end
               else
-                card.switch
-                @image11.path = address + "_d.png"
-                $cardChosen.delete(card )
+                @image11.path = @address11 + "_d.png"
+                @card11.switch
+
+                $cardChosen.delete(@card11)
               end
+
             end
 
           end
@@ -1183,90 +1442,114 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
         flow width:0.25, height:0.2 do
 
-          cards = @@cardShow.keys
-          card= cards[11]
-          address = @@cardShow[card]
-          @image12 = image  address + ".png", width: 270, height:180, margin: 12
+          if !$change
+            cards = @@cardShow.keys
+            @card12= cards[11]
+            @address12 = @@cardShow[@card12]
+            @image12= image  @address12 + ".png", width: 270, height:180, margin: 12
+          else
+            @image12.path.slice!("_d.png")
+            @card12 = @@cardShow.key(@image12.path)
+            @address12 = @@cardShow[@card12]
+          end
           @image12.click do
+
             if  $cardChosen.length < 2
-              if !card.getState
-                @image12.path = address + "_c.png"
-                $cardChosen.push(card )
-                card.switch
+              if ! @card12.getState
+                @image12.path = @address12 + "_c.png"
+                $cardChosen.push(@card12 )
+                @card12.switch
               else
-                card.switch
-                @image12.path =address + "_d.png"
-                $cardChosen.delete(card)
+                @card12.switch
+                @image12.path =@address12 + "_d.png"
+                $cardChosen.delete(@card12)
               end
             else
-              if !card.getState
-                card.switch
-                @image12.path = address + "_c.png"
-                $cardChosen.push(card )
+              if !@card12.getState
+                @image12.path = @address12 + "_c.png"
+                @card12.switch
+                $cardChosen.push(@card12 )
                 if deckClass.isSet?($cardChosen)
                   alert "Congratulations! This is a set!"
-
                   $score +=1
                   $score_field.replace ($score)
-
                   newCards = deckClass.addCards
                   for i in 0..3 do
                     cardChoose = $cardChosen[i]
                     index = @@cardShow.keys.index(cardChoose)
-                    newAddress = newCards[newCards.keys[i]] + "_d.png"
+                    newAddress = newCards[newCards.keys[i]]
 
                     case index
                     when 0
-                      @image1.path = newAddress
-                    when 1
-                      @image2.path = newAddress
-                    when 2
-                      @image3.path = newAddress
-                    when 3
-                      @image4.path = newAddress
-                    when 4
-                      @image5.path =newAddress
-                    when 5
-                      @image6.path = newAddress
-                    when 6
-                      @image7.path =  newAddress
-                    when 7
-                      @image8.path =  newAddress
-                    when 8
-                      @image9.path =  newAddress
-                    when 9
-                      @image10.path = newAddress
-                    when 10
-                      @image11.path =  newAddress
-                    when 11
-                      @image12.path =  newAddress
-                    when 12
-                      @image13.path = newAddress
-                    when 13
-                      @image14.path = newAddress
-                    when 14
-                      @image15.path = newAddress
-                    when 15
-                      @image16.path = newAddress
-                    when 16
-                      @image17.path = newAddress
-                    when 17
-                      @image18.path = newAddress
-                    end
+                      @image1.path = newAddress + "_d.png"
 
+                    when 1
+                      @image2.path = newAddress + "_d.png"
+
+                    when 2
+                      @image3.path = newAddress + "_d.png"
+
+                    when 3
+                      @image4.path = newAddress + "_d.png"
+
+                    when 4
+                      @image5.path =newAddress + "_d.png"
+
+                    when 5
+                      @image6.path = newAddress + "_d.png"
+
+                    when 6
+                      @image7.path =  newAddress + "_d.png"
+
+                    when 7
+                      @image8.path =  newAddress + "_d.png"
+
+                    when 8
+                      @image9.path =  newAddress + "_d.png"
+
+                    when 9
+                      @image10.path = newAddress + "_d.png"
+
+                    when 10
+                      @image11.path =  newAddress + "_d.png"
+
+                    when 11
+                      @image12.path =  newAddress + "_d.png"
+
+                    when 12
+                      @image13.path = newAddress + "_d.png"
+
+                    when 13
+                      @image14.path = newAddress + "_d.png"
+
+                    when 14
+                      @image15.path = newAddress + "_d.png"
+
+                    when 15
+                      @image16.path = newAddress + "_d.png"
+
+                    when 16
+                      @image17.path = newAddress + "_d.png"
+
+                    when 17
+                      @image18.path = newAddress + "_d.png"
+                    end
                   end
                   deckClass.removeCard($cardChosen)
                   @@cardShow = newCards.merge(@@cardShow)
                   $cardChosen = Array.new()
+                  $change=true
                 else
                   alert "Not a set! Try again!"
 
                 end
               else
-                card.switch
-                @image12.path = address + "_d.png"
-                $cardChosen.delete(card )
+                @image12.path = @address12 + "_d.png"
+                @card12.switch
+
+                $cardChosen.delete(@card12)
               end
+
             end
 
           end
@@ -1274,7 +1557,10 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
 
         flow width:0.25, height:0.2 do
-          @image13 = image "C:/Project2/img/empty.png" ,width: 270, height:180, margin: 12
+          if !$change
+            @image13 = image "C:/Project2/img/empty.png" ,width: 270, height:180, margin: 12
+          end
+
           @image13.click do
             if @image13.path() == "C:/Project2/img/empty.png"
               alert "You cannot choose an empty card!"
@@ -1313,51 +1599,69 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
                     for i in 0..3 do
                       cardChoose = $cardChosen[i]
                       index = @@cardShow.keys.index(cardChoose)
-                      newAddress = newCards[newCards.keys[i]] + "_d.png"
+                      newAddress = newCards[newCards.keys[i]]
 
                       case index
                       when 0
-                        @image1.path = newAddress
+                        @image1.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 1
-                        @image2.path = newAddress
+                        @image2.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 2
-                        @image3.path = newAddress
+                        @image3.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 3
-                        @image4.path = newAddress
+                        @image4.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 4
-                        @image5.path =newAddress
+                        @image5.path =newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 5
-                        @image6.path = newAddress
+                        @image6.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 6
-                        @image7.path =  newAddress
+                        @image7.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 7
-                        @image8.path =  newAddress
+                        @image8.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 8
-                        @image9.path =  newAddress
+                        @image9.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 9
-                        @image10.path = newAddress
+                        @image10.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 10
-                        @image11.path =  newAddress
+                        @image11.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 11
-                        @image12.path =  newAddress
+                        @image12.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 12
-                        @image13.path = newAddress
+                        @image13.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 13
-                        @image14.path = newAddress
+                        @image14.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 14
-                        @image15.path = newAddress
+                        @image15.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 15
-                        @image16.path = newAddress
+                        @image16.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 16
-                        @image17.path = newAddress
+                        @image17.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 17
-                        @image18.path = newAddress
+                        @image18.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       end
-
                     end
                     deckClass.removeCard($cardChosen)
                     @@cardShow = newCards.merge(@@cardShow)
                     $cardChosen = Array.new()
+                    $change = true
                   else
                     alert "Not a set! Try again!"
 
@@ -1376,7 +1680,9 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          @image14 = image "C:/Project2/img/empty.png", width: 270, height:180, margin: 12
+          if !$change
+            @image14 = image "C:/Project2/img/empty.png" ,width: 270, height:180, margin: 12
+          end
           @image14.click do
             if @image14.path() == "C:/Project2/img/empty.png"
               alert "You cannot choose an empty card!"
@@ -1418,47 +1724,64 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
                     for i in 0..3 do
                       cardChoose = $cardChosen[i]
                       index = @@cardShow.keys.index(cardChoose)
-                      newAddress = newCards[newCards.keys[i]] + "_d.png"
+                      newAddress = newCards[newCards.keys[i]]
 
                       case index
                       when 0
-                        @image1.path = newAddress
+                        @image1.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 1
-                        @image2.path = newAddress
+                        @image2.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 2
-                        @image3.path = newAddress
+                        @image3.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 3
-                        @image4.path = newAddress
+                        @image4.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 4
-                        @image5.path =newAddress
+                        @image5.path =newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 5
-                        @image6.path = newAddress
+                        @image6.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 6
-                        @image7.path =  newAddress
+                        @image7.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 7
-                        @image8.path =  newAddress
+                        @image8.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 8
-                        @image9.path =  newAddress
+                        @image9.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 9
-                        @image10.path = newAddress
+                        @image10.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 10
-                        @image11.path =  newAddress
+                        @image11.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 11
-                        @image12.path =  newAddress
+                        @image12.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 12
-                        @image13.path = newAddress
+                        @image13.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 13
-                        @image14.path = newAddress
+                        @image14.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 14
-                        @image15.path = newAddress
+                        @image15.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 15
-                        @image16.path = newAddress
+                        @image16.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 16
-                        @image17.path = newAddress
+                        @image17.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 17
-                        @image18.path = newAddress
+                        @image18.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       end
-
                     end
                     deckClass.removeCard($cardChosen)
                     @@cardShow = newCards.merge(@@cardShow)
@@ -1481,7 +1804,9 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          @image15 = image "C:/Project2/img/empty.png", width: 270, height:180, margin: 12
+          if !$change
+            @image15 = image "C:/Project2/img/empty.png" ,width: 270, height:180, margin: 12
+          end
           @image15.click do
             if @image15.path() == "C:/Project2/img/empty.png"
               alert "You cannot choose an empty card!"
@@ -1520,47 +1845,64 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
                     for i in 0..3 do
                       cardChoose = $cardChosen[i]
                       index = @@cardShow.keys.index(cardChoose)
-                      newAddress = newCards[newCards.keys[i]] + "_d.png"
+                      newAddress = newCards[newCards.keys[i]]
 
                       case index
                       when 0
-                        @image1.path = newAddress
+                        @image1.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 1
-                        @image2.path = newAddress
+                        @image2.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 2
-                        @image3.path = newAddress
+                        @image3.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 3
-                        @image4.path = newAddress
+                        @image4.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 4
-                        @image5.path =newAddress
+                        @image5.path =newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 5
-                        @image6.path = newAddress
+                        @image6.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 6
-                        @image7.path =  newAddress
+                        @image7.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 7
-                        @image8.path =  newAddress
+                        @image8.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 8
-                        @image9.path =  newAddress
+                        @image9.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 9
-                        @image10.path = newAddress
+                        @image10.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 10
-                        @image11.path =  newAddress
+                        @image11.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 11
-                        @image12.path =  newAddress
+                        @image12.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 12
-                        @image13.path = newAddress
+                        @image13.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 13
-                        @image14.path = newAddress
+                        @image14.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 14
-                        @image15.path = newAddress
+                        @image15.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 15
-                        @image16.path = newAddress
+                        @image16.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 16
-                        @image17.path = newAddress
+                        @image17.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 17
-                        @image18.path = newAddress
+                        @image18.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       end
-
                     end
                     deckClass.removeCard($cardChosen)
                     @@cardShow = newCards.merge(@@cardShow)
@@ -1583,7 +1925,9 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          @image16 = image "C:/Project2/img/empty.png", width: 270, height:180, margin: 12
+          if !$change
+            @image16 = image "C:/Project2/img/empty.png" ,width: 270, height:180, margin: 12
+          end
           @image16.click do
             if @image16.path() == "C:/Project2/img/empty.png"
               alert "You cannot choose an empty card!"
@@ -1622,45 +1966,63 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
                     for i in 0..3 do
                       cardChoose = $cardChosen[i]
                       index = @@cardShow.keys.index(cardChoose)
-                      newAddress = newCards[newCards.keys[i]] + "_d.png"
+                      newAddress = newCards[newCards.keys[i]]
 
                       case index
                       when 0
-                        @image1.path = newAddress
+                        @image1.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 1
-                        @image2.path = newAddress
+                        @image2.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 2
-                        @image3.path = newAddress
+                        @image3.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 3
-                        @image4.path = newAddress
+                        @image4.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 4
-                        @image5.path =newAddress
+                        @image5.path =newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 5
-                        @image6.path = newAddress
+                        @image6.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 6
-                        @image7.path =  newAddress
+                        @image7.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 7
-                        @image8.path =  newAddress
+                        @image8.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 8
-                        @image9.path =  newAddress
+                        @image9.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 9
-                        @image10.path = newAddress
+                        @image10.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 10
-                        @image11.path =  newAddress
+                        @image11.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 11
-                        @image12.path =  newAddress
+                        @image12.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 12
-                        @image13.path = newAddress
+                        @image13.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 13
-                        @image14.path = newAddress
+                        @image14.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 14
-                        @image15.path = newAddress
+                        @image15.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 15
-                        @image16.path = newAddress
+                        @image16.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 16
-                        @image17.path = newAddress
+                        @image17.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 17
-                        @image18.path = newAddress
+                        @image18.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       end
 
                     end
@@ -1685,7 +2047,9 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          @image17 = image "C:/Project2/img/empty.png", width: 270, height:180, margin: 12
+          if !$change
+            @image17 = image "C:/Project2/img/empty.png" ,width: 270, height:180, margin: 12
+          end
           @image17.click do
             if @image17.path() == "C:/Project2/img/empty.png"
               alert "You cannot choose an empty card!"
@@ -1724,45 +2088,63 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
                     for i in 0..3 do
                       cardChoose = $cardChosen[i]
                       index = @@cardShow.keys.index(cardChoose)
-                      newAddress = newCards[newCards.keys[i]] + "_d.png"
+                      newAddress = newCards[newCards.keys[i]]
 
                       case index
                       when 0
-                        @image1.path = newAddress
+                        @image1.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 1
-                        @image2.path = newAddress
+                        @image2.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 2
-                        @image3.path = newAddress
+                        @image3.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 3
-                        @image4.path = newAddress
+                        @image4.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 4
-                        @image5.path =newAddress
+                        @image5.path =newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 5
-                        @image6.path = newAddress
+                        @image6.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 6
-                        @image7.path =  newAddress
+                        @image7.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 7
-                        @image8.path =  newAddress
+                        @image8.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 8
-                        @image9.path =  newAddress
+                        @image9.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 9
-                        @image10.path = newAddress
+                        @image10.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 10
-                        @image11.path =  newAddress
+                        @image11.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 11
-                        @image12.path =  newAddress
+                        @image12.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 12
-                        @image13.path = newAddress
+                        @image13.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 13
-                        @image14.path = newAddress
+                        @image14.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 14
-                        @image15.path = newAddress
+                        @image15.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 15
-                        @image16.path = newAddress
+                        @image16.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 16
-                        @image17.path = newAddress
+                        @image17.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 17
-                        @image18.path = newAddress
+                        @image18.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       end
 
                     end
@@ -1787,7 +2169,9 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          @image18 = image "C:/Project2/img/empty.png", width: 270, height:180, margin: 12
+          if !$change
+            @image18 = image "C:/Project2/img/empty.png" ,width: 270, height:180, margin: 12
+          end
           @image18.click do
             if @image18.path() == "C:/Project2/img/empty.png"
               alert "You cannot choose an empty card!"
@@ -1826,45 +2210,63 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
                     for i in 0..3 do
                       cardChoose = $cardChosen[i]
                       index = @@cardShow.keys.index(cardChoose)
-                      newAddress = newCards[newCards.keys[i]] + "_d.png"
+                      newAddress = newCards[newCards.keys[i]]
 
                       case index
                       when 0
-                        @image1.path = newAddress
+                        @image1.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 1
-                        @image2.path = newAddress
+                        @image2.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 2
-                        @image3.path = newAddress
+                        @image3.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 3
-                        @image4.path = newAddress
+                        @image4.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 4
-                        @image5.path =newAddress
+                        @image5.path =newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 5
-                        @image6.path = newAddress
+                        @image6.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 6
-                        @image7.path =  newAddress
+                        @image7.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 7
-                        @image8.path =  newAddress
+                        @image8.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 8
-                        @image9.path =  newAddress
+                        @image9.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 9
-                        @image10.path = newAddress
+                        @image10.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 10
-                        @image11.path =  newAddress
+                        @image11.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 11
-                        @image12.path =  newAddress
+                        @image12.path =  newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 12
-                        @image13.path = newAddress
+                        @image13.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 13
-                        @image14.path = newAddress
+                        @image14.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 14
-                        @image15.path = newAddress
+                        @image15.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 15
-                        @image16.path = newAddress
+                        @image16.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 16
-                        @image17.path = newAddress
+                        @image17.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       when 17
-                        @image18.path = newAddress
+                        @image18.path = newAddress + "_d.png"
+                        card = newCards.key(newAddress)
                       end
 
                     end
@@ -1897,22 +2299,6 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
       flow width:1.0, height:0.1 do
         background rgb(139,206,236)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       end
     end
   end
@@ -1923,8 +2309,8 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         align:  "center",
         font:   "Trebuchet MS",
         stroke: white)
-
   button  "Start" do
+    self.clear
     main
   end
 
