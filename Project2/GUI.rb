@@ -8,7 +8,12 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
   @@deck = deckClass.getDeck
   @@cardShow = deckClass.getRandomCards
   $cardChosen = Array.new
+
   $nadd = true
+  $tf = false
+
+  $score = 0
+
 
 
   flow width:1080, height:1125 do
@@ -41,10 +46,27 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
 
       button 'Hint',width:150,height:60 do
+        for cardA in @@cardShow.keys
+          for cardB in @@cardShow.keys
+            for cardC in @@cardShow.keys
+              if cardA != cardB && cardB !=cardC && cardA!=cardC
+                cards = Array.new(3)
+                cards[0] = cardA
+                cards[1] = cardB
+                cards[2] = cardC
+                if isSet?(cards)
+                  alert "5555"
+                else
+
+                end
+              end
+            end
+          end
+        end
 
 
       end
-      button 'Ey',width:150,height:60 do
+      button 'Easy',width:150,height:60 do
 
 
       end
@@ -56,6 +78,10 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
 
       end
+
+      para "Score:"
+      $score_field = para $score
+      $score_field.replace ($score)
     end
     flow  width:1.0, height: 0.8 do
 
@@ -69,12 +95,22 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
           if !card.getState
 
             image1.path = address + "_c.png"
-            if $cardChosen.length <3
+            if $cardChosen.length <=2
               $cardChosen.push(card )
               card.switch
+
+
             else
               image1.path =address + "_d.png"
-              alert "You have already chosen 3 cards!"
+              if deckClass.isSet?($cardChosen)
+
+                alert "this is set"
+                $score +=1
+                $score_field.replace ($score)
+
+              else
+                alert "Not a set! Try again!"
+              end
             end
           else
             card.switch
@@ -96,12 +132,19 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
           if !card.getState
 
             image2.path = address + "_c.png"
-            if $cardChosen.length <3
+            if $cardChosen.length <=2
               $cardChosen.push(card )
               card.switch
             else
               image2.path =address + "_d.png"
-              alert "You have already chosen 3 cards!"
+              if deckClass.isSet?($cardChosen)
+
+                alert "this is set"
+                $score +=1
+                $score_field.replace ($score)
+              else
+                alert "Not a set! Try again!"
+              end
             end
           else
             card.switch
@@ -123,12 +166,19 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
           if !card.getState
 
             image3.path = address + "_c.png"
-            if $cardChosen.length <3
+            if $cardChosen.length <=2
               $cardChosen.push(card )
               card.switch
             else
               image3.path =address + "_d.png"
-              alert "You have already chosen 3 cards!"
+              if deckClass.isSet?($cardChosen)
+
+                alert "this is set"
+                $score +=1
+                $score_field.replace ($score)
+              else
+                alert "Not a set! Try again!"
+              end
             end
           else
             card.switch
@@ -150,12 +200,19 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
           if !card.getState
 
             image4.path = address + "_c.png"
-            if $cardChosen.length <3
+            if $cardChosen.length <=2
               $cardChosen.push(card )
               card.switch
             else
               image4.path =address + "_d.png"
-              alert "You have already chosen 3 cards!"
+              if deckClass.isSet?($cardChosen)
+
+                alert "this is set"
+                $score +=1
+                $score_field.replace ($score)
+              else
+                alert "Not a set! Try again!"
+              end
             end
           else
             card.switch
@@ -177,12 +234,19 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
           if !card.getState
 
             image5.path = address + "_c.png"
-            if $cardChosen.length <3
+            if $cardChosen.length <=2
               $cardChosen.push(card )
               card.switch
             else
               image5.path =address + "_d.png"
-              alert "You have already chosen 3 cards!"
+              if deckClass.isSet?($cardChosen)
+
+                alert "this is set"
+                $score +=1
+                $score_field.replace ($score)
+              else
+                alert "Not a set! Try again!"
+              end
             end
           else
             card.switch
@@ -209,7 +273,14 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
               card.switch
             else
               image6.path =address + "_d.png"
-              alert "You have already chosen 3 cards!"
+              if deckClass.isSet?($cardChosen)
+
+                alert "this is set"
+                $score +=1
+                $score_field.replace ($score)
+              else
+                lert "Not a set! Try again!"
+              end
             end
           else
             card.switch
@@ -236,7 +307,14 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
               card.switch
             else
               image7.path =address + "_d.png"
-              alert "You have already chosen 3 cards!"
+              if deckClass.isSet?($cardChosen)
+
+                alert "this is set"
+                $score +=1
+                $score_field.replace ($score)
+              else
+                alert "Not a set! Try again!"
+              end
             end
           else
             card.switch
@@ -263,7 +341,14 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
               card.switch
             else
               image8.path =address + "_d.png"
-              alert "You have already chosen 3 cards!"
+              if deckClass.isSet?($cardChosen)
+
+                alert "this is set"
+                $score +=1
+                $score_field.replace ($score)
+              else
+                alert "Not a set! Try again!"
+              end
             end
           else
             card.switch
@@ -290,7 +375,14 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
               card.switch
             else
               image9.path =address + "_d.png"
-              alert "You have already chosen 3 cards!"
+              if deckClass.isSet?($cardChosen)
+
+                alert "this is set"
+                $score +=1
+                $score_field.replace ($score)
+              else
+                alert "Not a set! Try again!"
+              end
             end
           else
             card.switch
@@ -317,7 +409,14 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
               card.switch
             else
               image10.path =address + "_d.png"
-              alert "You have already chosen 3 cards!"
+              if deckClass.isSet?($cardChosen)
+
+                alert "this is set"
+                $score +=1
+                $score_field.replace ($score)
+              else
+                alert "Not a set! Try again!"
+              end
             end
           else
             card.switch
@@ -344,7 +443,14 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
               card.switch
             else
               image11.path =address + "_d.png"
-              alert "You have already chosen 3 cards!"
+              if deckClass.isSet?($cardChosen)
+
+                alert "this is set"
+                $score +=1
+                $score_field.replace ($score)
+              else
+                alert "Not a set! Try again!"
+              end
             end
           else
             card.switch
@@ -371,7 +477,14 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
               card.switch
             else
               image12.path =address + "_d.png"
-              alert "You have already chosen 3 cards!"
+              if deckClass.isSet?($cardChosen)
+
+                alert "this is set"
+                $score +=1
+                $score_field.replace ($score)
+              else
+                alert "Not a set! Try again!"
+              end
             end
           else
             card.switch
@@ -397,7 +510,14 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
                 card.switch
               else
                 image13.path =address + "_d.png"
-                alert "You have already chosen 3 cards!"
+                if deckClass.isSet?($cardChosen)
+
+                  alert "this is set"
+                  $score +=1
+                  $score_field.replace ($score)
+                else
+                  alert "Not a set! Try again!"
+                end
               end
             else
               card.switch
@@ -425,7 +545,14 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
                 card.switch
               else
                 image14.path =address + "_d.png"
-                alert "You have already chosen 3 cards!"
+                if deckClass.isSet?($cardChosen)
+
+                  alert "this is set"
+                  $score +=1
+
+                else
+                  alert "Not a set! Try again!"
+                end
               end
             else
               card.switch
@@ -454,7 +581,14 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
                 card.switch
               else
                 image15.path =address + "_d.png"
-                alert "You have already chosen 3 cards!"
+                if deckClass.isSet?($cardChosen)
+
+                  alert "this is set"
+                  $score +=1
+
+                else
+                  alert "Not a set! Try again!"
+                end
               end
             else
               card.switch
@@ -466,10 +600,6 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
         end
       end
-
-
-
-
     end
 
 
@@ -478,9 +608,23 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
     flow width:1.0, height:0.1 do
       background rgb(139,206,236)
-      para "Rest card: "
-      para "State"
-      para "Time"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     end
   end
 end
