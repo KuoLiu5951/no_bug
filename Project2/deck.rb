@@ -35,12 +35,11 @@ class Deck
 
   #Add 3 cards to the array of cards that will be shown to the player. And remove them from the original card array.
   def addCards
-    newCards = Array.new(3)
+    newCards = Hash.new
     3.times do
       card = @@deck.keys[rand(@@deck.length)];
       address = @@deck.delete(card);
-      @@cardShow[card] = address;
-      newCards.push(card)
+      newCards[card] = address;
     end
     return newCards
 
