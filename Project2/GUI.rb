@@ -4,6 +4,10 @@ require_relative 'cards'
 
 
 Shoes.app(title: "Set Game", width: 600, height: 400) do
+  def main
+    self.clear
+    
+  
   deckClass = Deck.new
   @@deck = deckClass.getDeck
   @@cardShow = deckClass.getRandomCards
@@ -22,10 +26,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
       end
       button 'restart',width:150,height:60 do
-        deckClass = Deck.new
-        @@deck = deckClass.getDeck
-        @@cardShow = deckClass.getRandomCards
-        $cardChosen = Array.new
+       main
       end
 
 
@@ -81,7 +82,14 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
       end
       button 'Rule',width:150,height:60 do
-
+        link = "https://www.setgame.com/set"
+        if RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/
+          system "start #{link}"
+        elsif RbConfig::CONFIG['host_os'] =~ /darwin/
+          system "open #{link}"
+        elsif RbConfig::CONFIG['host_os'] =~ /linux|bsd/
+          system "xdg-open #{link}"
+        end
 
       end
 
@@ -89,6 +97,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
       $score_field = para $score
       $score_field.replace ($score)
     end
+
     flow  width:1.0, height: 0.8 do
 
       flow width:0.25, height:0.2 do
@@ -1828,4 +1837,17 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
     end
   end
+  end
+
+  background "#F3F".."#F90"
+  title("Set_Game",
+        top:    200,
+        align:  "center",
+        font:   "Trebuchet MS",
+        stroke: white)
+
+  button  "Start" do
+    main
+  end
+  
 end
