@@ -26,7 +26,7 @@ class Deck
   def getRandomCards
     0.upto 11 do
       keys = @@deck.keys
-      card = keys[rand(keys.length)];
+      card = keys[rand(0..keys.length-1)];
       value = @@deck.delete(card);
       @@cardShow[card]=value;
     end
