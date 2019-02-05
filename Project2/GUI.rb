@@ -4,11 +4,10 @@ require_relative 'cards'
 
 
 Shoes.app(title: "Set Game", width: 600, height: 400) do
-  # Creat our GUI on Ruby shoes
   def main
 
 
-    # Declare some important variables implemented from class
+
     deckClass = Deck.new
     @@deck = deckClass.getDeck
     @@cardShow = deckClass.getRandomCards
@@ -22,7 +21,10 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
     flow width:1080, height:1125 do
       flow width:1.0, height: 0.1 do
         background rgb(0,157, 228)
+        button 'Start',width:150,height:60 do
 
+
+        end
         # listener of restart button
         button 'restart',width:150,height:60 do
           self.clear
@@ -74,7 +76,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
         end
         # listener of easy button
-        button 'Easy_Start',width:150,height:60 do
+        button 'Easy',width:150,height:60 do
           flow width: 200, height: 130 do
 
             seconds = 120
@@ -114,7 +116,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
           end
         end
         # listener of hard button
-        button 'Hard_Start',width:150,height:60 do
+        button 'Hard',width:150,height:60 do
           flow width: 200, height: 130 do
 
             seconds = 60
@@ -173,16 +175,15 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         $score_field = para $score
         $score_field.replace ($score)
       end
-# listener of 18 cards buttons
+# listener of card buttons
       flow  width:1.0, height: 0.8 do
 
         flow width:0.25, height:0.2 do
-        # Got the address of 1st card and pictures comes
+
           cards = @@cardShow.keys
           card= cards[0]
           address = @@cardShow[card]
           @image1 = image  address + ".png", width: 270, height:180, margin: 12
-          # Click once appear the black border, twice the border disappear
           @image1.click do
             if  $cardChosen.length < 2
               if !card.getState
@@ -201,10 +202,10 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
                 $cardChosen.push(card )
                 if deckClass.isSet?($cardChosen)
                   alert "Congratulations! This is a set!"
-                  # Update the score
+
                   $score +=1
                   $score_field.replace ($score)
-                  # If the chosen cards is set,remove the 3 cards from cardShow and add 3 new cards
+
                   newCards = deckClass.addCards
                   for i in 0..3 do
                     cardChoose = $cardChosen[i]
@@ -270,7 +271,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          # Got the address of 2st card and pictures comes，algorithms below are same to 1st card
+
           cards = @@cardShow.keys
           card= cards[1]
           address = @@cardShow[card]
@@ -361,7 +362,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          # Got the address of 3st card and pictures comes，algorithms below are same to 1st card
+
           cards = @@cardShow.keys
           card= cards[2]
           address = @@cardShow[card]
@@ -452,7 +453,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          # Got the address of 4st card and pictures comes，algorithms below are same to 1st card
+
           cards = @@cardShow.keys
           card= cards[3]
           address = @@cardShow[card]
@@ -543,7 +544,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          # Got the address of 5st card and pictures comes，algorithms below are same to 1st card
+
           cards = @@cardShow.keys
           card= cards[4]
           address = @@cardShow[card]
@@ -634,7 +635,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          # Got the address of 6st card and pictures comes，algorithms below are same to 1st card
+
           cards = @@cardShow.keys
           card= cards[5]
           address = @@cardShow[card]
@@ -726,7 +727,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          # Got the address of 7st card and pictures comes，algorithms below are same to 1st card
+
           cards = @@cardShow.keys
           card= cards[6]
           address = @@cardShow[card]
@@ -817,7 +818,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          # Got the address of 8st card and pictures comes，algorithms below are same to 1st card
+
           cards = @@cardShow.keys
           card= cards[7]
           address = @@cardShow[card]
@@ -908,7 +909,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          # Got the address of 9st card and pictures comes，algorithms below are same to 1st card
+
           cards = @@cardShow.keys
           card= cards[8]
           address = @@cardShow[card]
@@ -999,7 +1000,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          # Got the address of 10st card and pictures comes，algorithms below are same to 1st card
+
           cards = @@cardShow.keys
           card= cards[9]
           address = @@cardShow[card]
@@ -1090,7 +1091,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          # Got the address of 11st card and pictures comes，algorithms below are same to 1st card
+
           cards = @@cardShow.keys
           card= cards[10]
           address = @@cardShow[card]
@@ -1181,7 +1182,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          # Got the address of 12st card and pictures comes，algorithms below are same to 1st card
+
           cards = @@cardShow.keys
           card= cards[11]
           address = @@cardShow[card]
@@ -1273,10 +1274,9 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
 
         flow width:0.25, height:0.2 do
-          # Firstly create empty cards,if 12 cards doesn't contain a set , add three cards to 13-15
-          @image13 = image "C:/img/empty.png" ,width: 270, height:180, margin: 12
+          @image13 = image "C:/Project2/img/empty.png" ,width: 270, height:180, margin: 12
           @image13.click do
-            if @image13.path() == "C:/img/empty.png"
+            if @image13.path() == "C:/Project2/img/empty.png"
               alert "You cannot choose an empty card!"
             else
               address = @image13.path
@@ -1376,10 +1376,9 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          # Firstly create empty cards,if 12 cards doesn't contain a set , add three cards to 13-15
-          @image14 = image "C:/img/empty.png", width: 270, height:180, margin: 12
+          @image14 = image "C:/Project2/img/empty.png", width: 270, height:180, margin: 12
           @image14.click do
-            if @image14.path() == "C:/img/empty.png"
+            if @image14.path() == "C:/Project2/img/empty.png"
               alert "You cannot choose an empty card!"
             else
               address = @image14.path
@@ -1482,10 +1481,9 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          # Firstly create empty cards,if 12 cards doesn't contain a set , add three cards to 13-15
-          @image15 = image "C:/img/empty.png", width: 270, height:180, margin: 12
+          @image15 = image "C:/Project2/img/empty.png", width: 270, height:180, margin: 12
           @image15.click do
-            if @image15.path() == "C:/img/empty.png"
+            if @image15.path() == "C:/Project2/img/empty.png"
               alert "You cannot choose an empty card!"
             else
               address = @image15.path
@@ -1585,10 +1583,9 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          # Firstly create empty cards,if 15 cards doesn't contain a set , add three cards to 16-18
-          @image16 = image "C:/img/empty.png", width: 270, height:180, margin: 12
+          @image16 = image "C:/Project2/img/empty.png", width: 270, height:180, margin: 12
           @image16.click do
-            if @image16.path() == "C:/img/empty.png"
+            if @image16.path() == "C:/Project2/img/empty.png"
               alert "You cannot choose an empty card!"
             else
               address = @image16.path
@@ -1688,10 +1685,9 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          # Firstly create empty cards,if 15 cards doesn't contain a set , add three cards to 16-18
-          @image17 = image "C:/img/empty.png", width: 270, height:180, margin: 12
+          @image17 = image "C:/Project2/img/empty.png", width: 270, height:180, margin: 12
           @image17.click do
-            if @image17.path() == "C:/img/empty.png"
+            if @image17.path() == "C:/Project2/img/empty.png"
               alert "You cannot choose an empty card!"
             else
               address = @image17.path
@@ -1791,10 +1787,9 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-          # Firstly create empty cards,if 15 cards doesn't contain a set , add three cards to 16-18
-          @image18 = image "C:/img/empty.png", width: 270, height:180, margin: 12
+          @image18 = image "C:/Project2/img/empty.png", width: 270, height:180, margin: 12
           @image18.click do
-            if @image18.path() == "C:/img/empty.png"
+            if @image18.path() == "C:/Project2/img/empty.png"
               alert "You cannot choose an empty card!"
             else
               address = @image18.path
@@ -1922,7 +1917,6 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
     end
   end
 
-  # Create the background in the homepage
   background "#F3F".."#F90"
   title("Set_Game",
         top:    200,
@@ -1930,9 +1924,8 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         font:   "Trebuchet MS",
         stroke: white)
 
-  # Redirect to our GUI
   button  "Start" do
-    self.clear
     main
   end
 
+end
