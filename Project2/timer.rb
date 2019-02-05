@@ -10,7 +10,7 @@ Shoes.app do
         clock =  '%02d:%02d'
 
         flow do
-          @show = para clock % [seconds, tenths], size: 50, stroke: black
+          @show = para clock % [seconds, tenths], size: 15, stroke: black
         end
 
         a = animate(10) do
@@ -49,7 +49,7 @@ Shoes.app do
         clock =  '%02d:%02d'
 
         flow do
-          @show = para clock % [seconds, tenths], size: 50, stroke: black
+          @show = para clock % [seconds, tenths], size: 15, stroke: black
         end
 
         a = animate(10) do
