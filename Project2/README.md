@@ -3,9 +3,12 @@ Start date: 01/26/2019
 ## Game Tutorial
 The rules of the SET game can be found on [Wikipedia](https://en.wikipedia.org/wiki/Set_(card_game)).
 ## Requirement
-     -- Ruby,Ruby Shoes
+     -- Ruby
+     -- Ruby Shoes 3.3
 ## How to Run
-     -- 
+     -- Clone the repo using
+     git clone https://github.com/cse-3901-sp2019-1800/no_bug/tree/master/Project2
+     and make sure copy the Project2 to D: open "GUI.rb" with Shoes
 ## Quick Start
      -- There are 3 * 6 buttons to display the cards on the table. Initially there are 12 cards, empty 
      image files are used for the other 6 buttons, in case that the player clicks "Add Card" button 
@@ -22,9 +25,10 @@ The rules of the SET game can be found on [Wikipedia](https://en.wikipedia.org/w
      
      -- "Num_cards" label: display the number of cards left in the card_set.
      
-     --"Score" field : display the score in game.
+     -- "Score" field : display the score in game.
 ## Implementations Details
-
+     -- 
+     
 ## Meeting
      -- 01/27/2019:
      Our team learned how to program with Ruby.
@@ -36,5 +40,12 @@ The rules of the SET game can be found on [Wikipedia](https://en.wikipedia.org/w
      Our team discussed how to link buttons to functions.
      --02/02/2019:
      Our team failed to connect Ruby with GUI using glade and decided to use Ruby Shoes.
-     
+     --02/03/2019:
+     Our team implemented the class "deck", and learned how to use Shoes to design and implement GUI.
+     --02/04/2019:
+     Our team implemented the function that updates the cards, and create functions of according buttons. 
+     Our team worked around the clock.
+     --02/05/2019:
+     Our team implemented more functions of the buttons, and implemented the methods that the board would update the card 
+     chosen after player choose a set. And our team debug the code at the eleventh hour.
      
