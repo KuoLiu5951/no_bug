@@ -1,6 +1,6 @@
 # Project2: Web Scraping
 Start date: 02/07/2019
-## Project instruction
+## Project Description
 Web scraping is about data scraping used for extracting data from websites. What our project does is given a data file which includes the OSU course numbers in a specific category and output each section number in this course and related credits.
 ## Requirement
      -- RubyMine
