@@ -19,7 +19,9 @@ Web scraping is about data scraping used for extracting data from websites. What
 
 ## Implementations Details
      Read the input data file first and get the subject name. Then the program should open the request URL in Firefox.
+     
      Using [browser.find_element(id: 'CLASS_SRCH_WRK2_SSR_PB_CLASS_SRCH')] to search the data in the related area and set the subject name. 
+     
      Same way to get class number,after cliking the class number we will get class total number. Then we can click each section number to find the ID such as the code [browser.find_element(id: 'SSR_CLS_DTL_WRK_UNITS_RANGE')] and retrive the related data.
      
      
