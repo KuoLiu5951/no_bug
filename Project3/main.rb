@@ -1,7 +1,7 @@
 require "selenium-webdriver"
 
 request_url = "https://courses.osu.edu/psc/csosuct/EMPLOYEE/PUB/c/COMMUNITY_ACCESS.CLASS_SEARCH.GBL"
-subjectName = ""
+subjectName = "Social Work"
 CATALOG_NBR_STR = "SSR_CLSRCH_WRK_CATALOG_NBR$2"
 SUBJECT_SEARCH_STR = "SSR_CLSRCH_WRK_SUBJECT_SRCH$1"
 subjectIds = []
@@ -22,6 +22,7 @@ end
 
 browser = Selenium::WebDriver.for :firefox
 browser.get(request_url)
+
 
 subjectIds.each{ |subjectId|
     wait = Selenium::WebDriver::Wait.new(timeout: 30) # seconds
@@ -105,4 +106,12 @@ end
 
 
 browser.quit
+
+
+
+
+
+
+
+
 
