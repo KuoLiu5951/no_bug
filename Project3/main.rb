@@ -81,14 +81,7 @@ subjectIds.each{ |subjectId|
 }
 File.open("./out.txt", "w") do |f|
 
-  subjectClassUnits.each do |key, classUnits|
-    f.write("Subject: " + key.to_s)
-    f.write("\n")
-    classUnits.each do |k, v|
-      f.write("Class " + k.to_s + ": " + v.to_s + " units")
-      f.write("\n")
-    end
-  end
+  
 end
 
 
