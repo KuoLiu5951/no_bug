@@ -12,6 +12,7 @@ Web scraping is about data scraping used for extracting data from websites. What
      
      -- Geckodriver version 0.24.0
      The instruction of how to download the Geckodriver into VM and set the path is https://askubuntu.com/questions/870530/how-to-install-geckodriver-in-ubuntu 
+     Warn: Instead using the first step and the second step in the answer (The version of geckodriver in the step is v0.18.0), download geckodriver in https://github.com/mozilla/geckodriver/releases to get the newest 0.24.0 version. And extract it by double clicking the file downloaded. Step 3 and step4 remain the same as the answer shows.
      
      --Firefox version 65.0
 ## How to Run
@@ -45,8 +46,4 @@ Web scraping is about data scraping used for extracting data from websites. What
      
      --How to set Path to Geckodriver in Ubuntu
      https://askubuntu.com/questions/870530/how-to-install-geckodriver-in-ubuntu
-     The first answer:
-          --Make it executable: 
-          chmod +x geckodriver
-          --Add the driver to your PATH so other tools can find it:
-          export PATH=$PATH:/#path-to-extracted-file#/geckodriver
+    
