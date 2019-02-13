@@ -42,7 +42,6 @@ Web scraping is about data scraping used for extracting data from websites. What
 ## Reference
      --How to download Geckodriver (v0.24.0)
      https://github.com/mozilla/geckodriver/releases
-     And click the file and then extract.
      
      --How to set Path to Geckodriver in Ubuntu
      https://askubuntu.com/questions/870530/how-to-install-geckodriver-in-ubuntu
