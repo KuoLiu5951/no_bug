@@ -292,8 +292,6 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
                   deckClass.removeCard($cardChosen)
                   @@cardShow = @@cardShow.merge(newCards)
                   $cardChosen.clear()
-                  
-                  
                 else
                   alert "Not a set! Try again!"
 
@@ -954,30 +952,30 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
             if @image13.path() == "img/empty.png"
               alert "You cannot choose an empty card!"
             else
-              address = @image13.path
-              if address.include?("_c.png")
-                address.slice!("_c.png")
-              elsif address.include?("_d.png")
-                address.slice!("_d.png")
-              elsif address.include?(".png")
-                address.slice!(".png")
+              @address14 = @image13.path
+              if @address13.include?("_c.png")
+                @address13.slice!("_c.png")
+              elsif @address13.include?("_d.png")
+                @address13.slice!("_d.png")
+              elsif @address13.include?(".png")
+                @address13.slice!(".png")
               end
-              card = @@cardShow.key(address)
+              @card13 = @@cardShow.key(@address13)
               if  $cardChosen.length < 2
-                if !card.getState
-                  @image13.path = address + "_c.png"
-                  $cardChosen.push(card )
-                  card.switch
+                if !@card13.getState
+                  @image13.path = @address13 + "_c.png"
+                  $cardChosen.push(@card13 )
+                  @card13.switch
                 else
-                  card.switch
-                  @image13.path =address + "_d.png"
-                  $cardChosen.delete(card)
+                  @card13.switch
+                  @image13.path =@address13 + "_d.png"
+                  $cardChosen.delete(@card13)
                 end
               else
-                if !card.getState
-                  card.switch
-                  @image13.path = address + "_c.png"
-                  $cardChosen.push(card )
+                if !@card13.getState
+                  @card13.switch
+                  @image13.path = @address13 + "_c.png"
+                  $cardChosen.push(@card13 )
                   if deckClass.isSet?($cardChosen)
                     alert "Congratulations! This is a set!"
 
@@ -1001,9 +999,10 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
                   end
                 else
-                  card.switch
-                  @image13.path = address + "_d.png"
-                  $cardChosen.delete(card )
+                  @image13.path = @address13 + "_d.png"
+                  @card13.switch
+
+                  $cardChosen.delete(@card13)
                 end
               end
             end
@@ -1020,33 +1019,30 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
             if @image14.path() == "img/empty.png"
               alert "You cannot choose an empty card!"
             else
-              address = @image14.path
-
-              if address.include?("_c.png")
-                address.slice!("_c.png")
-              elsif address.include?("_d.png")
-                address.slice!("_d.png")
-              elsif address.include?(".png")
-                address.slice!(".png")
+              @address14 = @image14.path
+              if @address14.include?("_c.png")
+                @address14.slice!("_c.png")
+              elsif @address14.include?("_d.png")
+                @address14.slice!("_d.png")
+              elsif @address14.include?(".png")
+                @address14.slice!(".png")
               end
-
-
-              card = @@cardShow.key(address)
+              @card14 = @@cardShow.key(@address14)
               if  $cardChosen.length < 2
-                if !card.getState
-                  @image14.path = address + "_c.png"
-                  $cardChosen.push(card )
-                  card.switch
+                if !@card14.getState
+                  @image14.path = @address14 + "_c.png"
+                  $cardChosen.push(@card14 )
+                  @card14.switch
                 else
-                  card.switch
-                  @image14.path =address + "_d.png"
-                  $cardChosen.delete(card)
+                  @card14.switch
+                  @image14.path =@address14 + "_d.png"
+                  $cardChosen.delete(@card14)
                 end
               else
-                if !card.getState
-                  card.switch
-                  @image14.path = address + "_c.png"
-                  $cardChosen.push(card )
+                if !@card14.getState
+                  @card14.switch
+                  @image14.path = @address14 + "_c.png"
+                  $cardChosen.push(@card14 )
                   if deckClass.isSet?($cardChosen)
                     alert "Congratulations! This is a set!"
 
@@ -1070,9 +1066,10 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
                   end
                 else
-                  card.switch
-                  @image14.path = address + "_d.png"
-                  $cardChosen.delete(card )
+                  @image14.path = @address14 + "_d.png"
+                  @card14.switch
+
+                  $cardChosen.delete(@card14)
                 end
               end
             end
@@ -1088,30 +1085,30 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
             if @image15.path() == "img/empty.png"
               alert "You cannot choose an empty card!"
             else
-              address = @image15.path
-              if address.include?("_c.png")
-                address.slice!("_c.png")
-              elsif address.include?("_d.png")
-                address.slice!("_d.png")
-              elsif address.include?(".png")
-                address.slice!(".png")
+              @address15 = @image15.path
+              if @address15.include?("_c.png")
+                @address15.slice!("_c.png")
+              elsif @address15.include?("_d.png")
+                @address15.slice!("_d.png")
+              elsif @address15.include?(".png")
+                @address15.slice!(".png")
               end
-              card = @@cardShow.key(address)
+              @card15 = @@cardShow.key(@address15)
               if  $cardChosen.length < 2
-                if !card.getState
-                  @image15.path = address + "_c.png"
-                  $cardChosen.push(card )
-                  card.switch
+                if !@card15.getState
+                  @image15.path = @address15 + "_c.png"
+                  $cardChosen.push(@card15 )
+                  @card15.switch
                 else
-                  card.switch
-                  @image15.path =address + "_d.png"
-                  $cardChosen.delete(card)
+                  @card15.switch
+                  @image15.path =@address15 + "_d.png"
+                  $cardChosen.delete(@card15)
                 end
               else
-                if !card.getState
-                  card.switch
-                  @image15.path = address + "_c.png"
-                  $cardChosen.push(card )
+                if !@card15.getState
+                  @card15.switch
+                  @image15.path = @address15 + "_c.png"
+                  $cardChosen.push(@card15 )
                   if deckClass.isSet?($cardChosen)
                     alert "Congratulations! This is a set!"
 
@@ -1125,7 +1122,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
                       index = @@cardShow.keys.index(cardChoose)
                       newAddress = newCards[newCards.keys[i]]
                       replaceNewAddress(index, newAddress, newCards.keys[i])
-                      card = newCards.key(newAddress)
+
                     end
                     deckClass.removeCard($cardChosen)
                     @@cardShow = @@cardShow.merge(newCards)
@@ -1135,9 +1132,10 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
                   end
                 else
-                  card.switch
-                  @image15.path = address + "_d.png"
-                  $cardChosen.delete(card )
+                  @image15.path = @address15 + "_d.png"
+                  @card15.switch
+
+                  $cardChosen.delete(@card15)
                 end
               end
             end
@@ -1148,35 +1146,35 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
         end
 
         flow width:0.25, height:0.2 do
-           @image16 = image "img/empty.png" ,width: 270, height:180, margin: 12
+          @image16 = image "img/empty.png" ,width: 270, height:180, margin: 12
           @image16.click do
             if @image16.path() == "img/empty.png"
               alert "You cannot choose an empty card!"
             else
-              address = @image16.path
-              if address.include?("_c.png")
-                address.slice!("_c.png")
-              elsif address.include?("_d.png")
-                address.slice!("_d.png")
-              elsif address.include?(".png")
-                address.slice!(".png")
+              @address16 = @image16.path
+              if @address16.include?("_c.png")
+                @address16.slice!("_c.png")
+              elsif @address16.include?("_d.png")
+                @address16.slice!("_d.png")
+              elsif @address16.include?(".png")
+                @address16.slice!(".png")
               end
-              card = @@cardShow.key(address)
+              @card16 = @@cardShow.key(@address16)
               if  $cardChosen.length < 2
-                if !card.getState
-                  @image16.path = address + "_c.png"
-                  $cardChosen.push(card )
-                  card.switch
+                if !@card16.getState
+                  @image16.path = @address16 + "_c.png"
+                  $cardChosen.push(@card16 )
+                  @card16.switch
                 else
-                  card.switch
-                  @image16.path =address + "_d.png"
-                  $cardChosen.delete(card)
+                  @card16.switch
+                  @image16.path =@address16 + "_d.png"
+                  $cardChosen.delete(@card16)
                 end
               else
-                if !card.getState
-                  card.switch
-                  @image16.path = address + "_c.png"
-                  $cardChosen.push(card )
+                if !@card16.getState
+                  @card16.switch
+                  @image16.path = @address16 + "_c.png"
+                  $cardChosen.push(@card16 )
                   if deckClass.isSet?($cardChosen)
                     alert "Congratulations! This is a set!"
 
@@ -1190,9 +1188,6 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
                       index = @@cardShow.keys.index(cardChoose)
                       newAddress = newCards[newCards.keys[i]]
                       replaceNewAddress(index, newAddress, newCards.keys[i])
-                      card = newCards.key(newAddress)
-
-                     
 
                     end
                     deckClass.removeCard($cardChosen)
@@ -1203,9 +1198,10 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
                   end
                 else
-                  card.switch
-                  @image16.path = address + "_d.png"
-                  $cardChosen.delete(card )
+                  @image16.path = @address16 + "_d.png"
+                  @card16.switch
+
+                  $cardChosen.delete(@card16)
                 end
               end
             end
@@ -1221,30 +1217,30 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
             if @image17.path() == "img/empty.png"
               alert "You cannot choose an empty card!"
             else
-              address = @image17.path
-              if address.include?("_c.png")
-                address.slice!("_c.png")
-              elsif address.include?("_d.png")
-                address.slice!("_d.png")
-              elsif address.include?(".png")
-                address.slice!(".png")
+              @address17 = @image17.path
+              if @address17.include?("_c.png")
+                @address17.slice!("_c.png")
+              elsif @address17.include?("_d.png")
+                @address17.slice!("_d.png")
+              elsif @address17.include?(".png")
+                @address17.slice!(".png")
               end
-              card = @@cardShow.key(address)
+              @card17 = @@cardShow.key(@address17)
               if  $cardChosen.length < 2
-                if !card.getState
-                  @image17.path = address + "_c.png"
-                  $cardChosen.push(card )
-                  card.switch
+                if !@card17.getState
+                  @image17.path = @address17 + "_c.png"
+                  $cardChosen.push(@card17 )
+                  @card17.switch
                 else
-                  card.switch
-                  @image17.path =address + "_d.png"
-                  $cardChosen.delete(card)
+                  @card17.switch
+                  @image17.path =@address17 + "_d.png"
+                  $cardChosen.delete(@card17)
                 end
               else
-                if !card.getState
-                  card.switch
-                  @image17.path = address + "_c.png"
-                  $cardChosen.push(card )
+                if !@card17.getState
+                  @card17.switch
+                  @image17.path = @address17 + "_c.png"
+                  $cardChosen.push(@card17 )
                   if deckClass.isSet?($cardChosen)
                     alert "Congratulations! This is a set!"
 
@@ -1257,9 +1253,7 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
                       newCards.keys[i].setState(false)
                       index = @@cardShow.keys.index(cardChoose)
                       newAddress = newCards[newCards.keys[i]]
-
                       replaceNewAddress(index, newAddress, newCards.keys[i])
-                      card = newCards.key(newAddress)
 
                     end
                     deckClass.removeCard($cardChosen)
@@ -1270,13 +1264,15 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
                   end
                 else
-                  card.switch
-                  @image17.path = address + "_d.png"
-                  $cardChosen.delete(card )
+                  @image17.path = @address17 + "_d.png"
+                  @card17.switch
+
+                  $cardChosen.delete(@card17)
                 end
               end
             end
           end
+
 
 
 
@@ -1288,30 +1284,30 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
             if @image18.path() == "img/empty.png"
               alert "You cannot choose an empty card!"
             else
-              address = @image18.path
-              if address.include?("_c.png")
-                address.slice!("_c.png")
-              elsif address.include?("_d.png")
-                address.slice!("_d.png")
-              elsif address.include?(".png")
-                address.slice!(".png")
+              @address18 = @image18.path
+              if @address18.include?("_c.png")
+                @address18.slice!("_c.png")
+              elsif @address18.include?("_d.png")
+                @address18.slice!("_d.png")
+              elsif @address18.include?(".png")
+                @address18.slice!(".png")
               end
-              card = @@cardShow.key(address)
+              @card18 = @@cardShow.key(@address18)
               if  $cardChosen.length < 2
-                if !card.getState
-                  @image18.path = address + "_c.png"
-                  $cardChosen.push(card )
-                  card.switch
+                if !@card18.getState
+                  @image18.path = @address18 + "_c.png"
+                  $cardChosen.push(@card18 )
+                  @card18.switch
                 else
-                  card.switch
-                  @image18.path =address + "_d.png"
-                  $cardChosen.delete(card)
+                  @card18.switch
+                  @image18.path =@address18 + "_d.png"
+                  $cardChosen.delete(@card18)
                 end
               else
-                if !card.getState
-                  card.switch
-                  @image18.path = address + "_c.png"
-                  $cardChosen.push(card )
+                if !@card18.getState
+                  @card18.switch
+                  @image18.path = @address18 + "_c.png"
+                  $cardChosen.push(@card18 )
                   if deckClass.isSet?($cardChosen)
                     alert "Congratulations! This is a set!"
 
@@ -1325,7 +1321,6 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
                       index = @@cardShow.keys.index(cardChoose)
                       newAddress = newCards[newCards.keys[i]]
                       replaceNewAddress(index, newAddress, newCards.keys[i])
-                      card = newCards.key(newAddress)
 
                     end
                     deckClass.removeCard($cardChosen)
@@ -1336,9 +1331,10 @@ Shoes.app(title: "Set Game", width: 600, height: 400) do
 
                   end
                 else
-                  card.switch
-                  @image18.path = address + "_d.png"
-                  $cardChosen.delete(card )
+                  @image18.path = @address18 + "_d.png"
+                  @card18.switch
+
+                  $cardChosen.delete(@card18)
                 end
               end
             end
