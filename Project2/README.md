@@ -4,12 +4,18 @@ Start date: 01/26/2019
 The rules of the SET game can be found on [Wikipedia](https://en.wikipedia.org/wiki/Set_(card_game)).
 ## Requirement
      -- RubyMine
-     -- Ruby Shoes 3.3
+     -- Ruby Shoes 3.3.6
+          In order to download Ruby Shoes in the linux, go to the website http://shoesrb.com/downloads/ and download 3.3.6 for linux.
+          After downloading it, right click it and click "Properties" and then "Permissions". There is a box named "Allow executing file           as program". Check it. Move the file into the Home directory.
+          Open the terminal, type $sudo ./shoes-3.3.6-gtk3-x86_64.install (Should be this name if you download the correct file) nstall           and enter your password. It will show the process.
+         
 ## How to Run
      -- Clone the repo using
      git clone https://github.com/cse-3901-sp2019-1800/no_bug/tree/master/Project2
-     and make sure downloading the Project2 into Disk C with img file inside it. (The path of img file is C:/Project2/img) If you meet some errors like images does not show in our
+     and make sure downloading the Project2  with img file inside it. (The path of img file is relative path named img/....png) If you meet some errors like images does not show in our
      set game, please check the deck.rb there are specific address of images.
+     
+     Open the Shoes, open Gui.rb inside Shoes.
 ## Quick Start
      -- There are 3 * 6 buttons to display the cards on the table. Initially there are 12 cards, empty 
      image files are used for the other 6 buttons, in case that the player clicks "Add Card" button 
