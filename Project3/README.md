@@ -18,6 +18,8 @@ Web scraping is about data scraping used for extracting data from websites. What
      
      --Firefox version 65.0
      
+## How to run
+     Write down the course number and the course category you want to search into data.txt, then run the main.rb. We need to wait 20 seconds until the website redirecting, then the course informations will slowly show on console. The final output will be found in out.txt file.
 
 ## Implementations Details
      Read the input data file first and get the subject name. Then the program should open the request URL in Firefox.
