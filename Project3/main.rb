@@ -22,12 +22,12 @@ File.open("data.txt", "r") do |f|
   end
 end
 
-# Open the firefox browser 
+# Open the firefox browser
 browser = Selenium::WebDriver.for :firefox
 browser.get(request_url)
 
 subjectIds.each{ |subjectId|
-  wait = Selenium::WebDriver::Wait.new(timeout: 30) # seconds
+  wait = Selenium::WebDriver::Wait.new(timeout: 20) # seconds
   # wait for request finished
   wait.until { browser.find_element(id: "CLASS_SRCH_WRK2_SSR_PB_CLASS_SRCH") }
   # search button
@@ -38,7 +38,7 @@ subjectIds.each{ |subjectId|
   options.each { |option| option.click if option.text ==  subjectName }
 
   # wait.until { selected_option equal subjectName}
-  wait = Selenium::WebDriver::Wait.new(timeout: 30)
+  wait = Selenium::WebDriver::Wait.new(timeout: 20)
 
   selected_option = options.map { |option| option.text if option.selected? }.join
 
@@ -51,7 +51,7 @@ subjectIds.each{ |subjectId|
 
   sbtn.click
   # Wait to ensure the web jumped to another page.
-  wait = Selenium::WebDriver::Wait.new(timeout: 30) # seconds
+  wait = Selenium::WebDriver::Wait.new(timeout: 20) # seconds
   # modify search button
   wait.until { browser.find_element(id: "CLASS_SRCH_WRK2_SSR_PB_MODIFY") }
   modSearchBtn = browser.find_element(id: 'CLASS_SRCH_WRK2_SSR_PB_MODIFY')
@@ -80,7 +80,7 @@ subjectIds.each{ |subjectId|
     # Go back to the previous page and search again.
     backBtn = browser.find_element(id: "CLASS_SRCH_WRK2_SSR_PB_BACK")
     backBtn.click
-    wait = Selenium::WebDriver::Wait.new(timeout: 30)
+    wait = Selenium::WebDriver::Wait.new(timeout: 20)
     wait.until { browser.find_element(id: "CLASS_SRCH_WRK2_SSR_PB_MODIFY") }
   end
 
