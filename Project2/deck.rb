@@ -11,7 +11,7 @@ class Deck
           for shade in 1..3
             state = false
             card = Cards.new(number,color,shape,shade,state)
-            @@deck[card] = "C:/Project2/img/" + number.to_s + "_" + color.to_s + "_" + shape.to_s + "_" + shade.to_s
+            @@deck[card] = "img/" + number.to_s + "_" + color.to_s + "_" + shape.to_s + "_" + shade.to_s
           end
         end
       end
@@ -26,7 +26,7 @@ class Deck
   def getRandomCards
     0.upto 11 do
       keys = @@deck.keys
-      card = keys[rand(0..keys.length-1)];
+      card = keys[rand(keys.length)];
       value = @@deck.delete(card);
       @@cardShow[card]=value;
     end
@@ -55,8 +55,9 @@ class Deck
 
   # Algorithm to determine 3 cards is a set or not
   def isSet?(cardChosen)
+    #$stderr.puts cardChosen
     cardA = cardChosen[0];
-      cardB = cardChosen[1];
+    cardB = cardChosen[1];
     cardC = cardChosen[2];
     set = false
     if (((cardA.getNum == cardB.getNum ) && (cardB.getNum  == cardC.getNum ) ||
