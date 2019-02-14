@@ -45,4 +45,8 @@ Web scraping is about data scraping used for extracting data from websites. What
      
      --How to set Path to Geckodriver in Ubuntu
      https://askubuntu.com/questions/870530/how-to-install-geckodriver-in-ubuntu
+     
+     --Some methods we find online about Selenium::WebDriver in Ruby
+     https://github.com/SeleniumHQ/selenium/wiki/Ruby-Bindings
+     
     
