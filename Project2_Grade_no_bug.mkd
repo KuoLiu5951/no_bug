@@ -1,0 +1,39 @@
+Grade for Project 2 No Bug
+============================
+
+80/100
+
+## Implementation ##
+Most important Section. Graded based on how well your project works. Takes into account things such as amount of features, ease of playing the game, and lack of bugs,
+
+Overall decent implementation,there are a number of bugs that do make 
+the game somewhat hard to play. Also the game was implemented slightly incorrect. The implementation contains a large amount of features. In the future try to corretly complete the project requirement and remove bugs before adding features.
+
+* Includes lots of features: GUI Timer, Hint button, Rule Button, easy and hard modes
+* GUI is very clean with good looking cards and buttons.
+* Timer with Easy start and Hard Start works well, however it will not correctly function if more than one is pressed at a time.
+* Hint button is helpful. Could give hint more based on current board state.
+* Reset will reset timer but will not reset cards.
+* Able to select more than 3 cards, able to select the same set multiple times.
+* Multiple players and ability to play through the deck missing.
+
+
+## Style ##
+Includes cleanliness of code, organization of code, and efficient use of the language
+
+*GUI.rb is almost 1500 lines. One file should not have this many lines.
+*GUI.rb contains what appears to be a large amount of repeated code throughout
+*logically sorted into classes
+*Ok use of ruby language does not use many features of language such as implicit return or attr_
+
+## Documentation ##
+How well your code is documented. Includes things such as comments, file headers describing who wrote what and what the file is, and a useful readme.
+
+*Great readme giving lots of details about the project
+*Code lacks file header comments
+*cards and deck files are well commented
+*GUI.rb is sparsely commented
+
+## Other ##
+*Bug fix after due date
+*The game appears to have implemented using slightly incorrect rules where a player trys to find the most amount of sets in a given time with the cards avaliable.
