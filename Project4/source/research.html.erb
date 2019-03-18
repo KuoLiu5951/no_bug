@@ -1,243 +1,115 @@
+---
+left_side_image: "assist.jpeg"
+reseach_list:
+  - text: "My research group develops program analyses and software systems that make complex, concurrent software significantly more reliable, scalable, and secure than it is today."
+    link_text: "research group"
+    link: "http://web.cse.ohio-state.edu/~mikebond/plass/"
+  - text: "General interests: programming languages, software and hardware systems, program analysis, compilers, security"
+    link_text: ""
+    link: ""
+pubs_link: 
+      text: "Publications"
+      link: "pubs.html"
 
-<!-- saved from url=(0050)http://web.cse.ohio-state.edu/~mikebond/plass.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Programming Languages and Software Systems (PLaSS) Group</title>
-
-    <script src="./research_files/hm.js.下载"></script><script src="./research_files/namefix.js.下载"></script>
-    <script src="./research_files/jquery.js.下载"></script> 
-    <script> 
-    $(function(){
-      $("#news").load("news.html");
-    });
-    </script> 
-
-  </head>
-
-  <body><center>
-  <h1><font color="blue">PL</font>a<font color="red">SS</font></h1>
-  <h2><font color="blue">Programming Languages</font> and <font color="red">Software Systems</font><br>Research Group</h2>
-  <h3>Computer Science &amp; Engineering Department, Ohio State University</h3>
-  </center>
+papers_link: 
+      text: "Publicly available research software"
+      link: "papers.html"
+      description: "(see \"Source code\" for each paper)" 
 
 
-  <div>
-  <table cellpadding="10">
-  <tbody><tr>
-  <td valign="top" width="25%">
-    <table border="1" cellpadding="10">
-    <tbody><tr>
-    <td>
-    <center><h2>NEWS</h2></center>
-    <div id="news">    Swarnendu Biswas's paper on
-    <a href="http://web.cse.ohio-state.edu/~mikebond/papers.html#arc">rethinking support for region conflict exceptions</a>
-    has been accepted to IPDPS 2019!
-    <p>
-    Jake Roemer's paper on
-    <a href="http://web.cse.ohio-state.edu/~mikebond/papers.html#vindicator">high-coverage, unbounded predictive race detection</a>
-    appeared at PLDI 2018!
-    </p><p>
-    A paper on <a href="http://web.cse.ohio-state.edu/~mikebond/papers.html#fib">instrumentation bias for efficient data race detection</a><a>
-    co-authored by PLaSS members Man Cao and Mike Bond
-    and led by Ben Wood (Wellesley College)
-    appeared at OOPSLA 2017!
-    </a></p><p><a>
-    Man Cao's paper on
-    </a><a href="http://web.cse.ohio-state.edu/~mikebond/papers.html#hybrid-relaxed-tracking-topc">
-    hybridizing and relaxing dependence tracking</a>
-    has been published in a special edition of ACM Transactions on Parallel Computing (TOPC) in August 2017!
-    </p><p>
-    Aritra Sengupta defended his dissertation and graduated in Spring 2017! He joined Samsung Research America in July.
-    </p><p>
-    Man Cao defended his dissertation and graduated in Spring 2017! He joined Google in May.
-    </p><p>
-    Minjia Zhang's paper on <a href="http://web.cse.ohio-state.edu/~mikebond/papers.html#avalon">avoiding consistency exceptions under strong memory models</a>
-    appeared at ISMM 2017!
-    </p><p>
-    Aritra Sengupta's paper on <a href="http://web.cse.ohio-state.edu/~mikebond/papers.html#legato">commodity HTM support for bounded region serializability</a>
-    appeared at CGO 2017!
-    </p><p>
-    Swarnendu Biswas's paper on <a href="http://web.cse.ohio-state.edu/~mikebond/papers.html#racechaser-caper">lightweight data race detection for production runs</a>
-    appeared at CC 2017!
-    <!--
-    <p>
-    Swarnendu Biswas defended his PhD thesis succcessfully in August 2016!
-    He's now a postdoc at UT Austin working with Keshav Pingali.
-    <p>
-    Minjia Zhang defended his PhD thesis successfully in April 2016!
-    He's now at Microsoft Research.
-    <p>
-    Swarnendu Biswas won
-    <a href=http://www.acm.org/media-center/2016/june/src-2016-grand-finals>
-    First Place in the Graduate Category</a>
-    of the 2016 ACM Student Research Competition!
-    <p>
-    Man Cao's paper on
-    <a href=papers.html#prescient-memory>exposing weak memory model behaviors by
-    "looking into the future"</a>
-    appeared at ISMM 2016!
-    <p>
-    Swarnendu Biswas received the CSE department's Graduate Research Award!
-    <p>
-    Minjia Zhang's paper on
-    <a href=papers.html#relaxed-tracking>relaxed dependence tracking for parallel runtime support</a>
-    appeared at CC 2016!
-    <p>
-    Man Cao's paper on
-    <a href=papers.html#hybrid-tracking>combining pessimistic and optimistic tracking of cross-thread dependences</a>
-    appeared at PPoPP 2016!
-    <p>
-    Swarnendu Biswas's paper on
-    <a href=papers.html#valor>efficient data race exceptions</a>
-    received the OOPSLA 2015 Distinguished Paper Award!
-    <p>
-    Swarnendu Biswas's artifact for
-    <a href=papers.html#valor>efficient data race exceptions</a>
-    received the OOPSLA 2015 Distinguished Artifact Award!
-    <p>
-    Swarnendu Biswas won 1st place at the OOPSLA 2015 Student Research Competition
-    for his ongoing work on hardware cache coherence and consistency!
-    <p>
-    Minjia Zhang won 3rd place at the OOPSLA 2015 Student Research Competition
-    for his ongoing work on snapshot isolation&ndash;based memory model enforcement!
-    <p>
-    Aritra Sengupta's paper on
-    <a href=index.html#papers>hybrid synchronization for enforcing region serializability</a>
-    and our paper on
-    <a href=papers.html#replay>efficient deterministic replay</a>
-    appeared at PPPJ 2015!
-    <p>
-    Swarnendu Biswas and Jake Roemer won 1st and 2nd place, respectively,
-    at the
-    <a href=http://conf.researchr.org/track/pldi2015/Student+Research+Competition>
-    PLDI 2015 Student Research Competition</a>!
-    <p>
-    Aritra Sengupta's paper on
-    <a href=papers.html#enforser>enforcing region serializability of statically bounded regions</a>
-    appeared at ASPLOS 2015!
-    <p>
-    Minjia Zhang's paper on
-    <a href="papers.html#larktm">software transactional memory</a>
-    appeared at PPoPP 2015!
-    <p>
-    Swarnendu Biswas's paper on
-    <a href="papers.html#doublechecker">efficient dynamic atomicity checking</a>
-    appeared at PLDI 2014!
-    <p>
-    <a href=papers.html#laminar-toplas>Laminar</a>
-    (language and system support for decentralized information flow control)
-    has been published in TOPLAS (November 2014)!
-    -->
-    <!--
-    <p>
-    Man Cao's paper on
-    <a href="papers.html#adaptive-sync">adaptive synchronization for
-    efficient parallel runtime support</a>
-    appeared at WoDet 2014!
-    Our paper on <a href="papers.html#octet">efficient dynamic analysis for parallel programs</a>
-    appeared at OOPSLA 2013!
-    <p>
-    Jipeng Huang's paper on <a href="papers.html#ccu">efficient context-sensitive dynamic analysis</a>
-    appeared at OOPSLA 2013!
-    <p>
-    Minjia Zhang won 2nd place at the PLDI 2013 Student Research Competition!
-    <p>
-    Swarnendu Biswas, Aritra Sengupta, and Minjia Zhang's posters were selected to
-    appear at the PLDI 2013 Student Research Competition!
-    <p>
-    I received the NSF CAREER Award!
-    -->
-    <!--
-    <p>
-    Swarnendu Biswas's poster received an Honorable Mention in the CSE Poster Competition!
-    -->
-
-</p></div>
-    </td></tr>
-    </tbody></table>
-  <!--</tr>
-  </table>
-  <table cellpadding=10>
-  <tr>-->
-  </td><td valign="top" width="25%">
-    <table border="1" cellpadding="10">
-    <tbody><tr>
-    <td>
-    <center><h2>MEMBERS</h2></center>
-    Current members:
-    <ul>
-    <li><a href="http://www.cse.ohio-state.edu/~mikebond/">Michael Bond</a>&nbsp; (faculty)
-    </li><li>Kaan Genç&nbsp; (PhD student)
-    </li><li>Jake Roemer&nbsp; (PhD candidate)
-    </li><li>Rui Zhang&nbsp; (PhD student)
-    </li></ul>
-    Graduated members, with positions as of 2019:
-    <ul>
-    <li><a href="http://www.cse.ohio-state.edu/~caoma/">Man Cao</a>&nbsp; (PhD, 2017) — Google
-    </li><li><a href="http://www.cse.ohio-state.edu/~sengupta/">Aritra Sengupta</a>&nbsp; (PhD, 2017) — Samsung Research America
-    </li><li><a href="http://users.ices.utexas.edu/~sbiswas/">Swarnendu Biswas</a>&nbsp; (PhD, 2016) — assistant professor at IIT Kanpur
-    </li><li><a href="http://zhangminjia.me/">Minjia Zhang</a>&nbsp; (PhD, 2016) — Microsoft Research
-    </li><li><a href="http://huangjip.github.io/">Jipeng Huang</a>&nbsp; (MS, 2014) — Apple
-    </li></ul>
-    Primary external collaborators:
-    <ul>
-    <li><a href="https://engineering.purdue.edu/~milind/">Milind Kulkarni</a> (Purdue)
-    </li><li><a href="http://brandonlucia.com/">Brandon Lucia</a> (CMU)
-    </li></ul>
-    We've also collaborated with
-    <a href="http://cs.wellesley.edu/~bpw/">Ben Wood</a> (Wellesley) and
-    <a href="http://homes.cs.washington.edu/~djg/">Dan Grossman</a> (U Washington).
-    <p>
-    </p><hr>
-    <p>
-    </p><center>
-    <img src="../img/plass-may-2017.jpeg" width="400">
-    </center>
-    <br>
-    Celebrating Aritra and Man's PhD defenses and graduations (May 2017)<br>
-    From left to right: Mike, Aritra, Man, Jake, Rui
-    <p>
-    </p><center>
-    <img src="../img/plass-sept-2016.jpeg" width="400">
-    </center>
-    <br>
-    Celebrating Minjia and Swarnendu's PhD defenses and graduations (Sept 2016)<br>
-    From left to right: Aritra, Man, Rui, Jake, Mike, Minjia, Swarnendu, [family member]
-    <p>
-    </p><center>
-    <img src="../img/plass-april-2016.jpeg" height="300">
-    </center>
-    <br>
-    After Minjia's PhD defense (April 2016)<br>
-    From left to right: Man, Aritra, Minjia, Mike, Rui
-    <p>
-    </p><center>
-    <img src="../img/hangouts-2013.jpeg" width="400">
-    </center>
-    <br>
-    Collaborating on the EnfoRSer project on Google Hangouts (c. 2013)<br>
-    From left to right: Aritra, Mike, Milind Kulkarni
-    </td></tr>
-    </tbody></table>
-   </td><td valign="top" width="25%">
-     <table border="1" cellpadding="10" width="100%">
-     <tbody><tr>
-     <td>
-     <center><h2>RESEARCH</h2></center>
-     We design and implement program analyses and runtime systems
-     that make complex, concurrent software systems
-     more reliable, scalable, and secure.
-     <p>
-     <a href="http://web.cse.ohio-state.edu/~mikebond/pubs.html"><b>Publications</b></a>
-     </p><p>
-     <a href="http://web.cse.ohio-state.edu/~mikebond/papers.html">Publicly available research software</a> (see "Source code" for each paper)
-     </p><p>
-     <a href="http://web.cse.ohio-state.edu/~mikebond/misc.html#funding">Funding</a>
-     </p></td></tr>
-     </tbody></table>
-  </td></tr>
-  </tbody></table>
-  </div>
-  
+cur_advisees:
+    text: "Current advisees:"
+    items:
+      - "Kaan Genç  (PhD student)"
+      - "Jake Roemer  (PhD candidate)"
+      - "Rui Zhang  (PhD student)"
 
 
-<script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?0bd5902d44e80b78cb1cd01ca0e85f4a"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script></body></html>
+grad_advisees:
+      text: "Graduated advisees, with positions as of 2019:"
+      items:
+        - link_text: "Man Cao"
+          link: "http://www.cse.ohio-state.edu/~caoma/"
+          description: "(PhD, 2017) — Google"
+        - link_text: "Aritra Sengupta"
+          link: "http://www.cse.ohio-state.edu/~sengupta/"
+          description: "(PhD, 2017) — Samsung Research America"
+        - link_text: "Swarnendu Biswas "
+          link: "http://users.ices.utexas.edu/~sbiswas/"
+          description: "(PhD, 2016) — assistant professor at IIT Kanpur"
+        - link_text: "Minjia Zhang "
+          link: "http://zhangminjia.me/"
+          description: "(PhD, 2016) — Microsoft Research"
+        - link_text: "Jipeng Huang"
+          link: "http://huangjip.github.io/"
+          description: "(MS, 2014) — Apple"
+---
+
+
+
+<div class = "div_research">
+
+   <div class="left_side_img"> 
+        <%= image_tag current_page.data.left_side_image %>
+    </div>
+
+    <div class="content">
+
+      <% current_page.data.reseach_list.each do |f| %>
+      <!-- research description -->
+        <p>
+          <% if f.link_text != ""%>
+              <%= f.text.split(f.link_text)[0]%>
+              <%= link_to f.link_text,f.link %>
+              <%= f.text.split(f.link_text)[1]%>
+          <% else %>
+              <%= f.text %>
+          <% end %>
+        </p>
+      <% end %>
+
+
+      <h3>  <%= link_to current_page.data.pubs_link.text,current_page.data.pubs_link.link %>  </h3>
+
+      <p>  <%= link_to current_page.data.papers_link.text,current_page.data.papers_link.link %>  <% current_page.data.papers_link.description %>  </p>
+
+
+      <h3> <%= current_page.data.cur_advisees.text %> </h3>
+
+      <ul>
+        <% current_page.data.cur_advisees.items.each do |f| %>
+          <!-- research description -->
+            <li>
+              <%= f %>
+            </li>
+        <% end %>
+      </ul>
+
+
+
+
+      <h3> <%= current_page.data.grad_advisees.text%> </h3>
+      <ul>
+      <% current_page.data.grad_advisees.items.each do |f| %>
+          <!-- research description -->
+            <li>
+              <%= link_to f.link_text,f.link %>
+              <%= f.description%>
+          </li>
+
+        <% end %>
+
+      </ul>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
