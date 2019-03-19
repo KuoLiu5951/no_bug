@@ -13,12 +13,6 @@ page '/*.xml', layout: false
 page '/*.json', layout: false
 page '/*.txt', layout: false
 
-page 'Mics.html', :layout => "l2";
-page 'Publication.html', :layout => "l2";
-page 'Group.html', :layout => "l2";
-
-
-activate :livereload
 # With alternative layout
 # page '/path/to/file.html', layout: 'other_layout'
 
