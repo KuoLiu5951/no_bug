@@ -1,0 +1,53 @@
+---
+left_side_image: "assist.jpeg"
+news_list:
+  - text: "Swarnendu Biswas's paper on rethinking support for region conflict exceptions has been accepted to IPDPS 2019!"
+    link_text: "rethinking support for region conflict exceptions"
+    link: "papers.html"
+  - text: "Jake Roemer's paper on high-coverage, unbounded predictive race detection appeared at PLDI 2018!"
+    link_text: "high-coverage, unbounded predictive race detection"
+    link: "papers.html#vindicator"
+  - text: "A paper on instrumentation bias for efficient data race detection co-authored by PLaSS members Man Cao and Mike Bond and led by Ben Wood (Wellesley College) appeared at OOPSLA 2017!"
+    link_text: "instrumentation bias for efficient data race detection"
+    link: "papers.html#fib"
+  - text: "Man Cao's paper on hybridizing and relaxing dependence tracking has been  published in a special edition of ACM Transactions on Parallel Computing (TOPC) in August 2017!"
+    link_text: "hybridizing and relaxing dependence tracking"
+    link: "papers.html#hybrid-relaxed-tracking-topc"
+  - text: "Aritra Sengupta defended his dissertation and graduated in Spring 2017! He joined Samsung Research America in July."
+    link_text: ""
+    link: ""
+  - text: "Man Cao defended his dissertation and graduated in Spring 2017! He joined Google in May."
+    link_text: ""
+    link: ""
+  - text: "Minjia Zhang's paper on avoiding consistency exceptions under strong memory models appeared at ISMM 2017!"
+    link_text: "avoiding consistency exceptions under strong memory models"
+    link: "papers.html#avalon" 
+  - text: "Aritra Sengupta's paper on commodity HTM support for bounded region serializability appeared at CGO 2017!"
+    link_text: "commodity HTM support for bounded region serializability"
+    link: "papers.html#legato"
+  - text: "Swarnendu Biswas's paper on lightweight data race detection for production runs appeared at CC 2017!"
+    link_text: "lightweight data race detection for production runs"
+    link: "papers.html#racechaser-caper"
+
+---
+
+<div class = "div_news">
+
+    <div class="left_side_img"> 
+        <%= image_tag current_page.data.left_side_image %>
+    </div>
+
+    <div class="content">
+      <% current_page.data.news_list.each do |f| %>
+        <p>
+          <% if f.link_text != ""%>
+              <%= f.text.split(f.link_text)[0]%>
+              <%= link_to f.link_text,f.link, :relative => true %>
+              <%= f.text.split(f.link_text)[1]%>
+          <% end %>
+        </p>
+      <% end %>
+    </div>
+
+
+</div>
