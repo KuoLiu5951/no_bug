@@ -2,12 +2,11 @@ var deck = [];
 var cardSelected = [];
 var cardShow = []
 
-function Card(shade, shape, color, number, choosen, path){
+function Card(shade, shape, color, number,path){
     this.shade = shade; 
     this.shape = shape;
     this.color = color;
     this.number = number;
-    this.choosen = choosen;
     this.path = path;
 }
 
@@ -21,7 +20,7 @@ function createDeck(deck){
             for(color = 1; color < 4; color ++){
                 for(number = 1; number <4; number ++){
                     path = pathConst + shade + "_" + shape + "_" + color + "_" + number + ".png";
-                    card = new Card(number, color ,shape, shade, false, path);
+                    card = new Card(number, color ,shape, shade, path);
                     deck.push(card);
                 }
             }
@@ -34,7 +33,7 @@ function createDeck(deck){
 */
 function getRandom(cardNum,deck){
     var cardShow =[];
-    for (i = 0; i <cardNum-1; i++){
+    for (i = 0; i <cardNum; i++){
         let max = deck.length;
         let random = Math.floor(Math.random() * max);
         cardShow.push(deck[random]);
@@ -48,8 +47,9 @@ function getRandom(cardNum,deck){
     Add 3 cards in the cardShow
 */
 function addThreeCards(cardShow,deck){
-    if(cardShow.length=18){
-        window.alert("Three are 18 cards already. You cannot add more cards!");
+    let cardShowLength = cardShow.length;
+    if(cardShowLength==18){
+        alert("Three are 18 cards already. You cannot add more cards!");
     }
     else{
         for (i = 0; i < 3; i++){
@@ -58,6 +58,12 @@ function addThreeCards(cardShow,deck){
             cardShow.push(deck[random]);
             deck.splice(random,1);
         }
+        let cardTable = document.getElementsByClassName("cards");
+        let length = cardsTable.length;
+        for (j = 0; j<3; j++){
+            cardTable[cardShowLength+j].firstElementChild.src=cardShow[cardShowLength+j].path;
+        }
+
     }
     return cardShow;
 }
@@ -66,14 +72,14 @@ function addThreeCards(cardShow,deck){
     Verify that whether the 3 cards selected by the user is a set or not.
 */
 function isSet(cardSelected){
-    let card1 = cardSelected[0];
-    let card2 = cardSelected[1];
-    let card3 = cardSelected[2];
-    var set = false;
-    if ((card1.color === card2.color && card2.color === card3.color) || (card1.color !== card2.color && card2.color !==card3.color && card1.color !== card3.color)){
-        if ((card1.number === card2.number && card2.number ===card3.number) || (card1.number !== card2.number && card2.number !== card3.number && card1.number !==card3.number)){
-            if ((card1.shape === card2.shape && card2.shape ===card3.shape) || (card1.shape !== card2.shape && card2.shape !== card3.shape && card1.shape !==card3.shape)){
-                if ((card1.shade === card2.shade && card2.shade ===card3.shade) || (card1.shade !== card2.shade && card2.shade !== card3.shade && card1.shade !==card3.shade)){
+    card1 = cardSelected[0];
+    card2 = cardSelected[1];
+    card3 = cardSelected[2];
+    let set = false;
+    if ((card1.color == card2.color && card2.color == card3.color) || (card1.color != card2.color && card2.color !=card3.color && card1.color != card3.color)){
+        if ((card1.number == card2.number && card2.number ==card3.number) || (card1.number != card2.number && card2.number != card3.number && card1.number !=card3.number)){
+            if ((card1.shape == card2.shape && card2.shape ==card3.shape) || (card1.shape != card2.shape && card2.shape != card3.shape && card1.shape !=card3.shape)){
+                if ((card1.shade == card2.shade && card2.shade ==card3.shade) || (card1.shade != card2.shade && card2.shade != card3.shade && card1.shade !=card3.shade)){
                     set = true;
                 }
             }
@@ -84,42 +90,15 @@ function isSet(cardSelected){
 }
 
 /*
-    Change the card state if it was clicked.
-*/
-function changeState(card){
-    if (card.choosen == false){
-        card.choosen = true;
-    }
-    else{
-        card.choosen = false;
-    }
-}
-
-/*
-    Change the path of the card whenever its state is changed.
-*/
-function changePath(card){
-    var pathString = card.path;
-    if (pathString.indexOf('c') > -1){
-        pathString = pathString.replace('_c','');
-    }
-    else{
-        pathString = pathString + "_c";
-    }
-    card.path = pathString
-}
-
-
-/*
     Give a hint to the player according to the two cards he/she has already choosen.
 */
 function hint(cardSelected){
     if (cardSelected.length < 2){
-        window.alert("You must choose 2 cards before get a hint!")
+        alert("You must choose 2 cards before get a hint!")
     }
     else{
-        let card1 = cardSelected[0];
-        let card2 = cardSelected[1];
+        card1 = cardSelected[0];
+        card2 = cardSelected[1];
         let aSet = false;
         
         for(i=0;i<cardShow.length-1 && !aSet;i++){
@@ -131,19 +110,22 @@ function hint(cardSelected){
             }
         }
         if (!aSet){
-            window.alert("You've chosen wrong cards! Try again!");
+            alert("You've chosen wrong cards! Try again!");
         }
     }
 }
-
-
+function submitClick(){
+    alert("Information saved successfully!")
+    window.location.replace("cards.html")
+}
 
 function restartClick(){
     deck = [];
     cardShow = [];
+    cardSelected = [];
     createDeck(deck);
     cardShow = getRandom(12,deck);
-    for(i=0;i<cardShow.length-1;i++){
+    for(i=0;i<cardShow.length;i++){
         let temp = i + 1;
         let id = "card" + temp;
         let img = document.getElementById(id);
@@ -151,7 +133,71 @@ function restartClick(){
     }
 }
 
+let cardsTable = document.getElementsByClassName("cards");
+for (i = 0; i<cardsTable.length-1;i++){
+    cardsTable[i].onclick = function cardClick(){
+        
+        let id = this.firstElementChild.id;
+        let index = id.replace('card','') -1;
+        if (index > cardShow.length-1){
+            alert("You cannot select an empty card!");
+        }
+        else{
+            card = cardShow[index];
+            if (cardSelected.length<3){
+                let pathString = card.path;
+                if (pathString.indexOf('c') > -1){
+                    pathString = pathString.replace('_c.png','.png');
+                    cardSelected.splice(cardSelected.indexOf(card),1);
+                    card.path = pathString;
+                    this.firstElementChild.src = pathString;
+                }
+                else{
+                    pathString = pathString.replace('.png','_c.png');
+                    card.path = pathString;
+                    this.firstElementChild.src = pathString;
+                    cardSelected.push(card);
+                    if (cardSelected.length==3){
+                        let set = isSet(cardSelected);
+                        if (set){
+                            alert("Congratulations! This is a set!");
+                            /*
+                                Add Score
+                            */
+                            for(i=0;i<3;i++){
+                                selectedCard = cardSelected[i];
+                                
+                                let cardIndex = cardShow.indexOf(selectedCard);
+                                let random = Math.floor(Math.random() * deck.length);
+                                newCard = deck[random];
+                                cardShow[cardIndex]=newCard;
+                                cardsTable[cardIndex].firstElementChild.src = newCard.path;
+                                deck.splice(random,1);
+                            }
+                            cardSelected = [];
+                        }
+                        else{
+                            alert("This is not a set. Try again!");
+                            pathString = pathString.replace('_c.png','.png');
+                            cardSelected.splice(cardSelected.indexOf(card),1);
+                            card.path = pathString;
+                            this.firstElementChild.src = pathString;
+                        }
+                    }
+                }
+                
+            }
+            
+           
+        }
+        
+    }
+}
 
+
+
+
+    
 
 
 

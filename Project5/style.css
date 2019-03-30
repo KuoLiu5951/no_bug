@@ -16,7 +16,7 @@ a.activate{
 }
 
 .width{
-    width: 35%;
+    width: 50%;
     margin: auto;
 }
 
@@ -38,7 +38,8 @@ a.activate{
 }
 
 .buttons{
-    background-color: #cccccc;
+    font-size: 100%;
+    background-color: whitesmoke;
     width: 10%;
     margin: auto;
     border: 1px #cccccc solid;
@@ -51,28 +52,19 @@ a.activate{
 
 }
 
-
-#navbar ul{
-
-    padding: 40px;
-    list-style: none;
-
-}
-#navbar li{
-   
-    border: 10px solid #ccc;
+.user{
+    font-size: 20px;
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    margin-top: 10%;
     text-align: center;
-    float: left;
-    width:25%;
-    display: inline;
-    box-sizing: border-box;
 }
+
 
 .cards button{
-    width: 30%;
+    margin:10px 20px ;
     border: 2px solid #ccc;
-    float:left;
-    display: inline;
     text-align: center;
     box-sizing: border-box;
 
@@ -80,7 +72,6 @@ a.activate{
 .cards:hover{
     background: coral;
     color: red;
-
 }
 
 
