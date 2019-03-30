@@ -35,11 +35,29 @@ function createDeck(deck){
 function getRandom(cardNum,deck){
     var cardShow =[];
     for (i = 0; i <cardNum-1; i++){
-        var max = deck.length;
-        var random = Math.floor(Math.random() * max);
+        let max = deck.length;
+        let random = Math.floor(Math.random() * max);
         cardShow.push(deck[random]);
         deck.splice(random,1);
 
+    }
+    return cardShow;
+}
+
+/*
+    Add 3 cards in the cardShow
+*/
+function addThreeCards(cardShow,deck){
+    if(cardShow.length=18){
+        window.alert("Three are 18 cards already. You cannot add more cards!");
+    }
+    else{
+        for (i = 0; i < 3; i++){
+            let max = deck.length;
+            let random = Math.floor(Math.random() * max);
+            cardShow.push(deck[random]);
+            deck.splice(random,1);
+        }
     }
     return cardShow;
 }
