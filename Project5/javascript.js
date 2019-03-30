@@ -21,13 +21,12 @@ function createDeck(deck){
             for(color = 1; color < 4; color ++){
                 for(number = 1; number <4; number ++){
                     path = pathConst + shade + "_" + shape + "_" + color + "_" + number + ".png";
-                    card = Card.new(number, color ,shape, shade, false, path);
+                    card = new Card(number, color ,shape, shade, false, path);
                     deck.push(card);
                 }
             }
         }
     }
-    return deck;
 }
 
 /*
@@ -35,12 +34,12 @@ function createDeck(deck){
 */
 function getRandom(cardNum,deck){
     var cardShow =[];
-    for (i = 0; i <cardNum; i++){
-        var min = 0;
-        var max = deck.length-1;
-        var random = Math.floor(Math.random() * (max - min + 1));
+    for (i = 0; i <cardNum-1; i++){
+        var max = deck.length;
+        var random = Math.floor(Math.random() * max);
         cardShow.push(deck[random]);
         deck.splice(random,1);
+
     }
     return cardShow;
 }
@@ -116,6 +115,19 @@ function hint(cardSelected){
         if (!aSet){
             window.alert("You've chosen wrong cards! Try again!");
         }
+    }
+}
+
+function restartClick(){
+    deck = [];
+    cardShow = [];
+    createDeck(deck);
+    cardShow = getRandom(12,deck);
+    for(i=0;i<cardShow.length-1;i++){
+        let temp = i + 1;
+        let id = "card" + temp;
+        let img = document.getElementById(id);
+        img.src = cardShow[i].path;
     }
 }
 
