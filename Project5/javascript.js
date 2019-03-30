@@ -138,6 +138,21 @@ function hint(cardSelected){
 
 
 
+function restartClick(){
+    deck = [];
+    cardShow = [];
+    createDeck(deck);
+    cardShow = getRandom(12,deck);
+    for(i=0;i<cardShow.length-1;i++){
+        let temp = i + 1;
+        let id = "card" + temp;
+        let img = document.getElementById(id);
+        img.src = cardShow[i].path;
+    }
+}
+
+
+
 
 
 
