@@ -2,9 +2,9 @@
 Start date: 03/26/2019
 
 ## Requirement
-     
+     We used Visual Studio to accomplish the code,this tool makes us easier to generate live html page from which we could figure out and update the bug quickly.
 ## How to Run
-     
+    Open the user.html, then you can play. Have a good game!
 
 ## Meeting
      -- 03/26/2019: 
@@ -16,8 +16,14 @@ Start date: 03/26/2019
      -- 03/29/2019:
      Our team implemented button features in javasript and upgrade the html
      -- 03/30/2019:
-     Our team connected js with html and displayed the picture
+     Our team connected js with html and displayed the picture.
+     --03/31/2019:
+     Our team had the last group meeting to put everybody's part together then looking for bugs and upgrade each button feature especially timer and hint button.
+     --04/01/2019:
+     We are done with the README.
+     
+     
      
     
 ## Reference
-   Stack Overflow
+   Stack Overflow,Youtube teaching video
