@@ -1,26 +1,32 @@
+/*timer implements a countdown clock showed on the game website. Reference: Stackoverflow "how to set one minute counter in javascript"*/
+var CCOUNT = 1800;
 
-/*
-    A countdown timer to remind the user how much time is left. It is refered to StackOverflow: How to create a simpliest timer in javascript.
-*/
-function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    setInterval(function createTime() {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
+var t, count;
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+function cddisplay() {
+    // displays time in span
+    document.getElementById('timespan').innerHTML = count;
+};
 
-        display.textContent = minutes + ":" + seconds;
+function countdown() {
+    // starts countdown
+    cddisplay();
+    if (count == 0) {
+        alert("Game over!")
+    } else {
+        count--;
+        t = setTimeout("countdown()", 1000);
+    }
+};
 
-        if (--timer < 0) {
-            timer = duration;
-        }
-    }, 1000);
-}
+function cdpause() {
+    // pauses countdown
+    clearTimeout(t);
+};
 
-window.onload = function () {
-    var fiveMinutes = 60 * 30;
-    display = document.querySelector("#time");
-    startTimer(fiveMinutes, display);
+function cdreset() {
+    // resets countdown
+    cdpause();
+    count = CCOUNT;
+    cddisplay();
 };
