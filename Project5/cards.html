@@ -10,16 +10,20 @@
   
 
     <div class = "width">
+        <div class = "buttons_area">
             <button class = buttons  onclick = "restartClick()">Start</button>
             <button class = buttons id = "restartButton" onclick = "restartClick()">Restart</button>
-            <button class = buttons id = "hintButton">Hint</button>
+            <button class = buttons id = "hintButton" onclick = "hintClick()">Hint</button>
             <button class = buttons onclick = "addThreeCards(cardShow,deck)">Add 3 cards</button>
-         
+        </div>
 
-            <br>
-            <br>
-            <h1>Score: <span id ="score"> 0</span></h1>
-            <h2 >Time Remains: <span id ="time">30</span> minutes! </h2>
+        <br>
+        <br>
+        <h1>Score: <span id ="score"> 0</span></h1>
+        <body onload="cdreset()">Time remain(In Seconds): 
+        <span id="timespan"></span>
+        </body>
+        <h3>Cards in the deck: <span id = "cardsRemain">81</span></h3>
 
 
         <div class = "cards_div">
@@ -60,6 +64,6 @@
        
     </div>
     <script src="javascript.js"></script>
-    <script src="time.js"></script>
+    
 </body>
 </html>

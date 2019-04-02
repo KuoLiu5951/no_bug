@@ -11,12 +11,9 @@ a{
     color: #555555;
 
 }
-a.activate{
-
-}
 
 .width{
-    width: 50%;
+    width: 30%;
     margin: auto;
 }
 
@@ -37,10 +34,14 @@ a.activate{
     text-align: center;
 }
 
+.buttons_area{
+    width:100%;
+    margin:20% 20% 10% 13%;
+}
 .buttons{
     font-size: 100%;
     background-color: whitesmoke;
-    width: 10%;
+    width: 20%;
     margin: auto;
     border: 1px #cccccc solid;
     text-align: center;
@@ -52,17 +53,10 @@ a.activate{
 
 }
 
-.user{
-    font-size: 20px;
-    width: 50%;
-    height: 50%;
-    margin: auto;
-    margin-top: 10%;
-    text-align: center;
+.cards_div{
+    width:50%;
 }
-
-
-.cards button{
+.cards{
     margin:10px 20px ;
     border: 2px solid #ccc;
     text-align: center;
