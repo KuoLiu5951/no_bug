@@ -1,0 +1,24 @@
+Grade for Project 3
+============================
+66/100
+
+## Implementation ##
+Graded based on how well your project works. Takes into account things such as amount of features, useability of the program, and a lack of bugs.
+* Project output is not inherently useful and can be confusing. i.e. 0 credits for a section number
+* Very little info recieved.
+* Webscraping using webdriver was not ideal i.e slow and webscraping shouldn't need to open a web browser
+* When entered a class that does not exist, Project does not fail gracefully and crashes.
+* Interface for using project is not intuitive
+* Can only output to one file. Will overide old files.
+
+## Style ##
+Includes cleanliness of code, organization of code, and efficient use of the language.
+* Only one file, should be split up to improve readability.
+* Use of ruby language is fine
+
+## Documentation ##
+How well your code is documented. Includes things such as comments, file headers describing who wrote what and what the file is, and a useful readme.
+* Installation instructions should not link to a askubuntu post and should be instead written out.
+* Installation instructions did not include gem install selenium webdriver.
+* Code is fairly commented and contributed to readability.
+* Does not include any file header
