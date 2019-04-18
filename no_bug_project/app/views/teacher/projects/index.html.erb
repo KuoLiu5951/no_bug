@@ -1,0 +1,31 @@
+<h1>Teacher Projects</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">section number</th>
+      <th scope="col">name</th>
+      <th scope="col">day</th>
+      <th scope="col">start_on</th>
+      <th scope="col">finish_on</th>
+      <th scope="col">action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.each_with_index do |project, index| %>
+      <tr>
+        <th scope="row"><%= index + 1 %></th>
+        <td><%= project.id %></td>
+        <td><%= project.name %></td>
+        <td><%= project.day %></td>
+        <td><%= project.start_on %></td>
+        <td><%= project.finish_on %></td>
+        <td>
+          <%= link_to 'Show', teacher_project_path(project), class: 'btn btn-outline-secondary btn-sm' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'back', teacher_root_path, class: 'btn btn-primary mt-4' %>

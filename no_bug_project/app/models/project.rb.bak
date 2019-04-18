@@ -1,0 +1,19 @@
+
+class Project < ApplicationRecord
+  require 'csv'
+
+  CSV.foreach("Course.csv", :headers => true) do |row|
+    Project.create!(row.to_hash)
+  end
+
+  has_one :grader, dependent: :destroy
+  has_one :teacher, dependent: :destroy
+  has_many :applies, dependent: :destroy
+  belongs_to :teacher, optional: true
+
+  #validates_presence_of :name
+  validates_uniqueness_of :name
+
+  #validates_uniqueness_of :id, scope: %i[teacher_name start_on finish_on]
+
+end

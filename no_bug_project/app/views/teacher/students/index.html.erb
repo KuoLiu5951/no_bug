@@ -1,0 +1,36 @@
+<h1>Teacher Student</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">name</th>
+      <th scope="col">phone</th>
+      <th scope="col">email</th>
+      <th scope="col">sex</th>
+      <th scope="col">birth</th>
+      <th scope="col">start_free_time</th>
+      <th scope="col">expired_free_time</th>
+      <th scope="col">action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each_with_index do |student, index| %>
+      <tr>
+        <th scope="row"><%= index + 1 %></th>
+        <td><%= student.name %></td>
+        <td><%= student.phone %></td>
+        <td><%= student.email %></td>
+        <td><%= Student::SEX[student.sex] %></td>
+        <td><%= student.free_day %></td>
+        <td><%= student.birth %></td>
+        <td><%= student.start_free_time %></td>
+        <td><%= student.expired_free_time %></td>
+        <td>
+          <%= link_to 'Show', teacher_student_path(student), class: 'btn btn-outline-secondary btn-sm' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'back', teacher_root_path, class: 'btn btn-primary mt-4' %>

@@ -1,0 +1,20 @@
+<%= simple_form_for [:student, @apply] do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-group select required apply_project_id">
+    <label class="control-label select required" for="apply_project_id"><abbr title="required">*</abbr> Project
+    </label>
+    <select class="form-control select required" name="apply[project_id]" id="apply_project_id">
+      <option value=""></option>
+      <% current_student.can_select_projects.each do |item| %>
+        <option value="<%= item['id'] %>"><%= item['name'] %></option>
+      <% end %>
+    </select>
+  </div>
+
+  <%= f.input :teacher_id, collection: current_student.can_select_teachers %>
+
+  <%#= f.input :is_published, as: :boolean, checked_value: true, unchecked_value: false %>
+
+  <%= f.button :submit %>
+<% end %>

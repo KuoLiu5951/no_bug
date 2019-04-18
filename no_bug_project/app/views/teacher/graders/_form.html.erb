@@ -1,0 +1,10 @@
+<%= simple_form_for [:teacher, @grader] do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :project_id, collection: current_teacher.can_select_projects %>
+  <%= f.input :student_id, collection: current_teacher.can_select_students %>
+
+  <%#= f.input :is_published, as: :boolean, checked_value: true, unchecked_value: false %>
+
+  <%= f.button :submit %>
+<% end %>

@@ -1,0 +1,10 @@
+<%= simple_form_for [:admin, @project] do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :id %>
+  <%= f.input :name %>
+  <%= f.input :day %>
+  <%= f.input :start_on, as: :time %>
+  <%= f.input :finish_on, as: :time %>
+  <%= f.input :teacher_id, collection: Teacher.all %>
+  <%= f.button :submit %>
+<% end %>
