@@ -1,5 +1,5 @@
 # Project 6: Ruby on rails 
-##Introduction
+#Introduction
 In this project we create a web application for CSE department to select graders for each cse course depend on the 
 student free time. 
 
@@ -12,9 +12,9 @@ in the demo part.
 Also, in order to be convenient, we create a csv file (you can find this file at the bottom of the 
 main directory) which contains information of courses and teachers.
  
-##Build environment 
+#Build environment 
 
-####Postgresql
+#Postgresql
 We use PostgreSQL in our project, so you need to install it in VM./n
 
 First, update apt-get
@@ -40,7 +40,7 @@ Then you need input our password: 123456
 
 Now, you install PostgreSQL successfully! And you finish building environment of this project.(ruby 2.5.0; rails 5.1.4)
 
-####Node js 
+#Node js 
 In order to run our project successfully, we need a new version of nodejs. The version of nodejs installed according to 
 the instruction of CSE3901 course website is not suitable and its version is v4.2.6. (To Check this, type nodejs -v in 
 command line) In order to solve this, we need:
@@ -52,7 +52,7 @@ sudo apt-get install -y nodejs
 ```
 
 After these, your nodejs version should become v10.15.3
-##Run project
+#Run project
 Open this project in Rubymine. You can start running this project by using these 3 line comment. 
 
 
@@ -68,12 +68,12 @@ rails db:migrate
 rails serve
 ```
 
-##Demo
+#Demo
 Open your browser in VM.
 
 Input this address: http://localhost:3000
 
-#### Log in and sign up
+# Log in and sign up
 
 You can see the first page. If you have a account, you can log in. If you do not, you can click 'sign up' to create a account.
 
@@ -88,7 +88,7 @@ Administrator Account:admin@admin.com
 Password:admin@admin.com
 ```
 
-#### Home page
+# Home page
 This page can remind that you log in successfully.
 
 There is button 'Home'. You can click it to go back home page in every page in this project.
@@ -100,7 +100,7 @@ There are three applications for different users including administrator, teache
 Students can only access the last one 'go to student'. Teacher can access 'go to teacher'. Only administrator can access
 'go to admin'.
 
-#### Go to admin
+# Go to admin
 In 'Go to admin', administrator can manage all information in this project. 
 
 'Manage project' You can see all course information. Administrator can add a new course. 'Show' you can see information
@@ -121,7 +121,7 @@ Before administrator click is_published, he need make sure that free time of thi
 
 'Manage graders' you can see and update information of all graders. 
 
-#### Go to teacher
+# Go to teacher
 If you want to access this page, you need to make sure that your account is a teacher. You can manage this information
 in 'Manage user' in "Go to admin".
 
@@ -134,7 +134,7 @@ this student table.
 of courses. 'edit' you can update information of any courses in CSE. You have right to delete some courses in this
 table. 
  
-#### Go to Student
+# Go to Student
 
 'Go to profile' Students can add their information on this page. After they update their information, you can see their
 information in student table. You can add a new student and go into 'go to admin' -> 'manage students' to check new
@@ -149,7 +149,7 @@ give him permission or not.
  
 
 
-##Meetings
+#Meetings
 
 
 
