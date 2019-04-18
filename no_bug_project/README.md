@@ -56,6 +56,13 @@ After these, your nodejs version should become v10.15.3
 ### Run project
 Open this project in Rubymine. You can start running this project by using these 3 line comment. 
 
+```bash
+bundle install
+```
+
+```bash
+rails db:drop  #drop databases that created before
+```
 
 ```bash
 rails db:create
