@@ -73,13 +73,13 @@ rails db:migrate
 ```
 
 ```bash
-rails serve
+rails server
 ```
 
 ### Demo
-Open your browser in VM.
+When you successfully create a server, open your browser in VM.
 
-Input this address: http://localhost:3000
+Redirect to address: http://localhost:3000
 
 ### Log in and sign up
 
