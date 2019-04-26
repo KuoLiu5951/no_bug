@@ -1,0 +1,34 @@
+<h1>Admin Teachers</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">name</th>
+      <th scope="col">phone</th>
+      <th scope="col">email</th>
+      <th scope="col">sex</th>
+      <th scope="col">birth</th>
+      <th scope="col">action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @teachers.each_with_index do |teacher, index| %>
+      <tr>
+        <th scope="row"><%= index + 1 %></th>
+        <td><%= teacher.name %></td>
+        <td><%= teacher.phone %></td>
+        <td><%= teacher.email %></td>
+        <td><%= Teacher::SEX[teacher.sex] %></td>
+        <td><%= teacher.birth %></td>
+        <td>
+          <%= link_to 'Show', admin_teacher_path(teacher), class: 'btn btn-outline-secondary btn-sm' %>
+          <%= link_to 'Edit', edit_admin_teacher_path(teacher), class: 'btn btn-outline-secondary btn-sm' %>
+          <%= link_to 'Destroy', admin_teacher_path(teacher), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-secondary btn-sm' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Admin Teacher', new_admin_teacher_path, class: 'btn btn-success mt-4' %>

@@ -1,0 +1,12 @@
+<p>name: <%= @student.name %></p>
+<p>phone: <%= @student.phone %></p>
+<p>email: <%= @student.email %></p>
+<p>sex: <%= Student::SEX[@student.sex] %></p>
+<p>birth: <%= @student.birth %></p>
+<p>free_weekday: <%= @student.free_day %></p>
+<p>start_free_time: <%= @student.start_free_time.strftime("%I:%m %p") %></p>
+<p>expired_free_time: <%= @student.expired_free_time.strftime("%I:%m %p") %></p>
+
+<div class="mt-4">
+  <%= link_to 'Back', teacher_students_path, class: 'btn btn-success' %>
+</div>

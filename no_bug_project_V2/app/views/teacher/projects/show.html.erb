@@ -1,0 +1,9 @@
+<p>section number: <%= @project.id %></p>
+<p>name: <%= @project.name %></p>
+<p>day: <%= @project.day %></p>
+<p>start_on: <%= @project.start_on.strftime("%I:%m %p") %></p>
+<p>finish_on: <%= @project.finish_on.strftime("%I:%m %p") %></p>
+
+<div class="mt-4">
+  <%= link_to 'Back', teacher_projects_path, class: 'btn btn-success' %>
+</div>

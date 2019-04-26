@@ -1,0 +1,2 @@
+module Teacher::ProjectsHelper
+end

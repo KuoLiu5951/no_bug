@@ -1,0 +1,8 @@
+<p>student: <%= @grader.student.name %></p>
+<p>project: <%= @grader.project.name %></p>
+<p>is_published: <%= @grader.is_published %></p>
+
+<div class="mt-4">
+  <%= link_to 'Edit', edit_teacher_grader_path(@grader), class: 'btn btn-success' %>
+  <%= link_to 'Back', teacher_graders_path, class: 'btn btn-success' %>
+</div>

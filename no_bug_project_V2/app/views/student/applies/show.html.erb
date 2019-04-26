@@ -1,0 +1,8 @@
+<p>project_id: <%= @apply.project.name %></p>
+<p>teacher_id: <%= @apply.teacher.name %></p>
+<p>is_published: <%= @apply.is_published %></p>
+
+<div class="mt-4">
+  <%= link_to 'Edit', edit_student_apply_path(@apply), class: 'btn btn-success' %>
+  <%= link_to 'Back', student_applies_path, class: 'btn btn-success' %>
+</div>

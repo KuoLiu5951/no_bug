@@ -1,0 +1,7 @@
+<%= simple_form_for [:admin, @user] do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :email %>
+  <%= f.input :is_teacher, as: :boolean, checked_value: true, unchecked_value: false %>
+  <%= f.input :is_admin, as: :boolean, checked_value: true, unchecked_value: false %>
+  <%= f.button :submit %>
+<% end %>
