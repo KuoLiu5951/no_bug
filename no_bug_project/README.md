@@ -155,7 +155,14 @@ give him permission or not.
 
 'Go to grader' Students can only see all information of graders. They cannot edit this table.
  
+### Change (Final Project)
+We suppose that a student apply permission of grader. When he chooses a course, he can see the teacher's name of this course. (This page will exist after click 'Apply' in 'Go to Apply page'
 
+
+Teacher can manage information of graders who apply his class. 
+
+
+We have optimized the UI of our webpage that make it more beatiful than before. 
 
 ### Meetings
 
@@ -200,6 +207,9 @@ give him permission or not.
  -- 04/17/2019:
  Our team moved the project from windows environment to linux environment on Ubuntu. Found some bugs and differences 
  between two environments, but we fixed them.
+ 
+  --04/20/2019
+ Our team adds one more function. Teacher can manage information of students who apply permission to his class. Fix a error. When student choose a course, they cannot see names of teacher.
  
 
 
