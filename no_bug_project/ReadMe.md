@@ -214,7 +214,10 @@ We have optimized the UI of our webpage that make it more beatiful than before.
  between two environments, but we fixed them.
 
  --04/20/2019
- Our team adds one more function. Teacher can manage information of students who apply permission to his class. Fix a error. When student choose a course, they cannot see names of teacher.
+ Our team adds one more function. Teacher can manage information of students who apply permission to his class. Fix a error. When student choose a course, they cannot see names of teacher. Add a piece of javascript codes.
+
  
+ --04/25/2019
+ After final exam, our team did the last meeting in this semester. We used this project once again to find some bugs. 
 
 
