@@ -18,7 +18,7 @@
 
 class Student < ApplicationRecord
 
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :applies, dependent: :destroy
   has_many :graders, dependent: :destroy
   has_and_belongs_to_many :teachers, join_table: 'teacher_and_students'
@@ -41,7 +41,9 @@ class Student < ApplicationRecord
       project = Project.find_by_name(name)
       hash << {
         "id"   => project.id,
-        "name" => project.name
+        "name" => project.name,
+        "teacher_id" => project.teacher_id,
+        "teacher_name" => project.teacher_name
       }
     end
     hash

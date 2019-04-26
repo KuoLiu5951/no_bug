@@ -1,4 +1,4 @@
-<%= simple_form_for [:student, @apply] do |f| %>
+ <%= simple_form_for [:student, @apply] do |f| %>
   <%= f.error_notification %>
 
   <div class="form-group select required apply_project_id">
@@ -7,14 +7,31 @@
     <select class="form-control select required" name="apply[project_id]" id="apply_project_id">
       <option value=""></option>
       <% current_student.can_select_projects.each do |item| %>
-        <option value="<%= item['id'] %>"><%= item['name'] %></option>
+        <option value="<%= item['id'] %>" data-teacher-id="<%= item['teacher_id']%>" data-teacher-name="<%= item['teacher_name'] %>" ><%= item['name'] %></option>
       <% end %>
     </select>
   </div>
 
-  <%= f.input :teacher_id, collection: current_student.can_select_teachers %>
+  <div>
+    <p id="show_teacher_name"></p>
+  </div>
+
+  <input class="form-control numeric integer required" type="number" step="1" name="apply[teacher_id]" id="apply_teacher_id" hidden>
 
   <%#= f.input :is_published, as: :boolean, checked_value: true, unchecked_value: false %>
 
   <%= f.button :submit %>
 <% end %>
+
+<script>
+  $( "select" ).change(function () {
+    $("select option:selected").each(function() {
+      var id = $(this).data().teacherId
+      var name = $(this).data().teacherName
+      if (name != undefined){
+        $("#show_teacher_name").text("teacher is：" + name)
+      }
+      $("#apply_teacher_id").val(id);
+    });
+  }).change();
+</script>

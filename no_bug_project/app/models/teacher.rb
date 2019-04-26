@@ -31,7 +31,17 @@ class Teacher < ApplicationRecord
   }.freeze
 
   def can_select_projects
-    Project.all
+    arr = self.projects.pluck(:name)
+    arr.uniq!
+    hash = []
+    arr.each do |name|
+      project = Project.find_by_name(name)
+      hash << {
+        "id"   => project.id,
+        "name" => project.name
+      }
+    end
+    hash
   end
 
   def can_select_students
