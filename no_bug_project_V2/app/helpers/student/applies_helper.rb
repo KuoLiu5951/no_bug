@@ -1,0 +1,2 @@
+module Student::AppliesHelper
+end

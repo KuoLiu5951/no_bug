@@ -1,0 +1,31 @@
+<h1>Admin Applies</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">student</th>
+      <th scope="col">project</th>
+      <th scope="col">teacher</th>
+      <th scope="col">is_published</th>
+      <th scope="col">action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @applies.each_with_index do |apply, index| %>
+      <tr>
+        <th scope="row"><%= index + 1 %></th>
+        <td><%= apply.student.name %></td>
+        <td><%= apply.project.name %></td>
+        <td><%= apply.teacher.name %></td>
+        <td><%= apply.is_published %></td>
+        <td>
+          <%= link_to 'Show', admin_apply_path(apply), class: 'btn btn-outline-secondary btn-sm' %>
+          <%= link_to 'Edit', edit_admin_apply_path(apply), class: 'btn btn-outline-secondary btn-sm' %>
+          <%= link_to 'Destroy', admin_apply_path(apply), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-secondary btn-sm' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'back', admin_root_path, class: 'btn btn-primary mt-4' %>

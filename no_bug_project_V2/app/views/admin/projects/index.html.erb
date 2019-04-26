@@ -1,0 +1,35 @@
+<h1>Projects</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">section number</th>
+      <th scope="col">name</th>
+      <th scope="col">day</th>
+      <th scope="col">start_on</th>
+      <th scope="col">finish_on</th>
+      <th scope="col">teacher</th>
+      <th scope="col">action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.each_with_index do |project, index| %>
+      <tr>
+        <td><%= project.id %></td>
+        <td><%= project.name %></td>
+        <td><%= project.day %></td>
+        <td><%= project.start_on.to_s[11..19] %></td>
+        <td><%= project.finish_on.to_s[11..19] %></td>
+        <td><%= project.teacher_name %></td>
+        <td>
+          <%= link_to 'Show', admin_project_path(project), class: 'btn btn-outline-secondary btn-sm' %>
+          <%= link_to 'Edit', edit_admin_project_path(project), class: 'btn btn-outline-secondary btn-sm' %>
+          <%= link_to 'Destroy', admin_project_path(project), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-secondary btn-sm' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Admin Project', new_admin_project_path, class: 'btn btn-success mt-4' %>
+<%= link_to 'back', admin_root_path, class: 'btn btn-primary mt-4' %>
